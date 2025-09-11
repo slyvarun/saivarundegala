@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asymmetric Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7c3aed;
+      --muted:#9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+      --gap:24px;
+      --radius:18px;
+      --max-width:80%;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, var(--bg) 0%, #07111ac3 100%);
+      color:#e6edf3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap:20px;
+      min-height:100vh;
+      
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    /* left column (profile) */
+    .profile{
+      background:linear-gradient(180deg, rgba(124, 50, 209, 0.101), transparent);
+      border-radius:var(--radius);
+      padding:28px;
+      position:relative;
+      min-height:480px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(93, 53, 126, 0.142);
+      border:1px solid rgba(255,255,255,0.04);
+      overflow:hidden;
+    }
+
+    .avatar{width:200px;height:200px;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,var(--accent),#2dd4bf);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:#072;
+      box-shadow:0 6px 18px rgba(124,58,237,0.18);
+    }
+    .avatar img{width: 230px;height: 200px;
+    }
+
+    .name{font-size:20px;font-weight:700;margin-top:12px}
+    .title{color:var(--muted);font-size:13px;margin-top:6px}
+
+    .contact{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+    .contact .row{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;}
+    .contact .row a{text-decoration: none; color: white;}
+
+    .skills{margin-top:22px}
+    .skills h4{margin:0;font-size:13px;color:var(--muted);letter-spacing:0.6px}
+    .skill-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .skill{background:var(--glass);padding:6px 10px;border-radius:12px;font-size:13px;color:var(--muted)}
+
+    /* right column (main content) */
+    .main{
+      display:grid;
+      gap:var(--gap);
+      grid-template-rows: auto auto;
+    }
+
+    .hero{
+      background: linear-gradient(90deg, rgba(142, 141, 141, 0.062), rgba(0, 0, 0, 0));
+      border-radius: var(--radius);
+      padding:28px;
+      display:flex;
+      gap:24px;
+      align-items:center;
+      position:relative;
+      overflow:visible;
+      border:1px solid rgba(249, 249, 249, 0.03);
+    }
+
+    /* asymmetric card floating */
+    .hero::after{
+      content:'';
+      position:absolute;
+      right:-48px;
+      top:-36px;
+      width:260px;height:160px;border-radius:18px;
+      background:linear-gradient(135deg, rgba(124, 58, 237, 0.232), rgba(2,6,23,0.03));
+      transform:rotate(-9deg);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+      z-index:0;
+    }
+
+    .hero .left{z-index:1;flex:1}
+    .hero .eyebrow{color:var(--muted);font-size:13px}
+    .hero h1{margin:6px 0 10px;font-size:28px}
+    .hero p{margin:0;color:var(--muted);line-height:1.55}
+    .cta{margin-top:12px;display:inline-block;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#06b6d4);color:#051124;text-decoration:none;font-weight:700}
+
+    /* projects grid - asymmetric, masonry-ish */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:20px;
+      align-items:start;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255, 0, 0, 0.01), transparent);
+      padding:18px;
+      border-radius:14px;
+      min-height:120px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.371);
+      display:flex;flex-direction:column;gap:8px;z-index:1;position:relative;overflow:hidden;
+    }
+
+    /* make asymmetry by spanning and varying heights */
+    .card.large{grid-column:span 2;min-height:260px}
+    .card.tall{min-height:220px}
+    .card .tag{font-size:12px;color:var(--muted)}
+    .card h3{margin:6px 0 0;font-size:16px}
+    .card p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* small decorative slant */
+    .card::before{
+      content:'';position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;background:radial-gradient(circle at 30% 30%, rgba(124, 58, 237, 0), transparent 40%);transform:rotate(20deg);z-index:0
+    }
+
+    /* footer area */
+    .footer-row{display:flex;gap:20px;align-items:center}
+    .mini{background:var(--card);padding:14px;margin: 10px; border-radius:12px;display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* responsive */
+    @media (max-width:980px){
+      body{padding:20px 12px;background:linear-gradient(#010000c5 100%);}
+      .wrap{grid-template-columns:1fr;}
+      .hero::after{display:none}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .card.large{grid-column:auto}
+    }
+
+    @media (max-width:520px){
+      body{padding:20px 12px;background:linear-gradient(#010000c5 100%);}
+      .projects{grid-template-columns:1fr}
+      .hero {
+    flex-direction: column;
+    text-align: center;
+    padding:20px;
+  }
+
+  .hero::after {
+    display:none;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    gap:16px;
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .mini {
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+  }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <aside class="profile">
+      <div style="display:flex;gap:14px;align-items:center">
+        <div class="avatar"><img src="/IMG-20250904-WA0073.jpg" alt="Profile-Photo"></div>
+        <div>
+          <div class="name">Sai Varun Degala</div>
+          <div class="title">AI&ML Engineer • Biomedical Engineer</div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="row"><i style="color: #d44638;" class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/MePze7HiDTV33Lfq5">Hyderabad, India</a></div>
+        <div class="row"><i style="color: #e1306c;" class="fas fa-envelope"></i> <a href="mailto:saivarundegala@gmail.com">saivarundegala@email.com</a></div>
+        <div class="row"><i style="color: #a7a6a6;" class="fab fa-github"></i> <a href="https://github.com/slyvarun">GitHub</a></div>
+        <div class="row"><i style="color: #0077b5;" class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/saivarundegala">LinkedIn</a></div>
+         <div class="row"><i style="color: #e1306c;" class="fab fa-instagram"></i> <a href="https://www.instagram.com/varun__ae">Instagram</a></div>
+      </div>
+
+      <div class="skills">
+        <h4>Skills</h4>
+        <div class="skill-list">
+          <div class="skill">AI</div>
+          <div class="skill">Machine Learning</div>
+          <div class="skill">Python</div>
+          <div class="skill">Java</div>
+          <div class="skill">Front-end Developer</div>
+          <div class="skill">Graphic Designer</div>
+          <div class="skill">Public Speaker</div>
+        </div>
+         <div class="skills">
+        <h4>Hobbies</h4>
+        <div class="skill-list">
+          <div class="skill">Reading Books</div>
+          <div class="skill">Sketching</div>
+          <div class="skill">Cooking</div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px">
+        <h4 style="color:var(--muted);font-size:13px;margin:0">About</h4>
+        <p style="color:var(--muted);font-size:13px;margin-top:8px;line-height:1.4">Building practical AI/ML projects for real world problems. Interested in efficient, low-cost hardware integrations and web deployments.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div class="left">
+          <div class="eyebrow">Hello —</div>
+          <h1>About Me</h1>
+          <p>I'm Varun, an ML engineering student.I am a passionate technologist driven by the possibilities of AI, machine learning, and biomedical innovation. My journey combines hands-on experience in AI advocacy as a Google Gemini Campus Ambassador with a background in biomedical engineering and student leadership. I thrive on solving real-world problems through intelligent systems and human-centered design, with a strong interest in building impactful solutions for healthcare and technology.</p>
+          <a class="cta" href="contact.html">Let's get in touch!</a>
+        </div>
+        <div style="width:200px;z-index:2; ">
+          <div class="mini">
+            <div style="font-weight:700;font-size:20px">1</div>
+            <div>
+              <div style="font-size:13px">Featured</div>
+              <div style="color:var(--muted);font-size:12px">Campus Ambassador @Google Gemini</div>
+            </div>
+          </div>
+          
+          <div class="mini">
+            <div style="font-weight:700;font-size:20px">2</div>
+            <div>
+              <div style="font-size:13px">Featured</div>
+              <div style="color:var(--muted);font-size:12px">Biomedical Engineer @Yashoda Hospitals</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects">
+        <article class="card large">
+          <h1>Acadamics</h1>
+          <div class="tag" style="margin-bottom: -10px;">Bachlore Degree</div>
+          <h3>Kommuri Pratap Reddy Institute of Techonology<br><i style="font-weight: 200;">Artificial intelligence & Machine Learning Engineering</i></h3>
+          <p>AI • ML • Computer Architecture • Data Analytics • Cloud Computing • Computer Networks</p>
+          <span style="width: 200px;height: 2px; background-color: white; border-radius: 20px; margin-top: 10px; margin-bottom: 10px;"></span>
+           <div class="tag" style="margin: bottom -10px;;">Diploma Degree</div>
+          <h3>Government Institute Of Electronics <br>
+            <i style="font-weight: 200;">Biomedical Engineering</i></h3>
+          <p>Biomedical Instrumentation • Signal Processing • Electronics and Electrical • Digital Electronics • Anatomy • Physiology </p>
+        </article>
+        <article class="card large">
+          <h1>Experience</h1>
+          <div class="tag" style="margin-bottom: -10px;">Campus Ambassador</div>
+          <h3>Google Gemini<br><i style="font-weight: 200;">Present</i></h3>
+          <p>Leadership • Engagement • Workshops • Collaboration • Promotion</p>
+          <span style="width: 200px;height: 2px; background-color: white; border-radius: 20px; margin-top: 10px; margin-bottom: 10px;"></span>
+           <div class="tag" style="margin: bottom -10px;;">Biomedical Engineer</div>
+          <h3>Yashoda Hospitals<br><i style="font-weight: 200;">2022 December-2023 May</i></h3>
+          <p>Clinical support • Maintenance • Troubleshooting • Diagnosis</p>
+        </article>
+        <article class="card">
+          <div class="tag">Embedded • IoT</div>
+          <h3><a style="text-decoration: none; color: white;" href="https://github.com/slyvarun/Distance-measuring-tool-using-ultrasound-sensor">Distance Measuring Tool</a></h3>
+          <p>Ultrasonic sensor + Arduino with LCD display showing both cm and ft. Small, accurate, and low-power.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">Web • UX • ML </div>
+          <h3><a style="text-decoration: none; color: white;" href="https://github.com/slyvarun/hack2skill-hackathon">Telehealth Frontend</a></h3>
+          <p>Responsive app for patients to upload reports, view predictions, and message clinicians.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Tooling • LLM • Generative AI</div>
+          <h3><a style="text-decoration: none; color: white;" href="https://github.com/slyvarun/custom-e-mail-sender">Custom E-mail Generator</a></h3>
+          <p>LLM-based system that sorts emails and drafts personalized responses automatically.</p>
+        </article>
+        
+        <article class="card">
+  <div class="tag">Web • UI • Development</div>
+  <h3>
+    <a style="text-decoration: none; color: white;" href="https://github.com/slyvarun/cemex" target="_blank">
+      Cemex Infra Website
+    </a>
+  </h3>
+  <p>Corporate website built for Cemex Infra, featuring UX design and user-friendly UI for client engagement.</p>
+</article>
+
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>
