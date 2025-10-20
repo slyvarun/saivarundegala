@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Sai Varun Degala</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  /* VARIABLES (Copied from main portfolio for consistency) */
+  :root{
+    --bg:#0b0d11;
+    --card:#10141a;
+    --accent:#b88a00; /* Deep Gold/Ochre */
+    --accent-light:#f0c419; /* Lighter Gold */
+    --muted:#9aa6b2;
+    --glass: rgba(255,255,255,0.05);
+    --radius:18px;
+  }
+  
+  /* GLOBAL STYLES */
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:#e6edf3;
+    font-family: Inter, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:40px 20px;
+    /* Prevents the page from showing a vertical scrollbar */
+    overflow-y: hidden; 
+  }
+
+  /* CARD CONTAINER (Similar to main portfolio profile card) */
+  .contact-card {
+    width: 100%;
+    max-width: 700px; /* Increased max-width to accommodate two columns comfortably */
+    padding: 40px 30px;
+    background: rgba(184, 138, 0, 0.05); /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-align: center;
+  }
+  
+  /* HEADER */
+  .contact-card h1 {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: var(--accent-light);
+  }
+  .contact-card p {
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-size: 16px;
+  }
+
+  /* CONTACT LINKS GRID - UPDATED FOR 2 COLUMNS */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: Single column for mobile */
+    gap: 20px;
+  }
+
+    @media (min-width: 480px) {
+        .contact-grid {
+            grid-template-columns: 1fr 1fr; /* Two columns for wider screens */
+        }
+    }
+  
+  /* INDIVIDUAL LINK STYLES */
+  .contact-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 15px 12px; /* Slightly reduced horizontal padding to fit better */
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+    text-align: left;
+        height: 100%; /* Ensures links stretch to the same height in a grid row */
+  }
+  .contact-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(184, 138, 0, 0.3);
+    border-color: var(--accent);
+  }
+
+  /* ICON */
+  .contact-icon {
+    font-size: 24px;
+    width: 30px; /* Reduced width slightly */
+    text-align: center;
+  }
+  
+  /* TEXT */
+  .contact-info {
+    flex-grow: 1;
+    margin-left: 10px; /* Reduced margin slightly */
+  }
+  .contact-info strong {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px; /* Reduced font size slightly */
+  }
+  .contact-info span {
+    display: block;
+    color: var(--muted);
+    font-size: 12px; /* Reduced font size slightly */
+  }
+
+  /* BACK BUTTON */
+  .back-link {
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 14px;
+  }
+  .back-link:hover {
+    color: var(--accent-light);
+  }
+</style>
+</head>
+<body>
+  <div class="contact-card">
+    <h1>Connect with Sai Varun</h1>
+    <p>I'm always open to discussing AI projects, HealthTech roles, or new startup ideas. Reach out!</p>
+
+    <div class="contact-grid">
+      
+            <a href="https://www.linkedin.com/in/slyvarun" target="_blank" class="contact-link">
+        <i class="fab fa-linkedin contact-icon" style="color:#0077b5;"></i>
+        <div class="contact-info">
+          <strong>LinkedIn</strong>
+          <span>My Professional Profile & Posts</span>
+        </div>
+      </a>
+      
+            <a href="https://github.com/slyvarun" target="_blank" class="contact-link">
+        <i class="fab fa-github contact-icon" style="color:#fff;"></i>
+        <div class="contact-info">
+          <strong>GitHub</strong>
+          <span>My Projects & Code Portfolio</span>
+        </div>
+      </a>
+
+            <a href="https://instagram.com/varun_ae" target="_blank" class="contact-link">
+        <i class="fab fa-instagram contact-icon" style="color:#fff;"></i>
+        <div class="contact-info">
+          <strong>Instagram</strong>
+          <span>Latest Updates & Personal Insights</span>
+        </div>
+      </a>
+      
+            <a href="https://medium.com/@slyvarun" target="_blank" class="contact-link">
+        <i class="fab fa-medium contact-icon" style="color:#fff;"></i>
+        <div class="contact-info">
+          <strong>Medium</strong>
+          <span>Articles & Case Studies</span>
+        </div>
+      </a>
+            
+            <a href="https://x.com/slyvarun" target="_blank" class="contact-link">
+        <i class="fab fa-x contact-icon" style="color:#fff;"></i>
+        <div class="contact-info">
+          <strong>X (Twitter)</strong>
+          <span>Quick Thoughts on AI & Tech</span>
+        </div>
+      </a>
+
+            <a href="mailto:saivarundegala@gmail.com" class="contact-link">
+        <i class="fas fa-envelope contact-icon" style="color:#e1306c;"></i>
+        <div class="contact-info">
+          <strong>Email Me Directly</strong>
+          <span>saivarundegala@gmail.com</span>
+        </div>
+      </a>
+      
+            <a href="tel:+918639630749" class="contact-link" style="grid-column: span 2;">
+        <i class="fas fa-phone contact-icon" style="color:#008000;"></i>
+        <div class="contact-info">
+          <strong>Call / WhatsApp</strong>
+          <span>+91 8639630749</span>
+        </div>
+      </a>
+
+    </div>
+    
+    <a href="index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+  </div>
+</body>
+</html>
