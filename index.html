@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 <head>
@@ -476,3 +477,477 @@ body{
 
 
 
+=======
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Asymmetric Portfolio - Sai Varun Degala</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+    --bg:#0b0d11; /* Slightly darker base background */
+    --card:#10141a; /* Darker card background for contrast */
+    --accent:#b88a00; /* Deep Gold/Ochre */
+    --accent-light:#f0c419; /* Lighter Gold */
+    --muted:#9aa6b2;
+    --glass: rgba(255,255,255,0.05); /* Slightly less opaque glass */
+    --gap:24px;
+    --radius:18px;
+    --max-width:1400px; /* Increased max width */
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    background:var(--bg);
+    color:#e6edf3;
+    padding:40px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    min-height:100vh;
+}
+.wrap{
+    width:100%;
+    max-width:var(--max-width);
+    display:grid;
+    /* Improvised: Wider profile column for better balance */
+    grid-template-columns:400px 1fr;
+    gap:var(--gap);
+}
+
+/* Glassmorphism Profile */
+.profile{
+    /* Adjusted background to use the new warm accent color */
+    background:rgba(184, 138, 0, 0.05); 
+    backdrop-filter: blur(10px); /* Frosted Glass Effect */
+    border-radius:var(--radius);
+    padding:32px; /* Slightly more padding */
+    min-height:480px;
+    border:1px solid rgba(255,255,255,0.06); /* Stronger border */
+    overflow:hidden;
+    position: sticky; /* Keep profile on screen for better navigation */
+    top: 40px;
+}
+.avatar{width:180px;height:180px;border-radius:50%; /* Circle Avatar */ overflow:hidden;
+    /* Updated avatar gradient to warm colors */
+    background:linear-gradient(135deg,var(--accent),#f0c419);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;
+    /* Updated box-shadow to warm accent color */
+    box-shadow:0 0 0 5px rgba(255,255,255,0.1), 0 6px 20px rgba(184, 138, 0, 0.3);
+}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.name{font-size:24px;font-weight:700;margin-top:16px}
+.title{color:var(--muted);font-size:14px;margin-top:4px}
+.contact{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.contact .row{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:14px;transition: color 0.2s;}
+.contact .row:hover{color:#fff;} /* Contact Hover */
+.contact .row a{text-decoration: none; color: inherit;}
+
+/* New Social Row Styling */
+.social-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center; /* Center icons visually */
+}
+.social-icon{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    color: var(--muted);
+}
+.social-icon:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(184, 138, 0, 0.4);
+    color: var(--accent-light);
+}
+
+
+.skills{margin-top:28px}
+.skills h4{margin:0;font-size:14px;color:var(--accent-light);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:8px}
+.skill-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.skill{background:var(--glass);padding:8px 12px;border-radius:20px;font-size:13px;color:#e6edf3;font-weight:500;border:1px solid rgba(255,255,255,0.05);}
+.main{display:grid;gap:var(--gap)}
+.hero{
+    background: linear-gradient(90deg, rgba(142, 141, 141, 0.08), rgba(0, 0, 0, 0));
+    border-radius: var(--radius);
+    padding:32px; /* Increased padding */
+    display:flex;
+    gap:32px; /* Increased gap */
+    align-items:center;
+    position:relative;
+    border:1px solid rgba(249, 249, 249, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.hero::after{
+    /* Updated accent shape gradient to warm colors */
+    content:'';
+    position:absolute;
+    right:-48px;
+    top:-36px;
+    width:260px;height:160px;border-radius:18px;
+    background:linear-gradient(135deg, rgba(184, 138, 0, 0.3), rgba(2,6,23,0.05));
+    transform:rotate(-9deg);
+    z-index:0;
+}
+.hero .left{z-index:1;flex:1}
+.hero .eyebrow{color:var(--accent-light);font-size:14px;font-weight:600}
+.hero h1{margin:6px 0 12px;font-size:36px;
+    /* Updated text shadow to warm accent color */
+    text-shadow: 0 0 10px rgba(184, 138, 0, 0.5);
+}
+.hero p{margin:0;color:var(--muted);line-height:1.6;font-size:15px}
+.cta{margin-top:16px;display:inline-block;padding:12px 20px;border-radius:14px;
+    /* Updated CTA gradient to warm colors */
+    background:linear-gradient(90deg,var(--accent),#cc9900);
+    color:#051124;text-decoration:none;font-weight:700;transition: all 0.3s ease;}
+.cta:hover{
+    /* Updated CTA hover gradient and shadow to warm colors */
+    background:linear-gradient(90deg,var(--accent-light),#e5bc00);
+    box-shadow: 0 4px 15px rgba(184, 138, 0, 0.4);
+}
+/* New style for the dedicated Education/Experience section to hold card grid */
+.key-sections{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* slightly wider min size for fewer columns */
+    gap:var(--gap);
+    margin-top: 24px;
+}
+/* Style for sub-sections within the large combined card */
+.card .sub-section{
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+}
+.card .sub-section:first-child{
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+.card .sub-section h4{
+    margin: 0 0 5px 0;
+    font-size: 15px;
+    color: var(--accent-light);
+}
+
+.projects{
+    /* Improvised: Responsive grid for projects */
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px; /* Increased gap */
+}
+.card{
+    /* Added a subtle background texture/gradient */
+    background:var(--card);
+    /* Updated radial gradient color to warm accent */
+    background-image: radial-gradient(circle at 10% 10%, rgba(184, 138, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.05);
+    display:flex;flex-direction:column;gap:10px;
+    position:relative;overflow:hidden;
+    transition: all 0.3s ease;
+    min-height: 200px; /* Uniform minimum height */
+    /* Added hover effect to make cards pop */
+    cursor:pointer;
+}
+.card:hover{
+    transform: translateY(-8px);
+    /* Updated box-shadow color to warm accent */
+    box-shadow: 0 20px 40px rgba(184, 138, 0, 0.25);
+    border-color: var(--accent);
+}
+
+.card .tag{font-size:13px;color:#fff;background:var(--accent);padding:4px 8px;border-radius:8px;align-self:flex-start;font-weight:600;}
+.card h3{margin:6px 0 0;font-size:18px;font-weight:700;}
+.card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.card ul{
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 13px;
+    list-style-type: disc;
+}
+.card ul li{margin-bottom: 6px;}
+.card img{width:100%;border-radius:12px;margin-top:15px;object-fit:cover;max-height:180px;}
+
+/* Custom style for the View All Button */
+.view-all-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: var(--card); /* Dark text on gold button */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    margin-left: 20px;
+    border: none;
+}
+.view-all-btn:hover {
+    background: var(--accent-light);
+    color: var(--bg);
+}
+
+
+@media(max-width:1080px){ /* Adjusted media query for wider profile */
+    .wrap{grid-template-columns:1fr;}
+    .profile{position: static; /* Remove sticky on mobile/tablet */ padding: 32px;}
+    .hero::after{display:none;}
+}
+@media(max-width:768px){
+    .key-sections{grid-template-columns:repeat(2,1fr)}
+    .projects{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+    .hero{flex-direction:column;text-align:center;padding:24px;}
+    .hero .cta{margin-top:12px;}
+    .key-sections{grid-template-columns:1fr;gap:16px;}
+    .projects{grid-template-columns:1fr;gap:16px;}
+    .avatar{width:150px;height:150px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <aside class="profile">
+        <div style="display:flex;gap:14px;align-items:center">
+            <div class="avatar"><img src="/assest/profile_photo.jpg" alt="Profile-Photo"></div>
+            <div>
+                <div class="name">Sai Varun Degala</div>
+                <div class="title">AI&ML Engineer • Biomedical Engineer</div>
+            </div>
+        </div>
+
+        <div class="contact">
+            <div class="row"><i class="fas fa-map-marker-alt" style="color:#d44638;"></i> <a href="#">Telangana, India</a></div>
+            <div class="row"><i class="fas fa-phone" style="color:#008000;"></i> <a href="tel:+918639630749">+91 8639630749</a></div>
+            <div class="row"><i class="fas fa-envelope" style="color:#e1306c;"></i> <a href="mailto:saivarundegala@gmail.com">saivarundegala@gmail.com</a></div>
+        </div>
+        
+                <div class="skills" style="margin-top:10px;">
+            <h4>Online Profiles</h4>
+            <div class="social-row">
+                <a style="text-decoration: none;" href="https://github.com/slyvarun" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a style="text-decoration: none;" href="https://www.linkedin.com/in/saivarundegala" class="social-icon" title="LinkedIn" style="color:#0077b5;"><i class="fab fa-linkedin"></i></a>
+                <a style="text-decoration: none;" href="https://x.com/slyvarun" class="social-icon"  title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                <a style="text-decoration: none;" href="https://www.instagram.com/varun_ae" class="social-icon" title="Instagram" style="color:#e1306c;"><i class="fab fa-instagram"></i></a>
+                 <a style="text-decoration: none;" href="https://medium.com/@slyvarun" class="social-icon" title="Instagram" style="color:#e1306c;"><i class="fab fa-medium"></i></a>
+            </div>
+        </div>
+
+        <div class="skills">
+            <h4>Programming & Web</h4>
+            <div class="skill-list">
+                <div class="skill">Python</div>
+                <div class="skill">C/C++</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">React.js</div>
+                <div class="skill">HTML/CSS</div>
+                <div class="skill">SQL (PostgreSQL/MySQL)</div>
+            </div>
+        </div>
+
+        <div class="skills">
+            <h4>AI/ML & Data</h4>
+            <div class="skill-list">
+                <div class="skill">PyTorch/TensorFlow</div>
+                <div class="skill">SciKit-Learn</div>
+                <div class="skill">LLMs (Fine-tuning)</div>
+                <div class="skill">Pandas/NumPy</div>
+                <div class="skill">Data Visualization (Matplotlib/Seaborn)</div>
+                <div class="skill">Cloud (GCP)</div>
+            </div>
+        </div>
+        <div class="skills">
+            <h4>Language Proficiency</h4>
+            <div class="skill-list">
+                <div class="skill">English</div>
+                <div class="skill">Telugu</div>
+                <div class="skill">Hindi</div>
+            </div>
+        </div>
+        
+        <div style="margin-top:32px; display: flex; gap: 10px;">
+                <a class="cta" href="touchin.html" style="margin-top: 0;">Get In Touch</a>
+                <a class="cta" href="cv.html" download style="margin-top: 0; background: #333; color: white;">View My CV</a>
+        </div>
+
+        <div style="margin-top:28px">
+            <h4 style="color:var(--accent-light);font-size:14px;margin:0;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:8px">About Me</h4>
+            <p style="color:var(--muted);font-size:14px;margin-top:12px;line-height:1.6">An AI/ML engineering student passionate about building practical solutions. I leverage my background in Biomedical Engineering to drive innovation in healthcare tech and web deployments.</p>
+        </div>
+    </aside>
+
+    <main class="main">
+        <section class="hero">
+            <div class="left">
+                <div class="eyebrow">Hello — I'm Varun</div>
+                <h1>AI/ML & Biomedical Engineer</h1>
+                <p>I'm an ML engineering student focused on full-stack development and real-world problem-solving. As a **Google Gemini Campus Ambassador**, I merge **AI, hardware, and my clinical biomedical knowledge** to drive innovation, especially in healthcare tech.</p>
+                <a class="cta" href="touchin.html">Let's get in touch!</a>
+                <a class="cta" href="cv.html" download style="background: none; border: 2px solid var(--accent); margin-left: 10px; color: var(--accent);">View My CV</a>
+            </div>
+            <div style="width:220px;z-index:2;">
+                            </div>
+        </section>
+        
+        <section>
+            <h2 style="font-size:24px; margin-bottom: 24px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Key Education & Experience</h2>
+        
+            <div class="key-sections">
+                <article class="card">
+                    <div class="tag" style="background: #e5bc00;">Education</div>
+                    <h3>Academic Journey</h3>
+                    
+                    <div class="sub-section">
+                        <h4>B.Tech - Computer Science Engineering (AI&ML)</h4>
+                        <p style="margin: 0; font-size: 15px;margin: 10px;"><i style="color:#fff">Kommuri Pratap Reddy Institute of Technology</i><br> Expected June 2026</p>
+                        <p style="font-size:12px; margin-top: 5px;color: #fff;">GPA:8.0</p>
+                        <ul>
+                            <li>Involved in the Coding Verse Community Club & Events Club.</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h4>Diploma in Biomedical Engineering</h4>
+                        <p style="margin: 0; font-size: 15px; margin: 10px;"><i style="color:#fff">Government Institute Of Electronics</i>  <br>May 2023</p>
+                        <p style="font-size:12px; margin-top: 5px; color: #fff;">GPA:8.3</p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="tag">Leadership & Operations</div>
+                    <h3>Ambassador & Startup Lead</h3>
+                    
+                    <div class="sub-section">
+                        <h4>Campus Ambassador</h4>
+                        <p style="margin: 0; font-size: 15px; color: #fff; margin: 10px;">Google Gemini | 2025 - Present</p>
+                        <ul>
+                            <li>Represented Google on campus, driving awareness of products and AI tools.</li>
+                            <li>Organized workshops and promotional events to foster student engagement.</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h4>Lead - Operations & Student Public Relations</h4>
+                        <p style="margin: 0; font-size: 15px; color: #fff;margin: 10px;">matriXO (Education Platform) | 2025</p>
+                        <ul>
+                            <li>Spearheaded operations and student relations for the platform.</li>
+                            <li>Facilitated skill development for peers, enhancing learning outcomes by ~30%.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="tag" style="background: #b88a00;">Clinical Experience</div>
+                    <h3 style="color: #deae20;">Junior Biomedical Engineer</h3>
+                    <p style="color: #fff ;">Yashoda Hospitals | Dec 2022 - May 2023</p>
+                    <ul>
+                        <li>Trained staff in the effective use and maintenance of medical equipment.</li>
+                        <li>Assisted doctors in Operation Theater, improving procedural efficiency.</li>
+                        <li>Oversaw maintenance of biomedical equipment, ensuring reliable performance.</li>
+                    </ul>
+                </article>
+                
+                <article class="card">
+                    <div class="tag" style="background: #20b0b0;">Technical Stack</div>
+                    <h3 style="color: #6edada;">My Toolbelt</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                        <p style="margin:0; font-size: 14px; font-weight: 600;">ML/Data</p>
+                        <p style="margin:0; font-size: 14px; font-weight: 600;">Web/Cloud</p>
+                        <ul style="padding-left: 15px; margin: 0; font-size: 13px; color: var(--muted);">
+                            <li>PyTorch, TF</li>
+                            <li>LLMs</li>
+                            <li>Pandas, NumPy</li>
+                            <li>OpenCV, Scikit</li>
+                        </ul>
+                        <ul style="padding-left: 15px; margin: 0; font-size: 13px; color: var(--muted);">
+                            <li>Python/JS</li>
+                            <li>React.js</li>
+                            <li>PostgreSQL</li>
+                            <li>GCP, Docker</li>
+                        </ul>
+                    </div>
+                </article>
+                </div>
+        </section>
+        
+        <section>
+            <h2 style="font-size:24px; margin-top: 40px; margin-bottom: 24px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Featured Projects</h2>
+        </section>
+
+        <section class="projects">
+            <article class="card">
+                <div class="tag" style="background: #f0c419;">Audio Analysis • AI</div>
+                <h3>Spectrogram Analysis for Audio Visualization</h3>
+                <p>Developed an AI model to convert speech and environmental sound into a 2D visual spectrogram.</p>
+                <p style="font-size:12px;">**Concept:** Visualizing time-frequency patterns in audio for analysis.</p>
+            </article>
+
+            <article class="card">
+                <div class="tag" style="background: #e1306c;">Healthcare • ML</div>
+                <h3>ML-based Diagnosis Prediction in Telemedicine</h3>
+                <p>Developed an ML model to predict the likelihood of heart attacks based on patient vitals.</p>
+                <p style="font-size:12px;">**Impact:** Enables proactive healthcare decisions through early diagnosis in telemedicine.</p>
+            </article>
+
+            <article class="card">
+                <div class="tag" style="background: #008000;">Embedded • Hardware</div>
+                <h3>Distance Measuring Tool (Arduino)</h3>
+                <p>Physical prototype demonstrating the low-cost hardware solution in action.</p>
+                <img src="/assest/project.jpeg" alt="Photo of Ultrasonic Sensor and Arduino Prototype" style="max-height: 150px;">
+            </article>
+            
+            <article class="card">
+                <div class="tag" style="background: #0077b5;">LLM • Automation</div>
+                <h3>Custom E-mail Generator using an LLM</h3>
+                <p>Built a tool to automate email handling by sorting personal emails and generating personalized responses.</p>
+                <p style="font-size:12px;">**Functionality:** Used an LLM to craft custom messages and send them automatically to sorted recipients.</p>
+            </article>
+        </section>
+
+        <section>
+            <h2 style="font-size:24px; margin-top: 40px; margin-bottom: 24px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Articles & Case Studies</h2>
+        </section>
+        
+        <section class="projects">
+            <article class="card">
+                <div class="tag" style="background: #e1306c;">Real Life Experience</div>
+                <a href="https://medium.com/@slyvarun/the-unofficial-curriculum-how-startups-forced-me-to-master-networking-4d2a4e0e1485" style="text-decoration: none; color: white;"><h3>The Unofficial Curriculum: How Startups Forced Me to Master Networking</h3></a>
+                <p>The nature of the startup ecosystem inherently forces you to connect, regardless of your role (engineer, founder, or student).</p>
+                <p style="font-size:12px;">Read Time: 7 min</p>
+            </article>
+
+            
+            
+            <article class="card" style="border-style: dashed; opacity: 0.6; justify-content: center; align-items: center; text-align: center;">
+                <i class="fas fa-plus-circle" style="font-size: 30px; color: var(--muted); margin-bottom: 10px;"></i>
+                <h3>More Articles Coming Soon!</h3>
+                <p>Follow me on LinkedIn and Medium to catch my latest posts on AI and health tech.</p>
+            </article>
+            
+            <article class="card" style="border-style: dashed; opacity: 0.6; justify-content: center; align-items: center; text-align: center;">
+                <i class="fas fa-certificate" style="font-size: 30px; color: var(--muted); margin-bottom: 10px;"></i>
+                <h3>View My Certifications</h3>
+                <p>See my full CV</p>
+            </article>
+        </section>
+    </main>
+</div>
+</body>
+</html>
+>>>>>>> dbefc8c (Add all project files)
