@@ -483,7 +483,7 @@ body{
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Asymmetric Portfolio - Sai Varun Degala</title>
+<title>Sai Varun Degala</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
@@ -617,6 +617,103 @@ body{
     background:linear-gradient(90deg,var(--accent-light),#e5bc00);
     box-shadow: 0 4px 15px rgba(184, 138, 0, 0.4);
 }
+/* ===== Editorial Timeline Stack ===== */
+
+.aside-images{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:36px;
+    padding-left:34px;
+    margin-top:48px;
+}
+
+/* Timeline spine */
+.aside-images::before{
+    content:'';
+    position:absolute;
+    left:12px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        var(--accent),
+        transparent
+    );
+    opacity:0.6;
+}
+
+/* Editorial image card */
+.aside-images > div{
+    position:relative;
+    padding:10px;
+    background:#0e1117;
+    border-radius:22px;
+    box-shadow:
+        0 12px 32px rgba(0,0,0,0.55),
+        inset 0 0 0 1px rgba(255,255,255,0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Slight editorial rotation */
+.aside-images > div:nth-child(1){
+    transform: rotate(-1.2deg);
+}
+.aside-images > div:nth-child(2){
+    transform: rotate(1.4deg);
+}
+.aside-images > div:nth-child(3){
+    transform: rotate(-1.4deg);
+}
+.aside-images > div:nth-child(4){
+    transform: rotate(1.4deg);
+}
+.aside-images > div:nth-child(5){
+    transform: rotate(-1.4deg);
+}
+/* Timeline node */
+.aside-images > div::before{
+    content:'';
+    position:absolute;
+    left:-30px;
+    top:36px;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 12px rgba(184,138,0,0.7);
+}
+
+/* Image */
+.aside-images img{
+    width:100%;
+    display:block;
+    border-radius:16px;
+}
+
+/* Hover lift */
+.aside-images > div:hover{
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+        0 18px 44px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(184,138,0,0.45);
+}
+.img-label{
+    position:absolute;
+    bottom:14px;
+    left:14px;
+    padding:6px 12px;
+    font-size:12px;
+    font-weight:600;
+    border-radius:12px;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.15);
+}
+
 /* New style for the dedicated Education/Experience section to hold card grid */
 .key-sections{
     display:grid;
@@ -790,6 +887,28 @@ body{
             <h4 style="color:var(--accent-light);font-size:14px;margin:0;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:8px">About Me</h4>
             <p style="color:var(--muted);font-size:14px;margin-top:12px;line-height:1.6">An AI/ML engineering student passionate about building practical solutions. I leverage my background in Biomedical Engineering to drive innovation in healthcare tech and web deployments.</p>
         </div>
+        <div class="aside-images">
+            <div>
+                <img src="/assest/ot.jpg" style="width: 300px; border-radius: 20px;">
+                <span class="img-label">Operation Theatre, Yashoda Hospitals HYD</span>
+            </div>
+            <div>
+                <img src="/assest/wow.jpg" style="width: 300px; border-radius: 20px;">
+                <span class="img-label">DEV Fest (2022), HYD</span>
+            </div>
+            <div>
+                <img src="/assest/devfest.jpg" style="width: 300px; border-radius: 20px;">
+                <span class="img-label">DEV Fest (2023), HYD</span>
+            </div>
+            <div>
+                <img src="/assest/thub.jpg" style="width: 300px; border-radius: 20px;">
+                <span class="img-label">T-HUB & T-Works, HYD</span>
+            </div>
+            <div>
+                <img src="/assest/wehub.JPG" style="width: 300px; border-radius: 20px;">
+                <span class="img-label">WE HUB, HYD</span>
+            </div>
+        </div>
     </aside>
 
     <main class="main">
@@ -797,7 +916,7 @@ body{
             <div class="left">
                 <div class="eyebrow">Hello — I'm Varun</div>
                 <h1>AI/ML & Biomedical Engineer</h1>
-                <p>I'm an ML engineering student focused on full-stack development and real-world problem-solving. As a **Google Gemini Campus Ambassador**, I merge **AI, hardware, and my clinical biomedical knowledge** to drive innovation, especially in healthcare tech.</p>
+                <p>I'm an ML engineering student focused on Machine Learning and real-world problem-solving. As a Google Gemini Campus Ambassador, I merge AI, hardware, and my clinical biomedical knowledge to drive innovation, especially in healthcare tech.</p>
                 <a class="cta" href="touchin.html">Let's get in touch!</a>
                 <a class="cta" href="cv.html" download style="background: none; border: 2px solid var(--accent); margin-left: 10px; color: var(--accent);">View My CV</a>
             </div>
@@ -841,15 +960,6 @@ body{
                             <li>Organized workshops and promotional events to foster student engagement.</li>
                         </ul>
                     </div>
-
-                    <div class="sub-section">
-                        <h4>Lead - Operations & Student Public Relations</h4>
-                        <p style="margin: 0; font-size: 15px; color: #fff;margin: 10px;">matriXO (Education Platform) | 2025</p>
-                        <ul>
-                            <li>Spearheaded operations and student relations for the platform.</li>
-                            <li>Facilitated skill development for peers, enhancing learning outcomes by ~30%.</li>
-                        </ul>
-                    </div>
                 </article>
 
                 <article class="card">
@@ -883,43 +993,113 @@ body{
                         </ul>
                     </div>
                 </article>
-                </div>
+                
         </section>
         
         <section>
             <h2 style="font-size:24px; margin-top: 40px; margin-bottom: 24px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Featured Projects</h2>
         </section>
 
-        <section class="projects">
-            <article class="card">
-                <div class="tag" style="background: #f0c419;">Audio Analysis • AI</div>
-                <h3>Spectrogram Analysis for Audio Visualization</h3>
-                <p>Developed an AI model to convert speech and environmental sound into a 2D visual spectrogram.</p>
-                <p style="font-size:12px;">**Concept:** Visualizing time-frequency patterns in audio for analysis.</p>
-            </article>
+       
 
-            <article class="card">
-                <div class="tag" style="background: #e1306c;">Healthcare • ML</div>
-                <h3>ML-based Diagnosis Prediction in Telemedicine</h3>
-                <p>Developed an ML model to predict the likelihood of heart attacks based on patient vitals.</p>
-                <p style="font-size:12px;">**Impact:** Enables proactive healthcare decisions through early diagnosis in telemedicine.</p>
-            </article>
+<section class="projects">
+  <article class="card">
+    <div class="tag" style="background:#0077b5;">AI/ML • Hackathon</div>
+    <h3><a href="https://github.com/slyvarun/hack2skill-hackathon" style="color:white; text-decoration:none;">Disease Diagnosis Predictions Using ML MOdels</a></h3>
+    <p>Jupyter Notebook for applied AI tasks — built during Hack2Skill challenge to test end-to-end ML workflows.</p>
+    <p style="font-size:12px;">Last updated: 2 weeks ago</p>
+  </article>
+  
+  <article class="card">
+    <div class="tag" style="background:#20b0b0;">Embedded • IoT</div>
+    <h3><a href="https://github.com/slyvarun/Distance-measuring-tool-using-ultrasound-sensor" style="color:white; text-decoration:none;">Distance Measuring Tool</a></h3>
+    <p>Arduino-based project that uses an ultrasonic sensor to calculate distance and display output on a 16x4 LCD.</p>
+    <p style="font-size:12px;">Last updated: Apr 2024</p>
+  </article>
+  
+  <article class="card">
+  <div class="tag" style="background:#007acc;">React • Python</div>
+  <h3><a href="https://github.com/slyvarun/url-shortner" style="color:white; text-decoration:none;">URL Shortener</a></h3>
+  <p>Full-stack application built with React and Flask to shorten long URLs into compact, shareable links with redirect tracking.</p>
+  <p style="font-size:12px;">Last updated: Oct 2024</p>
+</article>
 
-            <article class="card">
-                <div class="tag" style="background: #008000;">Embedded • Hardware</div>
-                <h3>Distance Measuring Tool (Arduino)</h3>
-                <p>Physical prototype demonstrating the low-cost hardware solution in action.</p>
-                <img src="/assest/project.jpeg" alt="Photo of Ultrasonic Sensor and Arduino Prototype" style="max-height: 150px;">
-            </article>
-            
-            <article class="card">
-                <div class="tag" style="background: #0077b5;">LLM • Automation</div>
-                <h3>Custom E-mail Generator using an LLM</h3>
-                <p>Built a tool to automate email handling by sorting personal emails and generating personalized responses.</p>
-                <p style="font-size:12px;">**Functionality:** Used an LLM to craft custom messages and send them automatically to sorted recipients.</p>
-            </article>
+
+  <article class="card">
+    <div class="tag" style="background:#b88a00;">Web Dev • Clent Portfolio</div>
+    <h3><a href="https://github.com/slyvarun/cemex" style="color:white; text-decoration:none;">CEMEX Web Project</a></h3>
+    <p>HTML-based static website focusing on UI experimentation and responsive layout design.</p>
+    <p style="font-size:12px;">Last updated: Feb 2024</p>
+  </article>
+
+
+  <article class="card">
+    <div class="tag" style="background:#008000;">ML • Healthcare</div>
+    <h3><a href="https://github.com/slyvarun/medical-composition-data-checking-project" style="color:white; text-decoration:none;">Medical Composition Data Checking</a></h3>
+    <p>Forked healthcare project validating medicine compositions using web-based ML models and HTML visualization.</p>
+    <p style="font-size:12px;">Last updated: Jun 2024</p>
+  </article>
+
+    <article class="card">
+     <i class="fab fa-github" style="font-size: 30px; color: var(--muted); margin-bottom: 10px;"></i>
+    <h3>View My Projects and Ongoing work</h3>
+    <button class="btn-github">My Git HUb Profile</button>
+    <style>
+        .btn-github{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 22px;
+    border-radius:14px;
+    background-color: transparent;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:700;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 6px 18px rgba(20, 227, 120, 0.35),
+        inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+
+.btn-github:hover{
+    transform: translateY(-2px);
+    box-shadow:
+        0 10px 26px rgba(184,138,0,0.55);
+}
+
+.btn-github:active{
+    transform: translateY(0);
+    box-shadow:
+        0 4px 12px rgba(184,138,0,0.4);
+}
+
+    </style>
+  </article>
+
+
+</section>
+
+ <section>
+            <h2 style="font-size:24px; margin-top: 40px; margin-bottom: 24px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Learning paths & Course works</h2>
         </section>
-
+    <section class="projects">
+        <article class="card">
+    <div class="tag" style="background:#e5bc00;">Cloud • GCP • Fundamentals</div>
+    <h3><a href="https://github.com/slyvarun/tnsbackendtraning" style="color:white; text-decoration:none;">Google Cloud Arcade</a></h3>
+    <p>Java-based backend development practice repository featuring REST API fundamentals and database handling.</p>
+  
+  </article>
+   <article class="card">
+    <div class="tag" style="background:#ee650a;">Backend • Java</div>
+    <h3><a href="https://github.com/slyvarun/tnsbackendtraning" style="color:white; text-decoration:none;">TNS Backend Training</a></h3>
+    <p>Worked with Google Cloud services including Compute Engine, Cloud Storage, IAM,
+and networking fundamentals through practical, scenario-based labs.</p>
+   
+  </article>
+    </section>
         <section>
             <h2 style="font-size:24px; margin-top: 40px; margin-bottom: 24px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Articles & Case Studies</h2>
         </section>
@@ -932,6 +1112,13 @@ body{
                 <p style="font-size:12px;">Read Time: 7 min</p>
             </article>
 
+            
+            <article class="card">
+                <div class="tag" style="background: #66c30e;">A huge change</div>
+                <a href="https://medium.com/@slyvarun/the-pivot-from-clinical-practice-to-computational-thinking-d1f73d2961a2" style="text-decoration: none; color: white;"><h3>The Pivot: From Clinical Practice to Computational Thinking</h3></a>
+                <p>My shift from the hospital environment to a formal AI/ML Engineering course was not without its hurdles. The immediate demand for deep mathematical knowledge and complex computational architecture was immense.</p>
+                <p style="font-size:12px;">Read Time: 3 min</p>
+            </article>
             
             
             <article class="card" style="border-style: dashed; opacity: 0.6; justify-content: center; align-items: center; text-align: center;">
