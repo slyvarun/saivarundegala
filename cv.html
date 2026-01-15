@@ -1,278 +1,380 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sai Varun Degala - Full CV</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-/* --- CV PAGE STYLES ---
-    Uses main portfolio variables and styles for consistency.
-*/
-:root{
-    --bg:#0b0d11;
-    --card:#10141a;
-    --accent:#b88a00;
-    --accent-light:#f0c419;
-    --muted:#9aa6b2;
-    --gap:24px;
-    --radius:18px;
-    font-family: Inter, sans-serif;
-}
-*{box-sizing:border-box;}
-body{
-    margin:0;
-    background:var(--bg);
-    color:#e6edf3;
-    padding:40px 20px;
-    display:flex;
-    justify-content:center;
-    min-height:100vh;
-}
-.cv-wrap{
-    width:100%;
-    max-width:1100px;
-}
-.header-bar{
-    padding:20px;
-    background:var(--card);
-    border-radius:var(--radius);
-    border:1px solid rgba(255,255,255,0.08);
-    margin-bottom: var(--gap);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-.header-bar h1{
-    margin:0;
-    font-size: 28px;
-    color: var(--accent-light);
-}
-.cv-content{
-    display:grid;
-    grid-template-columns: 1fr; /* Single column layout for document feel */
-    gap:var(--gap);
-    background:var(--card);
-    padding:30px;
-    border-radius:var(--radius);
-    border:1px solid rgba(255,255,255,0.08);
-}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV | Sai Varun Degala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-.section h2{
-    font-size: 20px;
-    color: var(--accent);
-    border-bottom: 2px solid rgba(255,255,255,0.1);
-    padding-bottom: 5px;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.section h3{
-    font-size: 16px;
-    margin: 10px 0 5px 0;
-    color: #fff;
-    font-weight: 600;
-}
-.section p, .section ul {
-    color: var(--muted);
-    font-size: 15px;
-    margin: 0;
-}
-.section ul{
-    padding-left: 20px;
-    margin-bottom: 15px;
-}
-.details-row{
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-}
-.contact-links a {
-    color: var(--muted);
-    text-decoration: none;
-    margin-right: 15px;
-    transition: color 0.2s;
-}
-.contact-links a:hover {
-    color: var(--accent-light);
-}
-.download-btn {
-    padding: 8px 15px;
-    background: var(--accent);
-    color: var(--card);
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: background 0.2s;
-}
-.download-btn:hover {
-    background: var(--accent-light);
-}
-@media(max-width: 600px){
-    .header-bar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .header-bar h1 {
-        margin-bottom: 10px;
-    }
-    .cv-content {
-        padding: 15px;
-    }
-    .details-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-</style>
+        :root {
+            --accent: #f97316;
+            --accent-soft: #fff7ed;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --radius: 8px;
+            --max-width: 850px;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            background: #f8fafc;
+            line-height: 1.5;
+        }
+
+        .cv-paper {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: #fff;
+            padding: 60px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .header-main h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .header-main p {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 5px 0 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .header-contact {
+            text-align: right;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .contact-link:hover { color: var(--accent); }
+        .contact-link i { margin-right: 8px; color: var(--text-main); width: 14px; text-align: center; }
+
+        /* --- SECTIONS --- */
+        section { margin-bottom: 32px; }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .summary p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin: 0;
+            text-align: justify;
+        }
+
+        .item { margin-bottom: 24px; }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .item-title { font-size: 16px; font-weight: 700; color: var(--text-main); }
+        .item-meta { font-size: 14px; font-weight: 700; color: var(--accent); }
+        .item-date { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+
+        .item-list {
+            padding-left: 18px;
+            margin: 8px 0 0;
+            list-style-type: none;
+        }
+
+        .item-list li {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .item-list li::before {
+            content: "•";
+            position: absolute;
+            left: -18px;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-cat h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 0 0 8px;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .skill-tags { font-size: 14px; color: var(--text-muted); }
+
+        .project-item { margin-bottom: 16px; }
+        .project-name { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .project-desc { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+        /* --- ACTIONS --- */
+        .actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .btn-action {
+            padding: 12px 24px;
+            background: var(--text-main);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-action:hover { transform: translateY(-2px); background: var(--accent); }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .cv-paper { box-shadow: none; padding: 0; width: 100%; max-width: 100%; }
+            .actions { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; gap: 20px; }
+            .header-contact { text-align: center; }
+            .cv-paper { padding: 30px 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-<div class="cv-wrap">
-    
-    <div class="header-bar">
-        <h1>Sai Varun Degala - CV</h1>
-        <a href="Varun_Resume.pdf" download class="download-btn">
-            <i class="fas fa-download"></i> Download PDF
-        </a>
+
+    <div class="actions">
+        <button class="btn-action" onclick="window.print()">
+            <i class="fas fa-print"></i> Print to PDF
+        </button>
+        <button class="btn-action" style="background: var(--accent);" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </button>
     </div>
 
-    <div class="cv-content">
-        
-        <div class="section contact-info-bar">
+    <div class="cv-paper">
+        <header>
+            <div class="header-main">
+                <h1>Sai Varun Degala</h1>
+                <p>AI & Machine Learning Engineer</p>
+            </div>
+            <div class="header-contact">
+                <a href="mailto:saivarundegala@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> saivarundegala@gmail.com</a>
+                <a href="https://linkedin.com/in/saivarundegala" class="contact-link"><i class="fab fa-linkedin"></i> linkedin.com/in/saivarundegala</a>
+                <a href="https://github.com/slyvarun" class="contact-link"><i class="fab fa-github"></i> github.com/slyvarun</a>
+                <span class="contact-link"><i class="fas fa-location-dot"></i> Telangana, India</span>
+            </div>
+        </header>
+
+        <section class="summary">
+            <div class="section-title">Professional Summary</div>
             <p>
-            +91 8639630749 | saivarundegala@gmail.com
+                Computer Science graduate with strong proficiency in programming, data structures, and object-oriented design. Experienced in developing clean, efficient software solutions through academic and project work, with solid problem-solving skills and a quick learning mindset. Specialized in Deep Learning and Cloud Architecture, with a unique interest in the Biomedical intersection.
             </p>
-            <div class="contact-links">
-                <a href="https://www.linkedin.com/in/saivarundegala" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/slyvarun" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </div>
+        </section>
 
-        <div class="section">
-            <h2>Education</h2>
-            
-            <div class="details-row">
-                <h3>Bachelor of Computer Science Engineering (AI&ML) </h3><br>
-                <p>Expected June 2026 </p>
-            </div>
-            <p><i style="color: white;">Kommuri Pratap Reddy Institute of Technology<i></i> HYD, India </p>
-            <ul>
-                <li>GPA: 8.0 </li>
-                <li>Clubs: Coding Verse Community Club & Events Club. </li>
-            </ul>
-
-            <div class="details-row">
-                <h3>Diploma in Biomedical Engineering </h3>
-                <p>May 2023 </p>
-            </div>
-            <p><i style="color: white;">Government Institute Of Electronics </i>, HYD, India</p>
-            <ul>
-                <li>GPA: 8.3</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Work Experience </h2>
-
-            <div class="details-row">
-                <h3>Junior Biomedical Engineer </h3>
-                <p>Dec 2022 - May 2023 </p>
-            </div>
-            <p style="color:white">Yashoda Hospitals , Hyderabad, India </p>
-            <ul>
-                <li>Oversaw maintenance and management of biomedical equipment, ensuring continuous and reliable performance. </li>
-                <li>Trained doctors and hospital staff in the effective use and maintenance of medical equipment. </li>
-                <li>Assisted doctors in Operation Theater, improving procedural efficiency and patient care. </li>
-            </ul>
-            
-            <div class="details-row">
-                <h3>Lead - Operations & Student Public Relations</h3>
-                <p>Feb 2024 </p>
-            </div>
-            <p style="color: white;">matriXO , Hyderabad, India </p>
-            <ul>
-                <li>Spearheaded operations and student relations for matriXO, an education platform startup. </li>
-                <li>Facilitated skill development for peers, enhancing practical learning outcomes by ~30% through workshops, mentorship, and career guidance programs. </li>
-                <li>Built collaborative initiatives to support student growth and professional success. </li>
-            </ul>
-
-            <div class="details-row">
-                <h3>Campus Ambassador </h3>
-                <p>Sep 2025- Jan 2026</p>
-            </div>
-            <p style="color: white;">Google Gemini , HYD, India </p>
-            <ul>
-                <li>Represented Google on campus as a Campus Ambassador. </li>
-                <li>Organized workshops and promotional events to drive awareness of Google products and AI tools. </li>
-                <li>Fostered student engagement by leading technology initiatives and community outreach. </li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Skills </h2>
-            <div style="display: flex; gap: 30px;">
-                <div>
-                    <h3>Programming & Languages</h3>
-                    <p>Python, React, C/C++, Java, JavaScript, HTML, CSS </p>
-                    <p style="margin-top:10px;">Languages: English, Telugu, Hindi, Japanese</p>
+        <section>
+            <div class="section-title">Technical Expertise</div>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h4>Programming & Frameworks</h4>
+                    <div class="skill-tags">Python, Java, C, SQL, PyTorch, TensorFlow, Scikit-Learn, REST APIs</div>
                 </div>
-                
+                <div class="skill-cat">
+                    <h4>Clouds & Infrastructure</h4>
+                    <div class="skill-tags">Google Cloud Platform (GCP), Vertex AI, Git & GitHub, CI/CD, Version Control</div>
+                </div>
+                <div class="skill-cat">
+                    <h4>Data Science & Algorithms</h4>
+                    <div class="skill-tags">Data Structures & Algorithms, OOP, Software Design, Debugging, Statistical EDA</div>
+                </div>
+                <div class="skill-cat">
+                    <h4>Core Competencies</h4>
+                    <div class="skill-tags">Problem Solving, Analytical Thinking, Team Collaboration, Time Management</div>
+                </div>
             </div>
-        </div>
-        
-        <div class="section">
-            <h2>Projects [</h2>
+        </section>
 
-            <h3>Spectrogram Analysis Techniques For Visualizing Time-Frequency Patterns</h3>
-            <ul>
-                <li>Developed an AI model to convert the environmental sound to visualize sound over time and frequency.</li>
-                <li>Provides a 2D visual representation of sound.</li>
-            </ul>
-
-            <h3>ML-based Diagnosis Prediction in Telemedicine Applications</h3>
-            <ul>
-                <li>Developed an ML model to predict the likelihood of heart attacks based on patients' vitals.</li>
-                <li>Leveraged machine learning techniques for early diagnosis, enabling proactive healthcare decisions in telemedicine.</li>
-            </ul>
-
-            <h3>Custom E-mail Generator using an LLM</h3>
-            <ul>
-                <li>Built a tool to automate email handling by sorting emails from personal accounts and generating personalized responses.</li>
-                <li>Used a Language Learning Model (LLM) to craft custom messages and send them automatically to sorted recipients.</li>
-            </ul>
+        <section>
+            <div class="section-title">Professional Experience</div>
             
-            <h3>Distance Measuring Tool</h3>
-            <ul>
-                <li>Designed a tool using an ultrasound sensor and Arduino to measure distances with high accuracy.</li>
-                <li>Integrated LCD output to display distance in both centimeters and feet, showcasing skills in hardware programming.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Certifications</h2>
-            <div style="column-count: 2; column-gap: 30px;">
-                <ul>
-                    <li>Professional Machine Learning Engineer Study Guide - Google Cloud Skills Boost </li>
-                    <li>Fundamentals of Digital Marketing - Google Digital Academy [</li>
-                    <li>Microsoft Copilot (Design a dream destination) - Microsoft Learn</li>
-                </ul>
-                <ul>
-                    <li>Data Science & Analytics (Business Fundamentals) - hp Foundation</li>
-                    <li>Google Solution Challenge (Hackathon) - Hack2skills</li>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Campus Ambassador</span>
+                    <span class="item-date">09/2025 — Present</span>
+                </div>
+                <div class="item-meta">Google Gemini | Hyderabad, India</div>
+                <ul class="item-list">
+                    <li>Platform focusing on Google's products and technology initiatives.</li>
+                    <li>Orchestrating technical workshops on Gemini 1.5 Pro and multimodal API integration.</li>
+                    <li>Mentoring student developer teams on building LLM-based solutions on Google Cloud.</li>
                 </ul>
             </div>
-        </div>
-        
-        <div class="section">
-             <h2>Positions and Responsibility</h2>
-             <ul>
-                 <li>Campus Ambassador, Kommuri Pratap Reddy Institute of Technology  (2025-2026) </li>
-                 <li>Media and Tech lead, Coding Verse Community Club, KPRIT  (2024-2026) </li>
-             </ul>
-        </div>
 
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Junior Biomedical Engineer (Intern)</span>
+                    <span class="item-date">12/2022 — 05/2023</span>
+                </div>
+                <div class="item-meta">Yashoda Hospitals | Hyderabad, India</div>
+                <ul class="item-list">
+                    <li>Performed critical diagnostics and preventative maintenance for advanced clinical hardware in Operation Theaters.</li>
+                    <li>Optimized hospital device data protocols and applied engineering logic to device workflows.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Certifications</div>
+            <ul class="item-list">
+                <li><strong>Develop Gen AI Apps with Gemini and Streamlit:</strong> Python App development, Streamlit, GCP, Vertex AI.</li>
+                <li><strong>Career Essentials in Generative AI:</strong> Gen AI and AI Fundamentals.</li>
+                <li><strong>Professional Machine Learning Engineer:</strong> ML, Deep Learning, Linear Regression, Reinforcement Learning, Gen AI.</li>
+                <li><strong>Prompt Design in Vertex AI:</strong> Prompt Engineering, Vertex AI, Al system interactions.</li>
+                <li><strong>Google Solution Challenge:</strong> Participation in Hackathon focusing on real-life solutions.</li>
+            </ul>
+        </section>
+
+        <section>
+            <div class="section-title">Learning Paths & Courses</div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Java Back-End and Soft Skills</span>
+                    <span class="item-meta">TNS Foundation</span>
+                </div>
+                <p class="project-desc">Implemented full CRUD operations using RESTful APIs, layered architecture, and database integration with robust validation and exception handling.</p>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Data Science</span>
+                    <span class="item-meta">QSpiders</span>
+                </div>
+                <p class="project-desc">Comprehensive training in Python covering data analysis, preprocessing, visualization, and foundational machine learning techniques using industry-standard libraries.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Key Projects</div>
+            
+            <div class="project-item">
+                <div class="project-name">Data Validation Pipeline</div>
+                <p class="project-desc">Led development of a scalable backend pipeline to ingest CSV/JSON data, enforcing schema and data type validations to support downstream ML systems.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-name">Custom Email Generator using LLMs</div>
+                <p class="project-desc">Designed an application to categorize incoming emails and generate personalized responses using LLM-based text generation to improve communication efficiency.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-name">ML-based Diagnosis Prediction</div>
+                <p class="project-desc">Built and tested a machine learning model for forecasting disease likelihood using patient vitals in telemedicine applications.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-name">Spectrogram Analysis for Audio Visualization</div>
+                <p class="project-desc">Developed a model to convert environmental and speech sounds into time-frequency spectrograms for advanced audio feature extraction.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Education</div>
+            
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">B.Tech in Artificial Intelligence & Machine Learning</span>
+                    <span class="item-date">09/2023 — Present</span>
+                </div>
+                <div class="item-meta">Kommuri Pratap Reddy Institute of Technology (KPRIT), HYD</div>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Diploma in Biomedical Engineering</span>
+                    <span class="item-date">08/2021 — 05/2023</span>
+                </div>
+                <div class="item-meta">Government Institute Of Electronics, HYD</div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Contributions & Leadership</div>
+            <ul class="item-list">
+                <li><strong>Google Arcade 2025:</strong> Contributor.</li>
+                <li><strong>Coding Verse Community:</strong> Technical Lead / Design Team Lead.</li>
+                <li><strong>Any Hiring Ahead Community:</strong> Co-founder.</li>
+                <li><strong>KPRIT College Ambassador:</strong> Representing the institution in various technical circles.</li>
+            </ul>
+        </section>
     </div>
-</div>
+
 </body>
 </html>

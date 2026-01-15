@@ -1,202 +1,380 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Contact Sai Varun Degala</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  /* VARIABLES (Copied from main portfolio for consistency) */
-  :root{
-    --bg:#0b0d11;
-    --card:#10141a;
-    --accent:#b88a00; /* Deep Gold/Ochre */
-    --accent-light:#f0c419; /* Lighter Gold */
-    --muted:#9aa6b2;
-    --glass: rgba(255,255,255,0.05);
-    --radius:18px;
-  }
-  
-  /* GLOBAL STYLES */
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:#e6edf3;
-    font-family: Inter, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:40px 20px;
-    /* Prevents the page from showing a vertical scrollbar */
-    overflow-y: hidden; 
-  }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Sai Varun Degala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  /* CARD CONTAINER (Similar to main portfolio profile card) */
-  .contact-card {
-    width: 100%;
-    max-width: 700px; /* Increased max-width to accommodate two columns comfortably */
-    padding: 40px 30px;
-    background: rgba(184, 138, 0, 0.05); /* Glassmorphism effect */
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    text-align: center;
-  }
-  
-  /* HEADER */
-  .contact-card h1 {
-    font-size: 30px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    color: var(--accent-light);
-  }
-  .contact-card p {
-    color: var(--muted);
-    margin-bottom: 40px;
-    font-size: 16px;
-  }
-
-  /* CONTACT LINKS GRID - UPDATED FOR 2 COLUMNS */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Default: Single column for mobile */
-    gap: 20px;
-  }
-
-    @media (min-width: 480px) {
-        .contact-grid {
-            grid-template-columns: 1fr 1fr; /* Two columns for wider screens */
+        :root {
+            --bg: #ffffff;
+            --main-bg: #fafaf9;
+            --card: rgba(255, 255, 255, 0.9);
+            --accent: #f97316;       
+            --accent-glow: rgba(249, 115, 22, 0.15);
+            --text-main: #0f172a;    
+            --text-muted: #64748b;   
+            --border: #f1f5f9;
+            --radius: 16px;
+            --max-width: 900px;
         }
-    }
-  
-  /* INDIVIDUAL LINK STYLES */
-  .contact-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 15px 12px; /* Slightly reduced horizontal padding to fit better */
-    background: var(--card);
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: all 0.3s ease;
-    text-align: left;
-        height: 100%; /* Ensures links stretch to the same height in a grid row */
-  }
-  .contact-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(184, 138, 0, 0.3);
-    border-color: var(--accent);
-  }
 
-  /* ICON */
-  .contact-icon {
-    font-size: 24px;
-    width: 30px; /* Reduced width slightly */
-    text-align: center;
-  }
-  
-  /* TEXT */
-  .contact-info {
-    flex-grow: 1;
-    margin-left: 10px; /* Reduced margin slightly */
-  }
-  .contact-info strong {
-    display: block;
-    color: #fff;
-    font-weight: 600;
-    font-size: 15px; /* Reduced font size slightly */
-  }
-  .contact-info span {
-    display: block;
-    color: var(--muted);
-    font-size: 12px; /* Reduced font size slightly */
-  }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-  /* BACK BUTTON */
-  .back-link {
-    display: block;
-    margin-top: 30px;
-    text-align: center;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.3s;
-    font-size: 14px;
-  }
-  .back-link:hover {
-    color: var(--accent-light);
-  }
-</style>
+        body {
+            margin: 0;
+            background: var(--main-bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 60px 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- SHARED ABSTRACT BACKGROUND --- */
+        .collage-container {
+            position: fixed;
+            top: -5%;
+            left: -5%;
+            width: 110vw;
+            height: 110vh;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.12; 
+            pointer-events: none;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 150px;
+            gap: 40px;
+            padding: 50px;
+            filter: saturate(1.4) blur(1px); 
+        }
+
+        .collage-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .collage-item:nth-child(1) { grid-column: span 2; grid-row: span 2; transform: rotate(-4deg); }
+        .collage-item:nth-child(2) { grid-column: span 1; grid-row: span 1; transform: rotate(8deg); }
+        .collage-item:nth-child(3) { grid-column: span 2; grid-row: span 3; transform: rotate(-2deg); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+            50% { transform: translateY(-20px) rotate(calc(var(--rot) + 5deg)); }
+        }
+
+        .collage-item:nth-child(odd) { --rot: -4deg; animation: float 15s ease-in-out infinite; }
+        .collage-item:nth-child(even) { --rot: 6deg; animation: float 18s ease-in-out infinite -5s; }
+
+        /* --- CONTENT LAYOUT --- */
+        .contact-wrap {
+            width: 100%;
+            max-width: var(--max-width);
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover { transform: translateX(-5px); }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin: 0 0 16px;
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- GRID LAYOUT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+        }
+
+        /* --- FORM STYLING --- */
+        .form-card {
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid #ffffff;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-send {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), #ea580c);
+            color: white;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 20px -5px var(--accent-glow);
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 15px 30px -5px var(--accent-glow);
+        }
+
+        /* --- INFO CARDS --- */
+        .info-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid #ffffff;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .info-card:hover {
+            background: white;
+            transform: translateX(10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .info-card:hover .icon-box {
+            background: var(--accent);
+            color: white;
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .info-content h3 {
+            margin: 0;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        .info-content p {
+            margin: 4px 0 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 800px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 42px; }
+            body { padding: 40px 20px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="contact-card">
-    <h1>Connect with Sai Varun</h1>
-    <p>I'm always open to discussing AI projects, HealthTech roles, or new startup ideas. Reach out!</p>
 
-    <div class="contact-grid">
-      
-            <a href="https://www.linkedin.com/in/slyvarun" target="_blank" class="contact-link">
-        <i class="fab fa-linkedin contact-icon" style="color:#0077b5;"></i>
-        <div class="contact-info">
-          <strong>LinkedIn</strong>
-          <span>My Professional Profile & Posts</span>
-        </div>
-      </a>
-      
-            <a href="https://github.com/slyvarun" target="_blank" class="contact-link">
-        <i class="fab fa-github contact-icon" style="color:#fff;"></i>
-        <div class="contact-info">
-          <strong>GitHub</strong>
-          <span>My Projects & Code Portfolio</span>
-        </div>
-      </a>
-
-            <a href="https://instagram.com/varun_ae" target="_blank" class="contact-link">
-        <i class="fab fa-instagram contact-icon" style="color:#fff;"></i>
-        <div class="contact-info">
-          <strong>Instagram</strong>
-          <span>Latest Updates & Personal Insights</span>
-        </div>
-      </a>
-      
-            <a href="https://medium.com/@slyvarun" target="_blank" class="contact-link">
-        <i class="fab fa-medium contact-icon" style="color:#fff;"></i>
-        <div class="contact-info">
-          <strong>Medium</strong>
-          <span>Articles & Case Studies</span>
-        </div>
-      </a>
-            
-            <a href="https://x.com/slyvarun" target="_blank" class="contact-link">
-        <i class="fab fa-x contact-icon" style="color:#fff;"></i>
-        <div class="contact-info">
-          <strong>X (Twitter)</strong>
-          <span>Quick Thoughts on AI & Tech</span>
-        </div>
-      </a>
-
-            <a href="mailto:saivarundegala@gmail.com" class="contact-link">
-        <i class="fas fa-envelope contact-icon" style="color:#e1306c;"></i>
-        <div class="contact-info">
-          <strong>Email Me Directly</strong>
-          <span>saivarundegala@gmail.com</span>
-        </div>
-      </a>
-      
-            <a href="tel:+918639630749" class="contact-link" style="grid-column: span 2;">
-        <i class="fas fa-phone contact-icon" style="color:#008000;"></i>
-        <div class="contact-info">
-          <strong>Call / WhatsApp</strong>
-          <span>+91 8639630749</span>
-        </div>
-      </a>
-
+    <!-- Abstract Background Collage -->
+    <div class="collage-container">
+        <img src="/assest/devfest.jpg" class="collage-item" onerror="this.src='https://placehold.co/600x400?text=DevFest'">
+        <img src="/assest/wow.jpg" class="collage-item" onerror="this.src='https://placehold.co/300x300?text=Workshop'">
+        <img src="/assest/thub.jpg" class="collage-item" onerror="this.src='https://placehold.co/500x700?text=Innovation'">
+        <img src="/assest/wehub.JPG" class="collage-item" onerror="this.src='https://placehold.co/400x600?text=Networking'">
+        <img src="/assest/ot.jpg" class="collage-item" onerror="this.src='https://placehold.co/600x300?text=Biomedical'">
     </div>
-    
-    <a href="index.html" class="back-link">
-      <i class="fas fa-arrow-left"></i> Back to Portfolio
-    </a>
-  </div>
+
+    <div class="contact-wrap">
+        <header>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1>Let's build something great.</h1>
+            <p class="subtitle">Have a project in mind, a question about AI/ML, or just want to say hi? I'm always open to new opportunities.</p>
+        </header>
+
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="form-card">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Project Inquiry" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Tell me more about your ideas..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="info-stack">
+                <a href="mailto:saivarundegala@gmail.com" class="info-card">
+                    <div class="icon-box">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>saivarundegala@gmail.com</p>
+                    </div>
+                </a>
+
+                <a href="https://linkedin.com/in/saivarundegala" target="_blank" class="info-card">
+                    <div class="icon-box">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>LinkedIn</h3>
+                        <p>Sai Varun Degala</p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/slyvarun" target="_blank" class="info-card">
+                    <div class="icon-box">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>GitHub</h3>
+                        <p>@slyvarun</p>
+                    </div>
+                </a>
+
+                <div class="info-card">
+                    <div class="icon-box">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Location</h3>
+                        <p>Telangana, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Since this runs in a static environment, we show a success state
+            const btn = this.querySelector('.btn-send');
+            btn.innerHTML = 'Sent Successfully! <i class="fas fa-check"></i>';
+            btn.style.background = '#22c55e';
+            btn.disabled = true;
+            
+            // Log for simulation
+            console.log('Form Submitted:', {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            });
+        });
+    </script>
 </body>
+</html>
