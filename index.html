@@ -1,751 +1,1190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sai Varun Degala | AI & Machine Learning Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Varun Degala | Interactive AI & Biomedical Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for Cinematic Motion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serifItalic: ['"Libre Baskerville"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        spidey: { red: '#dc2626', darkred: '#991b1b', blue: '#2563eb' },
+                        ock: { emerald: '#10b981', gold: '#fbbf24', tungsten: '#292524' },
+                        mysterio: { purple: '#8b5cf6', cyan: '#06b6d4', fog: '#1e1b4b' },
+                        oscorp: { green: '#22c55e', orange: '#f97316' }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
-        :root {
-            --bg: #ffffff;
-            --main-bg: #fafaf9;
-            --card: rgba(255, 255, 255, 0.92);
-            --accent: #f97316;       
-            --accent-glow: rgba(249, 115, 22, 0.15);
-            --accent-ai: #6366f1;
-            --accent-ai-soft: #eef2ff;
-            --accent-bio: #0d9488;
-            --accent-bio-soft: #f0fdfa;
-            
-            --text-main: #0f172a;    
-            --text-muted: #64748b;   
-            --border: #f1f5f9;
-            --radius: 12px;
-            --gap: 60px;
-            --max-width: 1050px;
-        }
-
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--main-bg); }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-        * { box-sizing: border-box; }
-
         body {
-            margin: 0;
-            background: var(--main-bg);
-            color: var(--text-main);
-            padding: 80px 0px;
-            display: flex;
-            justify-content: center;
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            background-color: #050404;
             overflow-x: hidden;
-            position: relative;
+            /* Faint Hexagon Web Pattern */
+            background-image: radial-gradient(rgba(220, 38, 38, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
-        /* --- ABSTRACT BACKGROUND COLLAGE --- */
-        .collage-container {
-            position: fixed;
-            top: -5%;
-            left: -5%;
-            width: 110vw;
-            height: 110vh;
-            z-index: -1;
+        .gsap-hidden { visibility: hidden; opacity: 0; }
+
+        /* Base Glass Panel */
+        .glass-panel {
+            background: rgba(10, 8, 8, 0.9);
+            backdrop-filter: blur(25px) saturate(220%);
+            -webkit-backdrop-filter: blur(25px) saturate(220%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
             overflow: hidden;
-            opacity: 0.12; 
-            pointer-events: none;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-auto-rows: 150px;
-            gap: 40px;
-            padding: 50px;
-            filter: saturate(1.4) blur(1px); 
         }
 
-        .collage-item {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-            transition: transform 1s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* -------------------------------------------
+           THEME PROTOCOLS (VILLAIN INTEGRATIONS)
+           ------------------------------------------- */
+
+        .panel-parker { border-color: rgba(220, 38, 38, 0.2); }
+        .panel-parker:hover {
+            border-color: rgba(220, 38, 38, 0.7);
+            box-shadow: 0 15px 40px -10px rgba(220, 38, 38, 0.4), inset 0 0 20px rgba(220, 38, 38, 0.1);
+            background: rgba(20, 5, 5, 0.95);
+            transform: scale(1.015) translateY(-2px);
+            z-index: 20;
         }
 
-        .collage-item:nth-child(1) { grid-column: span 2; grid-row: span 2; transform: rotate(-4deg); }
-        .collage-item:nth-child(2) { grid-column: span 1; grid-row: span 1; transform: rotate(8deg); margin-top: 40px; }
-        .collage-item:nth-child(3) { grid-column: span 2; grid-row: span 3; transform: rotate(-2deg); }
-        .collage-item:nth-child(4) { grid-column: span 1; grid-row: span 2; transform: rotate(12deg); }
-        .collage-item:nth-child(5) { grid-column: span 2; grid-row: span 1; transform: rotate(-6deg); }
-        .collage-item:nth-child(6) { grid-column: span 1; grid-row: span 3; transform: rotate(5deg); }
-        .collage-item:nth-child(7) { grid-column: span 2; grid-row: span 2; transform: rotate(-8deg); margin-left: -20px; }
-        .collage-item:nth-child(8) { grid-column: span 1; grid-row: span 1; transform: rotate(15deg); }
-        .collage-item:nth-child(9) { grid-column: span 3; grid-row: span 2; transform: rotate(-3deg); }
-
-        @keyframes float-alt {
-            0%, 100% { transform: translateY(0) rotate(var(--rot)); }
-            50% { transform: translateY(-30px) rotate(calc(var(--rot) + 5deg)); }
+        .panel-octavius { border-color: rgba(16, 185, 129, 0.2); }
+        .panel-octavius:hover {
+            border-color: rgba(16, 185, 129, 0.7);
+            box-shadow: 0 15px 40px -10px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(251, 191, 36, 0.05);
+            background: rgba(5, 20, 15, 0.95);
+            z-index: 20;
         }
 
-        .collage-item:nth-child(odd) { --rot: -4deg; animation: float-alt 15s ease-in-out infinite; }
-        .collage-item:nth-child(even) { --rot: 6deg; animation: float-alt 18s ease-in-out infinite -5s; }
-
-        /* --- WRAPPER & LAYOUT --- */
-        .wrap {
-            width: 100%;
-            max-width: var(--max-width);
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: var(--gap);
-            position: relative;
-            z-index: 1;
+        .bg-octavius {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10,90 Q40,50 90,10" stroke="rgba(16,185,129,0.05)" stroke-width="2" fill="none"/><path d="M20,95 Q50,60 95,20" stroke="rgba(251,191,36,0.03)" stroke-width="1.5" fill="none"/><circle cx="90" cy="10" r="3" fill="rgba(16,185,129,0.1)"/></svg>');
+            background-size: cover;
         }
 
-        .profile {
-            position: sticky;
-            top: 80px;
-            height: fit-content;
+        .panel-beck { border-color: rgba(139, 92, 246, 0.2); }
+        .panel-beck:hover {
+            border-color: rgba(139, 92, 246, 0.7);
+            box-shadow: 0 15px 40px -10px rgba(139, 92, 246, 0.3), inset 0 0 25px rgba(6, 182, 212, 0.1);
+            background: rgba(15, 5, 25, 0.95);
         }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(240, 253, 244, 0.9);
-            backdrop-filter: blur(4px);
-            color: #166534;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            border: 1px solid #dcfce7;
-            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        @keyframes mistFlow {
+            0% { transform: translateX(-10%) translateY(0) scale(1); opacity: 0.1; }
+            50% { transform: translateX(10%) translateY(-5%) scale(1.1); opacity: 0.3; }
+            100% { transform: translateX(-10%) translateY(0) scale(1); opacity: 0.1; }
+        }
+        .mysterio-mist {
+            position: absolute; inset: -50%; background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 60%);
+            animation: mistFlow 10s infinite alternate ease-in-out; pointer-events: none;
         }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+        .panel-osborn { border-color: rgba(245, 158, 11, 0.15); }
+        .panel-osborn:hover {
+            border-color: rgba(245, 158, 11, 0.55);
+            box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.25), inset 0 0 15px rgba(245, 158, 11, 0.05);
+            background: rgba(18, 13, 10, 0.93);
+            transform: scale(1.01) translateY(-1px);
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-
-        .avatar-wrap {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin-bottom: 30px;
-            cursor: pointer;
-        }
-
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            overflow: hidden;
-            background: var(--accent);
-            border: 4px solid var(--text-main);
-            position: relative;
+        /* -------------------------------------------
+           SPIDER-SENSE PROFILE HOVER & GLOBAL ALERT
+           ------------------------------------------- */
+        
+        .profile-container { perspective: 1000px; position: relative; }
+        .profile-image-wrapper {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 8px 8px 0px var(--text-main);
-            z-index: 2;
+            transform-style: preserve-3d;
+        }
+        
+        .profile-container:hover .profile-image-wrapper {
+            transform: scale(1.05) rotateY(10deg);
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
+            filter: contrast(1.3) saturate(1.5) drop-shadow(0 0 15px rgba(220,38,38,0.9));
         }
 
-        .avatar-wrap:hover .avatar {
-            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-            transform: rotate(-3deg) scale(1.05);
-            box-shadow: 12px 12px 0px var(--accent);
-        }
-
-        .avatar img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .avatar-wrap:hover img { transform: scale(1.1); }
-
-        .sticker {
+        /* Comic Spider-Verse Goofy Tingles */
+        .spidey-tingle {
             position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #facc15;
-            color: #000;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 900;
-            transform: rotate(15deg);
-            z-index: 3;
-            border: 2px solid #000;
-            box-shadow: 2px 2px 0px #000;
+            top: 50%; left: 50%;
+            width: 20px; height: 35px;
+            margin-top: -17px; margin-left: -10px;
+            color: #ec4899; 
+            filter: drop-shadow(-2px 2px 0px #06b6d4) drop-shadow(1.5px -1.5px 0px #3b82f6);
+            opacity: 0;
             pointer-events: none;
-            transition: 0.3s;
+            z-index: 50;
+            transition: opacity 0.15s ease-out;
+            transform: rotate(var(--angle)) translateY(0) scale(0.2);
         }
 
-        .avatar-wrap:hover .sticker {
-            animation: wave-hand 0.4s ease-in-out infinite;
-            background: #ffffff;
-            transform: rotate(0deg) scale(1.3);
-        }
+        .tingle-1 { --angle: -55deg; }
+        .tingle-2 { --angle: -15deg; }
+        .tingle-3 { --angle: 25deg; }
+        .tingle-4 { --angle: 65deg; }
+        .tingle-5 { --angle: -95deg; }
+        .tingle-6 { --angle: 100deg; }
 
-        @keyframes wave-hand {
-            0% { transform: rotate(15deg) translateY(0); }
-            25% { transform: rotate(35deg) translateY(-5px); }
-            75% { transform: rotate(-5deg) translateY(-5px); }
-            100% { transform: rotate(15deg) translateY(0); }
-        }
-
-        .name { font-size: 28px; font-weight: 800; letter-spacing: -0.04em; margin: 0; line-height: 1.1; color: var(--text-main); }
-        .sidebar-title { color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-top: 8px; display: block; letter-spacing: 0.05em; }
-
-        /* --- CONTACT LIST POP --- */
-        .contact-list { 
-            margin-top: 32px; 
-            padding: 0; 
-            list-style: none; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px;
-        }
-        .contact-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 14px; 
-            color: var(--text-muted); 
-            font-size: 14px; 
-            text-decoration: none; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 10px 14px;
-            margin-left: -10px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(226, 232, 240, 0.6);
-            backdrop-filter: blur(8px);
-        }
-        .contact-item:hover { 
-            background: white; 
-            color: var(--text-main); 
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.06); 
-            transform: translateX(6px);
-            border-color: var(--accent);
-        }
-        .contact-item i { 
-            width: 32px; 
-            height: 32px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            background: white; 
-            border-radius: 8px; 
-            color: var(--accent); 
-            font-size: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-        .contact-item:hover i { 
-            background: var(--accent); 
-            color: white; 
-            transform: scale(1.1) rotate(-5deg);
-        }
-
-        /* --- BUTTON GROUPING --- */
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            margin-top: 32px;
-            flex-wrap: wrap;
-        }
-
-        /* --- PRIMARY BUTTON --- */
-        .btn-touch {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--accent), #ea580c);
-            color: white;
-            padding: 16px 32px;
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-            box-shadow: 0 10px 25px -5px var(--accent-glow);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-touch::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-touch:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 30px -10px var(--accent-glow);
-            filter: brightness(1.1);
-        }
-
-        .btn-touch:hover::before { left: 100%; }
-        .btn-touch i { transition: transform 0.3s ease; }
-        .btn-touch:hover i { transform: translateX(4px) rotate(-10deg); }
-
-        /* --- SECONDARY BUTTON (CV) --- */
-        .btn-cv {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            color: var(--text-main);
-            padding: 16px 32px;
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 800;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-            text-decoration: none;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(8px);
-        }
-
-        .btn-cv:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            color: var(--accent);
-            background: #fffcf9;
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
-        }
-
-        .sidebar-section { margin-top: 48px; }
-        .sidebar-section h4 { 
-            font-size: 11px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.15em; 
-            color: var(--text-muted); 
-            margin-bottom: 20px; 
-            padding-bottom: 10px; 
-            position: relative;
-        }
-        .sidebar-section h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 30px; height: 2px; background: var(--accent);
-        }
-
-        /* --- MAIN CONTENT --- */
-        .main-header { margin-bottom: 80px; }
-        .main-header .eyebrow { font-size: 13px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; display: block; }
-        .main-header h1 { font-size: 60px; font-weight: 800; letter-spacing: -0.05em; margin: 0 0 24px; line-height: 0.95; color: var(--text-main); }
-        .main-header p { font-size: 19px; color: var(--text-muted); max-width: 640px; margin: 0; font-weight: 400; line-height: 1.6; }
-
-        .section-header { display: flex; align-items: center; gap: 20px; margin: 80px 0 32px; }
-        .section-header h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 800; color: var(--text-main); margin: 0; }
-        .section-header .line { flex: 1; height: 1px; background: #e2e8f0; }
-
-        .v-stack { display: flex; flex-direction: column; gap: 24px; }
+        .profile-container:hover .tingle-1 { opacity: 1; animation: comicWiggle 0.12s infinite alternate 0.0s; --dist: 65px; z-index: 50; }
+        .profile-container:hover .tingle-2 { opacity: 1; animation: comicWiggle 0.15s infinite alternate 0.1s; --dist: 75px; z-index: 50; }
+        .profile-container:hover .tingle-3 { opacity: 1; animation: comicWiggle 0.14s infinite alternate 0.05s; --dist: 68px; z-index: 50; }
+        .profile-container:hover .tingle-4 { opacity: 1; animation: comicWiggle 0.17s infinite alternate 0.12s; --dist: 60px; z-index: 50; }
+        .profile-container:hover .tingle-5 { opacity: 1; animation: comicWiggle 0.13s infinite alternate 0.08s; --dist: 62px; z-index: 50; }
+        .profile-container:hover .tingle-6 { opacity: 1; animation: comicWiggle 0.16s infinite alternate 0.15s; --dist: 65px; z-index: 50; }
         
-        .card { 
-            background: var(--card); 
-            backdrop-filter: blur(12px);
-            padding: 32px; 
-            border-radius: var(--radius); 
-            border: 1px solid #eef2f6; 
-            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1); 
-            position: relative;
-            overflow: hidden;
-        }
-        .card:hover { 
-            border-color: var(--accent); 
-            transform: translateY(-4px);
-            background: white;
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05); 
+        @keyframes comicWiggle {
+            0% { transform: rotate(var(--angle)) translateY(calc(var(--dist) * -1)) scale(1) skewX(-5deg); }
+            100% { transform: rotate(calc(var(--angle) + 4deg)) translateY(calc(var(--dist) * -1 - 6px)) scale(1.25) skewX(15deg); color: #f43f5e; }
         }
 
-        .exp-item { border-left: 2px solid #eef2f6; padding-left: 30px; position: relative; margin-bottom: 40px; }
-        .exp-item::before {
-            content: '';
-            position: absolute;
-            left: -7px; top: 0; width: 12px; height: 12px;
-            background: white; border: 2px solid var(--accent); border-radius: 50%;
-        }
 
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-        .exp-role { font-size: 19px; font-weight: 700; margin: 0; color: var(--text-main); }
-        .exp-company { color: var(--accent); font-weight: 700; font-size: 14px; margin-top: 4px; display: block; }
-        .exp-date { font-size: 11px; color: var(--text-muted); font-weight: 700; background: #f8fafc; padding: 4px 10px; border-radius: 4px; }
+        /* -------------------------------------------
+           SECTION ANIMATIONS (CONTACT, ACADEMIC, LITERATURE)
+           ------------------------------------------- */
         
-        .list-clean { margin: 16px 0 0; padding-left: 0; list-style: none; color: var(--text-muted); font-size: 14px; }
-        .list-clean li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-        .list-clean li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
-
-        .tool-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-        .tool-tag { background: #f8fafc; border: 1px solid #e2e8f0; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; color: var(--text-muted); }
-
-        .spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        .spec-item { 
-            padding: 24px; 
-            border-radius: var(--radius); 
-            background: var(--card); 
-            backdrop-filter: blur(8px);
-            border: 1px solid #eef2f6;
-            border-top: 4px solid transparent;
-            transition: 0.3s;
+        /* Contact Radar Animation */
+        .radar-scan-line {
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(37,99,235,0.8), transparent);
+            box-shadow: 0 0 10px rgba(37,99,235,0.5);
+            animation: radarSweep 3s infinite linear;
+            pointer-events: none;
+            opacity: 0.5;
         }
-        .spec-item:hover { border-color: var(--accent); background: white; }
-        .spec-item.ai-ml { border-top-color: var(--accent-ai); }
-        .spec-item.hardware { border-top-color: var(--accent-bio); }
-        .spec-item.cloud { border-top-color: var(--accent); }
+        @keyframes radarSweep {
+            0% { transform: translateY(-10px); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(200px); opacity: 0; }
+        }
 
-        .snapshot-stack { display: flex; flex-direction: column; gap: 12px; }
-        .snapshot-card { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: white; transition: 0.3s; }
-        .snapshot-img { width: 100%; height: 140px; object-fit: cover; filter: grayscale(100%); transition: 0.3s; }
-        .snapshot-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .snapshot-card:hover .snapshot-img { filter: grayscale(0%); transform: scale(1.05); }
-        .snapshot-label { padding: 6px; font-size: 9px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); text-align: center; }
+        /* Academic Heartbeat */
+        .heartbeat-border {
+            animation: bioHeartbeat 2.5s infinite;
+        }
+        @keyframes bioHeartbeat {
+            0% { border-color: rgba(16, 185, 129, 0.2); box-shadow: none; }
+            15% { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+            30% { border-color: rgba(16, 185, 129, 0.2); box-shadow: none; }
+            45% { border-color: rgba(16, 185, 129, 0.8); box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+            100% { border-color: rgba(16, 185, 129, 0.2); box-shadow: none; }
+        }
 
-        .project-link { text-decoration: none; display: block; }
-        .project-link h3 { font-size: 22px; font-weight: 800; margin: 0 0 10px; color: var(--text-main); letter-spacing: -0.02em; }
-        .project-meta { display: flex; gap: 12px; align-items: center; margin-top: 20px; font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+        /* Highlighting Literature (Symbiote Flare) */
+        .highlight-literature {
+            border: 1.5px solid rgba(217, 70, 239, 0.4);
+            box-shadow: 0 0 30px -5px rgba(217, 70, 239, 0.3), inset 0 0 20px rgba(139, 92, 246, 0.1);
+            animation: symbioteGlow 3s infinite alternate;
+        }
+        @keyframes symbioteGlow {
+            0% { box-shadow: 0 0 20px -5px rgba(217, 70, 239, 0.3), inset 0 0 10px rgba(139, 92, 246, 0.1); border-color: rgba(217, 70, 239, 0.3); }
+            100% { box-shadow: 0 0 45px 5px rgba(217, 70, 239, 0.5), inset 0 0 30px rgba(139, 92, 246, 0.3); border-color: rgba(217, 70, 239, 0.8); }
+        }
 
-        @media (max-width: 900px) {
-            .wrap { grid-template-columns: 1fr; }
-            .profile { position: static; margin-bottom: 60px; }
-            body { padding: 40px 24px; }
-            .main-header h1 { font-size: 42px; }
-            .spec-grid { grid-template-columns: 1fr; }
-            .collage-container { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        /* -------------------------------------------
+           SPIDEY ELEMENTS (WEB & TECH SPIDER)
+           ------------------------------------------- */
+        
+        .web-corner {
+            position: fixed; top: -50px; right: -50px;
+            width: 350px; height: 350px;
+            opacity: 0.14; pointer-events: none; z-index: 0;
+            transition: opacity 0.5s ease;
+        }
+        .web-corner-alt {
+            top: auto; right: auto; bottom: -50px; left: -50px;
+            opacity: 0.1;
+        }
+        .tech-spider-container {
+            position: fixed; top: -100px; left: 5%;
+            width: 40px; height: 250px;
+            pointer-events: auto; z-index: 40;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex; flex-direction: column; align-items: center;
+            touch-action: none;
+        }
+        /* Normal state hanging */
+        .tech-spider-container { transform: translateY(120px); animation: spiderBob 4s infinite ease-in-out; }
+        
+        @keyframes spiderBob {
+            0% { transform: translateY(120px); }
+            50% { transform: translateY(105px); }
+            100% { transform: translateY(120px); }
+        }
+
+        .spider-thread { width: 1px; flex-grow: 1; background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.6)); margin: 0 auto; box-shadow: 0 0 5px rgba(255,255,255,0.5); }
+        .tech-spider { width: 30px; height: 30px; margin: 0 auto; filter: drop-shadow(0 0 5px rgba(220,38,38,0.8)) drop-shadow(0 0 8px rgba(37,99,235,0.4)); }
+
+        /* Interlocking Shapes */
+        .shape-hero { border-radius: 4rem 1rem 3rem 1.5rem; }
+        .shape-contact { border-radius: 1.5rem 3rem 1rem 4rem; }
+        .shape-education { border-radius: 3.5rem 1.2rem 4.5rem 1.8rem; }
+        .shape-literature { border-radius: 1.8rem 4.5rem 1.5rem 3.5rem; }
+        .shape-timeline { border-radius: 2rem; }
+        .shape-learning { border-radius: 3rem 2rem 4rem 2.5rem; }
+        .shape-dashboard { border-radius: 2rem; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050404; }
+        ::-webkit-scrollbar-thumb { background: #1a0505; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #dc2626, #8b5cf6); }
+        
+        /* Ambient Photo Wall */
+        .ambient-photo-wall {
+            position: fixed; top: -10%; left: -10%; width: 120%; height: 120%;
+            display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 24px;
+            z-index: 0; pointer-events: none; opacity: 0.15;
+            filter: grayscale(90%) contrast(115%) blur(3px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ambient-photo-container { overflow: hidden; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.02); }
+        .ambient-photo { width: 100%; height: 100%; object-fit: cover; transition: transform 12s ease-in-out; transform: scale(1.03); }
+        .ambient-photo-container:nth-child(odd) .ambient-photo { animation: slowPanLeft 35s infinite alternate; }
+        .ambient-photo-container:nth-child(even) .ambient-photo { animation: slowPanRight 35s infinite alternate; }
+        @keyframes slowPanLeft { 0% { transform: scale(1.0) translate(0, 0); } 100% { transform: scale(1.18) translate(-4%, -3%); } }
+        @keyframes slowPanRight { 0% { transform: scale(1.0) translate(0, 0); } 100% { transform: scale(1.18) translate(4%, 3%); } }
+        
+        /* -------------------------------------------
+           LIGHT THEME OVERRIDES (Spider Switch)
+           ------------------------------------------- */
+        body.light-theme {
+            background-color: #f8fafc;
+            background-image: radial-gradient(rgba(220, 38, 38, 0.1) 1px, transparent 1px);
+            color: #292524;
+            transition: background-color 0.5s ease;
+        }
+        
+        body.light-theme .text-white { color: #0c0a0a !important; }
+        body.light-theme .text-stone-300 { color: #292524 !important; }
+        body.light-theme .text-stone-400 { color: #44403c !important; }
+        body.light-theme .text-stone-500 { color: #57534e !important; }
+        
+        body.light-theme .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+        }
+        
+        body.light-theme .bg-black\/95,
+        body.light-theme .bg-\[\#0c0a0a\]\/95 {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            border-color: rgba(0,0,0,0.1);
+        }
+        
+        body.light-theme .exp-card,
+        body.light-theme .learning-card {
+            background-color: rgba(250, 250, 250, 0.9) !important;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-theme .ambient-photo-wall {
+            opacity: 0.1;
+            filter: grayscale(10%) contrast(100%) blur(3px) !important;
+        }
+
+        /* Invert specific Spidey elements for visibility */
+        body.light-theme .tech-spider polygon { fill: #f5f5f4; stroke: #dc2626; }
+        body.light-theme .spider-thread { background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); }
+        
+        /* Interactive Lab adjustments */
+        body.light-theme #lab-visualizer-0 .bg-\[\#05020a\],
+        body.light-theme #lab-visualizer-1 .bg-\[\#02060a\],
+        body.light-theme #lab-visualizer-2 .bg-\[\#020a05\] {
+            background-color: #fff !important;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+            border-color: rgba(0,0,0,0.05);
         }
     </style>
 </head>
-<body>
-    <!-- Colorful Abstract Background Collage -->
-    <div class="collage-container">
-        <img src="./assest/devfest.jpg" class="collage-item" onerror="this.src='https://placehold.co/600x400?text=DevFest'">
-        <img src="./assest/wow.jpg" class="collage-item" onerror="this.src='https://placehold.co/300x300?text=Workshop'">
-        <img src="./assest/thub.jpg" class="collage-item" onerror="this.src='https://placehold.co/500x700?text=Innovation'">
-        <img src="./assest/wehub.JPG" class="collage-item" onerror="this.src='https://placehold.co/400x600?text=Networking'">
-        <img src="./assest/ot.jpg" class="collage-item" onerror="this.src='https://placehold.co/600x300?text=Biomedical'">
-        <img src="./assest/devfest.jpg" class="collage-item" onerror="this.src='https://placehold.co/300x600?text=Community'">
-        <img src="./assest/thub.jpg" class="collage-item" onerror="this.src='https://placehold.co/500x500?text=Startup'">
-        <img src="./assest/wow.jpg" class="collage-item" onerror="this.src='https://placehold.co/400x400?text=Campus'">
-        <img src="./assest/wehub.JPG" class="collage-item" onerror="this.src='https://placehold.co/800x400?text=Leadership'">
+<body class="font-sans text-stone-300 selection:bg-red-600 selection:text-white">
+
+    <!-- Oscorp Tech Web in Corner (top-right) -->
+    <svg class="web-corner" viewBox="0 0 100 100" fill="none" stroke="rgba(220,38,38,0.7)" stroke-width="0.5">
+        <path d="M100,0 L0,0 M100,0 L20,30 M100,0 L40,60 M100,0 L70,80 M100,0 L100,100" />
+        <path d="M70,0 Q65,15 80,25 Q90,30 100,20" />
+        <path d="M40,0 Q40,30 65,45 Q85,55 100,45" />
+        <path d="M10,0 Q20,50 50,70 Q75,85 100,75" />
+    </svg>
+
+    <!-- Web in Corner (bottom-left, mirrored, blue) -->
+    <svg class="web-corner web-corner-alt" viewBox="0 0 100 100" fill="none" stroke="rgba(37,99,235,0.6)" stroke-width="0.5">
+        <path d="M0,100 L100,100 M0,100 L80,70 M0,100 L60,40 M0,100 L30,20 M0,100 L0,0" />
+        <path d="M30,100 Q35,85 20,75 Q10,70 0,80" />
+        <path d="M60,100 Q60,70 35,55 Q15,45 0,55" />
+        <path d="M90,100 Q80,50 50,30 Q25,15 0,25" />
+    </svg>
+
+    <!-- Tech Spider Hanging -->
+    <div class="tech-spider-container cursor-grab active:cursor-grabbing group" id="theme-spider">
+        <div class="spider-thread"></div>
+        <svg class="tech-spider" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12,4 16,8 16,16 12,20 8,16 8,8" fill="#1c1917" stroke="#dc2626"/>
+            <circle cx="12" cy="14" r="1.5" fill="#ef4444" stroke="none" class="animate-pulse"/>
+            <polyline points="8,10 4,8 2,12" stroke="#78716c"/>
+            <polyline points="8,12 3,12 1,16" stroke="#78716c"/>
+            <polyline points="8,14 4,16 3,20" stroke="#78716c"/>
+            <polyline points="16,10 20,8 22,12" stroke="#78716c"/>
+            <polyline points="16,12 21,12 23,16" stroke="#78716c"/>
+            <polyline points="16,14 20,16 21,20" stroke="#78716c"/>
+        </svg>
+        <div class="absolute top-[60%] left-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[8px] font-mono text-red-500 bg-red-950/80 px-2 py-1 rounded whitespace-nowrap hidden sm:block border border-red-900/50">
+            PULL TO TOGGLE THEME
+        </div>
     </div>
 
-    <div class="wrap">
-        <!-- Sidebar -->
-        <aside class="profile">
-            <div class="status-badge">
-                <div class="status-dot"></div>
-                Google Campus Lead '25
+    <!-- Ambient Grid Wall Background -->
+    <div id="photoWall" class="ambient-photo-wall">
+        <script>
+            const images = ['devfest.jpg','ot.jpg','project.jpeg','thub.jpg','wehub.JPG','wow.jpg'];
+            for(let i=0; i<12; i++) {
+                document.write(`
+                    <div class="ambient-photo-container">
+                        <img class="ambient-photo" src="/assest/${images[i%6]}" alt="Background" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80'">
+                    </div>
+                `);
+            }
+        </script>
+    </div>
+
+    <!-- FLOATING BACKGROUND OPACITY SWITCH -->
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3 gsap-hidden gsap-nav-dock">
+        <div class="bg-black/95 border border-white/10 rounded-full px-4 py-2 flex items-center gap-4 shadow-2xl backdrop-blur-md">
+            <span class="text-[9px] font-bold uppercase tracking-widest text-stone-400 font-mono">Backdrop</span>
+            <div class="flex items-center gap-2">
+                <button onclick="adjustBgOpacity(0.06)" class="w-7 h-7 rounded-full border border-red-500/20 text-red-400 hover:text-white text-[9px] font-bold flex items-center justify-center hover:bg-red-500/20 active:scale-90 transition-all font-mono">MIN</button>
+                <button onclick="adjustBgOpacity(0.20)" class="w-7 h-7 rounded-full border border-purple-500/20 text-purple-400 hover:text-white text-[9px] font-bold flex items-center justify-center hover:bg-purple-500/20 active:scale-90 transition-all font-mono">MID</button>
+                <button onclick="adjustBgOpacity(0.40)" class="w-7 h-7 rounded-full border border-cyan-500/20 text-cyan-400 hover:text-white text-[9px] font-bold flex items-center justify-center hover:bg-cyan-500/20 active:scale-90 transition-all font-mono">MAX</button>
             </div>
+        </div>
+    </div>
+
+    <!-- FLOATING DOCK NAVIGATION -->
+    <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 gsap-hidden gsap-nav-dock">
+        <nav class="bg-[#0c0a0a]/95 backdrop-blur-lg border border-white/10 px-6 py-3 rounded-full flex gap-3 shadow-2xl max-w-md w-full justify-around text-[10px] font-extrabold uppercase tracking-widest font-mono relative" style="box-shadow: 0 0 0 1px rgba(220,38,38,0.15), 0 0 25px -8px rgba(37,99,235,0.4), 0 15px 30px -10px rgba(0,0,0,0.6);">
+            <a href="#left-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-red-500 hover:bg-white/5 transition-all">Identity</a>
+            <a href="#timeline-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-emerald-400 hover:bg-white/5 transition-all font-bold">Timeline</a>
+            <a href="#learning-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-amber-500 hover:bg-white/5 transition-all">Roadmap</a>
+            <a href="#projects-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-purple-500 hover:bg-white/5 transition-all font-bold">Laboratory</a>
+        </nav>
+    </div>
+
+    <!-- MAIN INTERLOCKING GRID FRAME (30:70 Columns on Medium Screens) -->
+    <main class="relative z-10 max-w-7xl mx-auto pt-16 pb-28 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-10 gap-5 items-start">
             
-            <div class="avatar-wrap">
-                <div class="sticker">HI! 👋</div>
-                <div class="avatar">
-                    <img src="./assest/profile_photo.jpg" alt="Sai Varun Degala" onerror="this.src='https://ui-avatars.com/api/?name=Sai+Varun+Degala&background=f97316&color=fff&bold=true'">
-                </div>
-            </div>
-            
-            <h1 class="name">Sai Varun Degala</h1>
-            <span class="sidebar-title">AI & Machine Learning Engineer</span>
-
-            <nav class="contact-list">
-                <a href="mailto:saivarundegala@gmail.com" class="contact-item">
-                    <i class="far fa-envelope"></i> saivarundegala@gmail.com
-                </a>
-                <a href="https://linkedin.com/in/saivarundegala" target="_blank" class="contact-item">
-                    <i class="fab fa-linkedin"></i> LinkedIn Profile
-                </a>
-                <a href="https://github.com/slyvarun" target="_blank" class="contact-item">
-                    <i class="fab fa-github"></i> GitHub Code
-                </a>
-                <a href="https://medium.com/@slyvarun" target="_blank" class="contact-item">
-                    <i class="fab fa-medium"></i> Technical Writing
-                </a>
-            </nav>
-
-            <div class="sidebar-section">
-                <h4>Primary Stack</h4>
-                <div class="tool-grid">
-                    <span class="tool-tag" style="border-left: 3px solid var(--accent-ai);">PyTorch</span>
-                    <span class="tool-tag" style="border-left: 3px solid var(--accent);">GCP</span>
-                    <span class="tool-tag" style="border-left: 3px solid var(--accent-ai);">TensorFlow</span>
-                    <span class="tool-tag">Python</span>
-                    <span class="tool-tag">SQL</span>
-                    <span class="tool-tag">Java</span>
-                    <span class="tool-tag">HTML & CSS</span>
-                </div>
-            </div>
-
-            <div class="sidebar-section">
-                <h4>Snapshots</h4>
-                <div class="snapshot-stack">
-                    <div class="snapshot-card">
-                        <img src="./assest/devfest.jpg" class="snapshot-img" alt="Google DevFest" onerror="this.src='https://placehold.co/150x100?text=DevFest'">
-                        <div class="snapshot-label">Google Developer Fest 2024</div>
-                    </div>
-                    <div class="snapshot-card">
-                        <img src="./assest/wow.jpg" class="snapshot-img" alt="Workshop" onerror="this.src='https://placehold.co/150x100?text=WOW'">
-                        <div class="snapshot-label">Google Developer Fest 2023</div>
-                    </div>
-                    <div class="snapshot-card">
-                        <img src="./assest/thub.jpg" class="snapshot-img" alt="T-HUB" onerror="this.src='https://placehold.co/150x100?text=T-HUB'">
-                        <div class="snapshot-label">T-HUB Network</div>
-                    </div>
-                    <div class="snapshot-card">
-                        <img src="./assest/wehub.JPG" class="snapshot-img" alt="WE HUB" onerror="this.src='https://placehold.co/150x100?text=WE-HUB'">
-                        <div class="snapshot-label">we hub Network</div>
-                    </div>
-                    <div class="snapshot-card">
-                        <img src="./assest/ot.jpg" class="snapshot-img" alt="Yashoda Hospitals" onerror="this.src='https://placehold.co/150x100?text=Yashoda'">
-                        <div class="snapshot-label">Intern at Yashoda Hospitals</div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="main">
-            <header class="main-header">
-                <span class="eyebrow">Scalable Intelligence</span>
-                <h1>Developing AI for a smarter world.</h1>
-                <p>Machine Learning student specialized in <b>Deep Learning</b> and <b>Cloud Architecture</b>. Leveraging a foundation in engineering to build high-performance, ethical AI solutions, with a unique interest in the <b>Biomedical</b> intersection.</p>
+            <!-- LEFT COLUMN (30% WIDTH: md:col-span-3) -->
+            <div id="left-anchor" class="md:col-span-3 flex flex-col gap-4">
                 
-                <div class="btn-group">
-                    <button class="btn-touch" onclick="window.location.href='mailto:saivarundegala@gmail.com'">
-                        <a style="text-decoration: none;color: white;" href="touchin.html"> Let's get in Touch <i class="fas fa-paper-plane"></i></a>
-                    </button>
-                    <!-- CV Button -->
-                    <button class="btn-cv" onclick="window.open('/assest/CV.pdf', '_blank')">
-                        <a style="text-decoration: none; color: black;" href="cv.html">Download CV <i class="fas fa-file-download"></i></a>
-                    </button>
-                </div>
-            </header>
-
-            <!-- Project-Driven Expertise Section -->
-            <section id="projects">
-                <div class="section-header">
-                    <h2>Project-Driven Expertise</h2>
-                    <div class="line"></div>
-                </div>
-                
-                <div class="spec-grid">
-                    <div class="spec-item ai-ml">
-                        <h4 style="color: var(--accent-ai);">Intelligent GenAI Email Orchestrator</h4>
-                        <p>Architected an automated communication system using <b>LLMs</b> and <b>Prompt Engineering</b> to categorize and respond to complex queries with context-aware precision.</p>
-                        <div class="tool-grid">
-                            <span class="tool-tag">Vertex AI</span>
-                            <span class="tool-tag">LangChain</span>
-                            <span class="tool-tag">Streamlit</span>
-                        </div>
-                    </div>
-
-                    <div class="spec-item cloud">
-                        <h4 style="color: var(--accent);">Production Data Validation Pipeline</h4>
-                        <p>Engineered a fault-tolerant <b>Backend Pipeline</b> for high-scale data ingestion, enforcing schema validation and automated cleaning to ensure <b>ML Model Reliability</b>.</p>
-                        <div class="tool-grid">
-                            <span class="tool-tag">Python (SQL)</span>
-                            <span class="tool-tag">GCP</span>
-                            <span class="tool-tag">CI/CD</span>
-                        </div>
-                    </div>
-
-                    <div class="spec-item ai-ml">
-                        <h4 style="color: var(--accent-ai);">Predictive Telemedicine Engine</h4>
-                        <p>Developed a <b>Machine Learning</b> diagnostic tool to analyze patient vitals and forecast disease likelihood, focusing on <b>Explainable AI</b> in healthcare.</p>
-                        <div class="tool-grid">
-                            <span class="tool-tag">Scikit-Learn</span>
-                            <span class="tool-tag">Pandas</span>
-                            <span class="tool-tag">Medical Analysis</span>
-                        </div>
-                    </div>
-
-                    <div class="spec-item hardware">
-                        <h4 style="color: var(--accent-bio);">Multimodal Spectrogram Analysis</h4>
-                        <p>Created a system for <b>Audio Feature Extraction</b>, converting speech and environmental sounds into time-frequency spectrograms for deep learning analysis.</p>
-                        <div class="tool-grid">
-                            <span class="tool-tag">Librosa</span>
-                            <span class="tool-tag">Deep Learning</span>
-                            <span class="tool-tag">Digital Signals</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Professional Experience -->
-            <section>
-                <div class="section-header">
-                    <h2>Experience</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="exp-stack">
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div>
-                                <h3 class="exp-role">Google Gemini Campus Ambassador</h3>
-                                <span class="exp-company">Google University Programs</span>
-                            </div>
-                            <span class="exp-date">2025 — Present</span>
-                        </div>
-                        <ul class="list-clean">
-                            <li>Orchestrating technical workshops on Gemini 1.5 Pro and multimodal API integration for student developers.</li>
-                            <li>Scaling AI adoption by mentoring teams on deploying LLM-based solutions on Google Cloud.</li>
-                        </ul>
-                    </div>
-
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div>
-                                <h3 class="exp-role">Junior Biomedical Engineer (Intern)</h3>
-                                <span class="exp-company">Yashoda Hospitals, Hyderabad</span>
-                            </div>
-                            <span class="exp-date">Dec 2022 — May 2023</span>
-                        </div>
-                        <ul class="list-clean">
-                            <li>Managed clinical hardware diagnostics and preventative maintenance for Operation Theater equipment.</li>
-                            <li>Applied engineering logic to optimize hospital device workflows and data generation protocols.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Achievements & Recognition -->
-            <section>
-                <div class="section-header">
-                    <i class="fas fa-trophy"></i>
-                    <h2>Achievements</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="v-stack">
-                    <div class="card" style="padding: 24px; border-left: 4px solid var(--accent);">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <i class="fas fa-gamepad" style="font-size: 24px; color: var(--accent);"></i>
-                            <div>
-                                <h3 style="font-size: 18px; margin: 0;">Google Arcade 2025 Achiever</h3>
-                                <p style="font-size: 14px; color: var(--text-muted); margin: 4px 0 0;">Recognized for technical proficiency and milestone completion in Google Cloud's Arcade program.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Education & Leadership -->
-            <section>
-                <div class="section-header">
-                    <h2>Education & Leadership</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="v-stack">
-                    <div class="card">
-                        <div class="exp-header">
-                            <div>
-                                <span class="sidebar-title" style="margin-top: 0; margin-bottom: 4px;">Undergraduate</span>
-                                <h3 style="font-size: 20px; margin: 0;">B.Tech in AI & Machine Learning</h3>
-                                <span class="exp-company">KPRIT Hyderabad • 2022 — 2026</span>
-                            </div>
-                            <span class="exp-date">8.0 / 10.0</span>
-                        </div>
-                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #f1f5f9;">
-                            <span class="sidebar-title" style="margin-top: 0; margin-bottom: 8px;">Community Impact</span>
-                            <h4 style="font-size: 16px; margin: 0 0 8px 0; font-weight: 700;">Coding Verse Club Lead & College Ambassador</h4>
-                            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Lead Technical Facilitator and institutional representative. Spearheaded campus-wide coding sprints and managed community technical outreach.</p>
-                            <div class="tool-grid">
-                                <span class="tool-tag">Technical Mentorship</span>
-                                <span class="tool-tag">Event Leadership</span>
-                                <span class="tool-tag">Community Strategy</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- 1. HERO IDENTITY CARD (PROTOCOL: PARKER) -->
+                <header class="glass-panel panel-parker shape-hero p-8 relative overflow-hidden gsap-hidden gsap-hero">
+                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-gradient-to-br from-red-600/30 to-transparent rounded-full blur-2xl pointer-events-none"></div>
                     
-                    <div class="card">
-                        <div class="exp-header" style="margin-bottom: 0;">
-                            <div>
-                                <span class="sidebar-title" style="margin-top: 0; margin-bottom: 4px;">Technical Foundation</span>
-                                <h3 style="font-size: 18px; margin: 0;">Diploma in Biomedical Engineering</h3>
-                                <span class="exp-company">Government Institute of Electronics • 2020 — 2023</span>
+                    <div class="absolute top-4 right-4 bg-red-950/40 border border-red-900/50 rounded text-[7px] font-mono text-red-400 px-1.5 py-0.5 tracking-widest">
+                        [PROTOCOL: P.A.R.K.E.R]
+                    </div>
+
+                    <div class="space-y-5 relative z-10 mt-2">
+                        <!-- PROFILE PHOTO AND HEADER INTEGRATION -->
+                        <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-center gap-5">
+                            
+                            <!-- SPIDER-SENSE ANIMATED PROFILE PHOTO -->
+                            <div class="profile-container relative shrink-0 cursor-crosshair" id="profile-sense-trigger">
+                                <!-- Spider-Verse Goofy Tingles -->
+                                <svg class="spidey-tingle tingle-1" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M10,40 Q-4,30 10,20 Q24,10 10,0" /></svg>
+                                <svg class="spidey-tingle tingle-2" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M10,40 Q24,30 10,20 Q-4,10 10,0" /></svg>
+                                <svg class="spidey-tingle tingle-3" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M10,40 Q-4,30 10,20 Q24,10 10,0" /></svg>
+                                <svg class="spidey-tingle tingle-4" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10,40 Q24,30 10,20 Q-4,10 10,0" /></svg>
+                                <svg class="spidey-tingle tingle-5" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M10,40 Q-4,30 10,20 Q24,10 10,0" /></svg>
+                                <svg class="spidey-tingle tingle-6" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M10,40 Q24,30 10,20 Q-4,10 10,0" /></svg>
+                                
+                                <div class="profile-image-wrapper relative z-10 w-24 h-24 border-2 border-red-600/80 shadow-[0_0_20px_rgba(220,38,38,0.4)]" style="border-radius: 2rem 1rem 2.5rem 1.5rem; overflow:hidden;">
+                                    <img class="w-full h-full object-cover" src="/assest/Untitled design (5).png" alt="Sai Varun Degala" onerror="this.src='https://placehold.co/300x300/140c0e/dc2626?text=SVD'">
+                                    <!-- Glitch overlay -->
+                                    <div class="absolute inset-0 bg-red-500/20 mix-blend-overlay opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
+                                </div>
+                                <span class="absolute bottom-1 right-2 w-4 h-4 bg-emerald-500 border-2 border-[#0c0a0a] rounded-full animate-pulse z-20" id="status-dot"></span>
                             </div>
-                            <span class="exp-date">8.3 / 10.0</span>
+                            
+                            <div class="text-center sm:text-left md:text-center lg:text-left space-y-2">
+                                <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-red-950/40 border border-red-900/50 rounded-full text-[9px] font-extrabold text-red-400 uppercase tracking-widest font-mono transition-colors" id="greeting-badge">
+                                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span> Hola Amigos
+                                </div>
+                                <div>
+                                    <h1 class="text-3xl font-serifItalic font-bold tracking-tight leading-none bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent">Sai Varun Degala</h1>
+                                    <p class="text-red-400 font-bold text-[10px] mt-2 uppercase tracking-widest font-mono">Dual-Domain AI & BME Specialist</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="relative min-h-[80px]" id="normal-desc">
+                            <p class="text-stone-400 text-xs leading-relaxed">
+                                Operating at the precise interface of <strong class="text-white">Biomedical Engineering</strong> and <strong class="text-red-400">Agentic ML Architectures</strong>. Specializing in RAG mapping frameworks, custom clinical prompt structures, and graph DB pipeline mapping.
+                            </p>
+                            <p class="text-[9px] text-stone-500 italic mt-2 font-sans">"Avid problem-solver, tech-enthusiast, and architect of intelligent systems built to secure my family's future."</p>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- 2. CONTACT CARD (With Radar Scan Animation) -->
+                <div class="glass-panel border-blue-500/20 hover:border-blue-500/60 shape-contact p-6 space-y-4 gsap-hidden gsap-left-panel transition-colors duration-300 relative overflow-hidden">
+                    <div class="radar-scan-line"></div>
+                    <span class="text-[9px] font-extrabold text-blue-400 uppercase tracking-widest block border-b border-white/10 pb-2 font-mono relative z-10">Contact Nodes</span>
+                    <div class="space-y-2 text-xs font-mono text-stone-400 relative z-10">
+                        <div class="flex items-center gap-2">
+                            <span class="text-blue-500">📍</span>
+                            <span>Hyderabad, TS, India</span>
+                        </div>
+                        <a href="mailto:saivarundegala@gmail.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                            <span class="text-blue-500">✉️</span>
+                            <span>saivarundegala@gmail.com</span>
+                        </a>
+                        <a href="https://medium.com/@slyvarun" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
+                            <span class="text-blue-500">🎙️</span>
+                            <span>Medium</span>
+                        </a>
+                    </div>
+                    <div class="flex gap-2 pt-3 border-t border-white/5 relative z-10">
+                        <a href="https://linkedin.com/in/saivarundegala" target="_blank" class="flex-1 py-2 bg-stone-900/60 hover:bg-stone-800 border border-blue-500/20 text-blue-400 hover:text-white rounded-xl text-[9px] font-extrabold tracking-widest flex items-center justify-center gap-1.5 transition-all font-mono hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                            LINKEDIN
+                        </a>
+                        <a href="https://github.com/slyvarun" target="_blank" class="flex-1 py-2 bg-stone-900/60 hover:bg-stone-800 border border-blue-500/20 text-blue-400 hover:text-white rounded-xl text-[9px] font-extrabold tracking-widest flex items-center justify-center gap-1.5 transition-all font-mono hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                            GITHUB
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. ACADEMIC TRACK CARD (With Heartbeat Pulse) -->
+                <div class="glass-panel border-stone-500/20 heartbeat-border shape-education p-6 space-y-4 gsap-hidden gsap-left-panel transition-colors">
+                    <div class="flex items-center gap-2 border-b border-emerald-900/30 pb-2">
+                        <span class="text-emerald-500 font-mono animate-pulse">⚕</span>
+                        <h2 class="text-[10px] font-extrabold text-emerald-400 uppercase tracking-widest font-mono">Academic Track</h2>
+                    </div>
+                    <div class="space-y-4 text-xs">
+                        <div>
+                            <h4 class="font-extrabold text-white text-sm">B.Tech in Computer Science</h4>
+                            <p class="text-[10px] text-stone-400 font-mono mt-0.5">AI & ML Specialization | Expected May 2026</p>
+                            <p class="text-[9px] text-stone-500 mt-1">Kommuri Pratap Reddy Inst. of Technology</p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4">
+                            <h4 class="font-extrabold text-white text-sm">Diploma in Biomedical Eng.</h4>
+                            <p class="text-[10px] text-stone-400 font-mono mt-0.5">Physiological Signals | Graduated 2023</p>
+                            <p class="text-[9px] text-stone-500 mt-1">Govt Institute of Electronics | CGPA: 8.23 / 10</p>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Learning Paths -->
-            <section>
-                <div class="section-header">
-                    <i class="fas fa-map-signs"></i>
-                    <h2>Learning Paths</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="spec-grid">
-                    <div class="spec-item" style="border-top: 4px solid var(--accent-ai);">
-                        <h4>Java Backend Development (TNS NGO)</h4>
-                        <p>Architecting robust server-side systems with a focus on enterprise frameworks and soft skills integration.</p>
-                        <div class="tool-grid">
-                            <span class="tool-tag">Spring Boot</span>
-                            <span class="tool-tag">Hibernate/JPA</span>
-                            <span class="tool-tag">PostgreSQL Design</span>
-                            <span class="tool-tag">Core Java</span>
+                <!-- 4. LITERATURE / PUBLICATION CARD (Symbiote Highlight Flare) -->
+                <div class="glass-panel highlight-literature shape-literature p-6 space-y-4 relative overflow-hidden gsap-hidden gsap-left-panel">
+                    <!-- Intense ambient glow -->
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-fuchsia-600/20 blur-[50px] rounded-full pointer-events-none animate-pulse"></div>
+
+                    <div class="flex items-center justify-between relative z-10">
+                        <div class="flex items-center gap-2">
+                            <span class="text-fuchsia-400 font-mono font-bold animate-pulse">★</span>
+                            <h2 class="text-[10px] font-extrabold text-fuchsia-400 uppercase tracking-widest font-mono">Featured Literature</h2>
                         </div>
                     </div>
-                    <div class="spec-item" style="border-top: 4px solid var(--accent-bio);">
-                        <h4>Data Science & Engineering (Qspiders CSR)</h4>
-                        <p>Professional track for end-to-end data pipelines, predictive modeling, and algorithmic efficiency.</p>
-                        <div class="tool-grid">
-                            <span class="tool-tag">Scikit-Learn</span>
-                            <span class="tool-tag">Pandas/NumPy</span>
-                            <span class="tool-tag">Statistical EDA</span>
-                            <span class="tool-tag">DSA (Python)</span>
-                        </div>
+
+                    <div class="space-y-3 relative z-10">
+                        <h4 class="text-xs font-extrabold text-white leading-snug tracking-tight">
+                            <a href="#" target="_blank" class="hover:text-fuchsia-300 transition-colors">
+                                Contextual Embedding-Based Railway Communication Threat Detection with Transparent AI Models
+                            </a>
+                        </h4>
+                        <p class="text-[9px] text-fuchsia-300 font-mono font-bold tracking-wider bg-fuchsia-950/50 px-2 py-1 rounded border border-fuchsia-500/30 inline-block shadow-[0_0_10px_rgba(217,70,239,0.2)]">
+                            AJACCM (2026)
+                        </p>
+                        <p class="text-[11px] text-stone-300 leading-relaxed">
+                            Explores robust vector projection mappings to categorize anomalies inside industrial communication grids using transparent XAI models.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-fuchsia-900/50 relative z-10">
+                        <span class="px-2 py-0.5 rounded bg-fuchsia-950/50 border border-fuchsia-500/30 text-[8px] font-mono text-fuchsia-300 shadow-[0_0_5px_rgba(217,70,239,0.3)]">Vector Embeddings</span>
+                        <span class="px-2 py-0.5 rounded bg-fuchsia-950/50 border border-fuchsia-500/30 text-[8px] font-mono text-fuchsia-300 shadow-[0_0_5px_rgba(217,70,239,0.3)]">Transparent AI</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Selected Work -->
-            <section>
-                <div class="section-header">
-                    <h2>Blog & Insights</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="v-stack">
-                    <a href="https://github.com/slyvarun/hack2skill-hackathon" class="project-link card">
-                        <span class="tool-tag">Applied ML</span>
-                        <h3>Clinical Diagnosis Prediction Engine</h3>
-                        <p>A sophisticated predictive model utilizing ensemble learning to forecast health outcomes from complex clinical datasets.</p>
-                        <div class="project-meta">View Codebase <i class="fas fa-arrow-right"></i></div>
-                    </a>
+            </div>
 
-                    <a href="https://medium.com/@slyvarun" target="_blank" class="project-link card">
-                        <span class="tool-tag">Technical Writing</span>
-                        <h3>The Pivot: Clinical to Computational</h3>
-                        <p>Reflecting on the engineering transition from hospital environments to data-driven AI systems.</p>
-                        <div class="project-meta">Read on Medium <i class="fas fa-external-link-alt"></i></div>
-                    </a>
-                </div>
-            </section>
+            <!-- RIGHT COLUMN (70% WIDTH: md:col-span-7) -->
+            <div class="md:col-span-7 flex flex-col gap-4">
+                
+                <!-- 1. INTERACTIVE SPIDEY-HUD EXPERIENCE GRID -->
+                <section id="timeline-anchor" class="glass-panel panel-octavius bg-octavius shape-timeline p-6 md:p-8 space-y-6 gsap-hidden gsap-right-panel">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-emerald-900/30 pb-4 relative z-10">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3">
+                                <span class="text-emerald-500 text-xl font-mono animate-pulse">⎈</span>
+                                <h2 class="text-md font-extrabold text-white uppercase tracking-widest font-mono">Experience Matrix</h2>
+                            </div>
+                            <p class="text-xs text-stone-400">Hover over active data nodes to reveal operational telemetry.</p>
+                        </div>
+                        <span class="text-[8px] font-mono text-emerald-500 tracking-wider uppercase border border-emerald-600/30 bg-emerald-950/30 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"></span> Live Nodes
+                        </span>
+                    </div>
 
-            <footer style="margin-top: 100px; padding: 40px 0; border-top: 1px solid #e2e8f0; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; display: flex; justify-content: space-between; align-items: center;">
-                <div>&copy; 2026 Sai Varun Degala</div>
-                <div>ML / AI / Cloud Architecture</div>
-            </footer>
-        </main>
-    </div>
+                    <!-- 2x2 Interactive Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+                        
+                        <!-- Node 1: Avinya -->
+                        <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#10b981">
+                            <!-- Ambient Glow -->
+                            <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-emerald-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
+                            
+                            <div class="flex justify-between items-start mb-3 relative z-10">
+                                <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">MAY 2026 – PRES</span>
+                                <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
+                            </div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="text-base font-extrabold text-white">Software Intern</h3>
+                                <p class="text-[10px] text-emerald-500 font-mono uppercase tracking-widest mt-1">@ Avinya NeuroTech</p>
+                            </div>
+                            
+                            <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
+                                <p class="text-[11px] text-stone-400 leading-relaxed border-t border-emerald-900/50 pt-3 mt-3 mb-3">
+                                    Architected specialized microservice for brain mapping and structural source localization of complex EEG data. Optimized data pipeline ingestion.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-[8px] font-mono text-emerald-400">EEG Signals</span>
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-[8px] font-mono text-emerald-400">Microservices</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Node 2: Osmania -->
+                        <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#fbbf24">
+                            <!-- Ambient Glow -->
+                            <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-amber-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
+                            
+                            <div class="flex justify-between items-start mb-3 relative z-10">
+                                <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">APR 2026 – PRES</span>
+                                <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
+                            </div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="text-base font-extrabold text-white">Research Intern</h3>
+                                <p class="text-[10px] text-amber-500 font-mono uppercase tracking-widest mt-1">@ Osmania Univ (BME Dept)</p>
+                            </div>
+                            
+                            <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
+                                <p class="text-[11px] text-stone-400 leading-relaxed border-t border-amber-900/50 pt-3 mt-3 mb-3">
+                                    Engineered CV-driven automatic waste sorting algorithms. Developing marker-less osteoarthritis screening tools utilizing computer vision frameworks.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-amber-950/40 border border-amber-500/20 text-[8px] font-mono text-amber-400">Computer Vision</span>
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-amber-950/40 border border-amber-500/20 text-[8px] font-mono text-amber-400">Deep Learning</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Node 3: Google Gemini -->
+                        <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#3b82f6">
+                            <!-- Ambient Glow -->
+                            <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-blue-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
+                            
+                            <div class="flex justify-between items-start mb-3 relative z-10">
+                                <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">SEP 2025 – FEB 2026</span>
+                                <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
+                            </div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="text-base font-extrabold text-white">Gemini Ambassador</h3>
+                                <p class="text-[10px] text-blue-400 font-mono uppercase tracking-widest mt-1">@ Google Gemini</p>
+                            </div>
+                            
+                            <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
+                                <p class="text-[11px] text-stone-400 leading-relaxed border-t border-blue-900/50 pt-3 mt-3 mb-3">
+                                    Spearheaded technical community of 1,500+ members. Mentored developers on production-ready AI/ML products leveraging Vertex AI and Multimodal RAG.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-blue-950/40 border border-blue-500/20 text-[8px] font-mono text-blue-400">Vertex AI</span>
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-blue-950/40 border border-blue-500/20 text-[8px] font-mono text-blue-400">Multimodal RAG</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Node 4: Yashoda -->
+                        <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#dc2626">
+                            <!-- Ambient Glow -->
+                            <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-red-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
+                            
+                            <div class="flex justify-between items-start mb-3 relative z-10">
+                                <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">DEC 2022 – MAY 2023</span>
+                                <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
+                            </div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="text-base font-extrabold text-white">Biomedical Engineer</h3>
+                                <p class="text-[10px] text-red-500 font-mono uppercase tracking-widest mt-1">@ Yashoda Hospitals</p>
+                            </div>
+                            
+                            <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
+                                <p class="text-[11px] text-stone-400 leading-relaxed border-t border-red-900/50 pt-3 mt-3 mb-3">
+                                    Managed preventive maintenance and calibration protocols for critical ICU telemetry units, life-support ventilators, and operational theater hardware.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-red-950/30 border border-red-900/50 text-[8px] font-mono text-red-400">ICU Telemetry</span>
+                                    <span class="exp-tag px-1.5 py-0.5 rounded bg-red-950/30 border border-red-900/50 text-[8px] font-mono text-red-400">DPM Calibration</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 2. LEARNING PATH ROADMAP (Protocol: OSBORN) -->
+                <section id="learning-anchor" class="glass-panel panel-osborn shape-learning p-8 space-y-6 gsap-hidden gsap-right-panel">
+                    <div class="flex items-center justify-between border-b border-orange-900/30 pb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="text-orange-500 text-xl font-mono">#</span>
+                            <h2 class="text-md font-extrabold text-white uppercase tracking-widest font-mono">Learning Path</h2>
+                        </div>
+                        <span class="text-[9px] font-extrabold text-orange-500 uppercase tracking-wider font-mono border border-orange-500/20 px-2.5 py-1 rounded bg-orange-950/20">Protocol: O.S.B.O.R.N</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        
+                        <!-- Track A: TNS Foundation @ Accenture -->
+                        <div class="bg-black/50 border border-orange-500/10 rounded-2xl p-5 hover:border-orange-500/30 transition-all flex flex-col justify-between group gsap-hidden learning-card">
+                            <div class="space-y-4">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <span class="text-[8px] font-extrabold text-orange-400 font-mono tracking-widest uppercase">COHORT ALPHA</span>
+                                        <h3 class="text-sm font-extrabold text-white mt-1 group-hover:text-orange-300 transition-colors">TNS Foundation</h3>
+                                        <p class="text-[10px] text-stone-500 font-semibold italic mt-0.5">@ Accenture Collaboration</p>
+                                    </div>
+                                    <span class="text-2xl opacity-60 group-hover:opacity-100 transition-opacity">🏢</span>
+                                </div>
+                                <p class="text-xs text-stone-400 leading-relaxed">
+                                    Intensive corporate engineering program focused on scalable enterprise architecture, automated testing, and professional delivery workflows.
+                                </p>
+                                
+                                <div class="space-y-2 pt-2 border-t border-white/5">
+                                    <span class="text-[9px] font-bold text-orange-400 font-mono tracking-wider uppercase block">Module Syllabus:</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="px-2 py-0.5 rounded bg-stone-900 border border-white/5 text-[9px] font-mono text-stone-300 hover:border-orange-500/20 transition-colors">Java (Spring Boot)</span>
+                                        <span class="px-2 py-0.5 rounded bg-stone-900 border border-white/5 text-[9px] font-mono text-stone-300 hover:border-orange-500/20 transition-colors">SQL Datastores</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[9px] font-mono">
+                                <span class="text-stone-500 uppercase tracking-widest">STATUS: COMPLETED</span>
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
+                            </div>
+                        </div>
+
+                        <!-- Track B: Qspiders -->
+                        <div class="bg-black/50 border border-orange-500/10 rounded-2xl p-5 hover:border-orange-500/30 transition-all flex flex-col justify-between group gsap-hidden learning-card">
+                            <div class="space-y-4">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <span class="text-[8px] font-extrabold text-orange-400 font-mono tracking-widest uppercase">COHORT BETA</span>
+                                        <h3 class="text-sm font-extrabold text-white mt-1 group-hover:text-orange-300 transition-colors">Qspiders</h3>
+                                        <p class="text-[10px] text-stone-500 font-semibold italic mt-0.5">Data Science specialization</p>
+                                    </div>
+                                    <span class="text-2xl opacity-60 group-hover:opacity-100 transition-opacity">🕸️</span>
+                                </div>
+                                <p class="text-xs text-stone-400 leading-relaxed">
+                                    Rigorous deep-dive into mathematical statistical analysis, machine learning model initialization, and robust database pipeline execution checks.
+                                </p>
+                                
+                                <div class="space-y-2 pt-2 border-t border-white/5">
+                                    <span class="text-[9px] font-bold text-orange-400 font-mono tracking-wider uppercase block">Module Syllabus:</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="px-2 py-0.5 rounded bg-stone-900 border border-white/5 text-[9px] font-mono text-stone-300 hover:border-orange-500/20 transition-colors">Python (SciPy/NumPy)</span>
+                                        <span class="px-2 py-0.5 rounded bg-stone-900 border border-white/5 text-[9px] font-mono text-stone-300 hover:border-orange-500/20 transition-colors">Advanced SQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[9px] font-mono">
+                                <span class="text-stone-500 uppercase tracking-widest">STATUS: COMPLETED</span>
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 3. INTERACTIVE LABORATORY (Protocol: BECK - Mysterio Theme) -->
+                <section id="projects-anchor" class="glass-panel panel-beck shape-dashboard p-6 md:p-8 space-y-6 gsap-hidden gsap-right-panel relative">
+                    <!-- Mysterio Fog Overlay -->
+                    <div class="mysterio-mist"></div>
+                    
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-purple-900/30 pb-4 relative z-10">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3">
+                                <span class="text-purple-500 text-xl font-mono">#</span>
+                                <h2 class="text-md font-extrabold text-white uppercase tracking-widest font-mono">Interactive Laboratory</h2>
+                            </div>
+                            <p class="text-[10px] text-purple-400/80 font-mono uppercase tracking-widest">Protocol: B.E.C.K [Holographic AI Constructs]</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-[9px] font-mono bg-purple-950/30 border border-purple-500/20 px-3 py-1.5 rounded-full text-purple-400 backdrop-blur-md">
+                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse"></span> PREVIEWS AVAILABLE
+                        </div>
+                    </div>
+
+                    <!-- Inner Lab Container -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+                        
+                        <!-- Left Navigation Column of Dashboard -->
+                        <div class="lg:col-span-5 flex flex-col gap-3">
+                            
+                            <!-- Project Tab 1 -->
+                            <button onclick="switchLabProject(0)" id="proj-tab-0" class="text-left p-4 rounded-xl border border-purple-500/40 bg-purple-950/20 hover:bg-purple-950/40 transition-all cursor-pointer relative group backdrop-blur-md">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-purple-500 rounded-l-xl transition-all shadow-[0_0_10px_#8b5cf6]" id="proj-indicator-0"></div>
+                                <div class="space-y-1.5 pl-2">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[8px] font-extrabold text-purple-400 font-mono tracking-widest">LAB MODULE 01</span>
+                                        <span class="text-[8px] font-mono text-purple-300 bg-purple-900/50 border border-purple-500/50 px-1.5 py-0.5 rounded">RAG</span>
+                                    </div>
+                                    <h4 class="text-sm font-extrabold text-white group-hover:text-purple-300 transition-colors">MedGraph Nexus</h4>
+                                    <p class="text-[10px] text-stone-400 leading-normal">
+                                        Graph-based RAG pipeline managing 50k+ nodes of pharmaceutical data mapping (Neo4j, LangChain).
+                                    </p>
+                                </div>
+                            </button>
+
+                            <!-- Project Tab 2 -->
+                            <button onclick="switchLabProject(1)" id="proj-tab-1" class="text-left p-4 rounded-xl border border-white/5 bg-transparent hover:bg-stone-900/40 transition-all cursor-pointer relative group">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent rounded-l-xl transition-all" id="proj-indicator-1"></div>
+                                <div class="space-y-1.5 pl-2">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[8px] font-extrabold text-cyan-500 font-mono tracking-widest">LAB MODULE 02</span>
+                                        <span class="text-[8px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-1.5 py-0.5 rounded">AGENTIC</span>
+                                    </div>
+                                    <h4 class="text-sm font-extrabold text-stone-300 group-hover:text-white transition-colors">Finete.AI Agent</h4>
+                                    <p class="text-[10px] text-stone-500 leading-normal">
+                                        Privacy-first local financial automation application executing multi-step tool-calling workflows.
+                                    </p>
+                                </div>
+                            </button>
+
+                            <!-- Project Tab 3 -->
+                            <button onclick="switchLabProject(2)" id="proj-tab-2" class="text-left p-4 rounded-xl border border-white/5 bg-transparent hover:bg-stone-900/40 transition-all cursor-pointer relative group">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent rounded-l-xl transition-all" id="proj-indicator-2"></div>
+                                <div class="space-y-1.5 pl-2">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[8px] font-extrabold text-emerald-500 font-mono tracking-widest">LAB MODULE 03</span>
+                                        <span class="text-[8px] font-mono text-emerald-500 bg-emerald-950/40 border border-emerald-800/40 px-1.5 py-0.5 rounded">CV CORE</span>
+                                    </div>
+                                    <h4 class="text-sm font-extrabold text-stone-300 group-hover:text-white transition-colors">3D Tumor Tracking</h4>
+                                    <p class="text-[10px] text-stone-500 leading-normal">
+                                        Marker-less diagnostic tools and automated classification using deep learning pipelines.
+                                    </p>
+                                </div>
+                            </button>
+
+                        </div>
+
+                        <!-- Right Interactive Screen Column of Dashboard -->
+                        <div class="lg:col-span-7 flex flex-col justify-between bg-[#0a0510]/80 border border-purple-500/20 rounded-2xl p-5 min-h-[380px] relative overflow-hidden backdrop-blur-xl">
+                            
+                            <!-- Static ambient overlay glowing behind elements (Mysterio Glow) -->
+                            <div id="screen-glow" class="absolute -right-24 -bottom-24 w-64 h-64 bg-purple-500/20 rounded-full blur-[60px] pointer-events-none transition-all duration-700"></div>
+
+                            <!-- Screen Header -->
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between text-[9px] font-mono uppercase tracking-widest text-stone-400 border-b border-purple-900/30 pb-2.5">
+                                    <span id="current-project-title" class="font-bold text-white">MedGraph Nexus</span>
+                                    <span class="flex items-center gap-1.5 bg-black/50 px-2 py-1 rounded">
+                                        <span class="w-1.5 h-1.5 bg-purple-500 rounded-full animate-ping" id="status-light"></span>
+                                        <span id="current-project-status" class="text-purple-400">GRAPH ACTIVE</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Simulator Areas -->
+                            <div class="my-4 relative z-10 flex-1 flex flex-col justify-center">
+                                
+                                <!-- SIMULATOR 01: MedGraph Knowledge Graph Web Canvas -->
+                                <div id="lab-visualizer-0" class="space-y-4">
+                                    <div class="bg-[#05020a] border border-purple-500/20 rounded-xl p-3 h-48 relative overflow-hidden flex items-center justify-center shadow-[inset_0_0_20px_rgba(139,92,246,0.1)]">
+                                        <canvas id="graphCanvas" class="absolute inset-0 w-full h-full cursor-pointer"></canvas>
+                                        <div class="absolute top-2 left-2 pointer-events-none bg-black/80 border border-purple-500/30 px-2 py-1 rounded text-[8px] font-mono text-purple-400">
+                                            DRAG TO EXPLORE NODES
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-0.5 rounded bg-purple-950/40 border border-purple-500/30 text-[9px] font-mono text-purple-300">Neo4j Database</span>
+                                        <span class="px-2 py-0.5 rounded bg-purple-950/40 border border-purple-500/30 text-[9px] font-mono text-purple-300">LangChain</span>
+                                    </div>
+                                </div>
+
+                                <!-- SIMULATOR 02: Finete.AI Agent Terminal -->
+                                <div id="lab-visualizer-1" class="hidden space-y-3">
+                                    <div class="bg-[#02060a] border border-cyan-500/20 rounded-xl p-4 h-48 font-mono text-[10px] text-cyan-400 overflow-y-auto relative flex flex-col justify-between shadow-[inset_0_0_20px_rgba(6,182,212,0.1)]">
+                                        <div class="space-y-1.5" id="terminal-screen">
+                                            <div class="text-stone-500 font-sans italic">// Dynamic structural formatting system...</div>
+                                            <div><span class="text-cyan-500">>>></span> initiating Ollama local state loop...</div>
+                                            <div><span class="text-cyan-500">>>></span> multi-step tool-calling workflows [ACTIVE]</div>
+                                            <div class="text-emerald-400 font-bold"><span class="text-cyan-500">>>></span> privacy-first execution validated.</div>
+                                        </div>
+                                        <div class="pt-2 border-t border-cyan-900/50 flex items-center justify-between">
+                                            <button onclick="triggerTerminalOutput()" class="px-2.5 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 rounded text-[9px] font-bold tracking-widest uppercase transition-all cursor-pointer">
+                                                RE-RUN AGENT
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/30 text-[9px] font-mono text-cyan-300">Ollama</span>
+                                        <span class="px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/30 text-[9px] font-mono text-cyan-300">Agentic Workflows</span>
+                                    </div>
+                                </div>
+
+                                <!-- SIMULATOR 03: Brain Scan slice rendering -->
+                                <div id="lab-visualizer-2" class="hidden space-y-4">
+                                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 bg-[#020a05] border border-emerald-500/20 rounded-xl p-4 h-48 overflow-hidden items-center shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
+                                        <div class="sm:col-span-6 h-full flex items-center justify-center relative">
+                                            <canvas id="mriCanvas" class="w-32 h-32"></canvas>
+                                            <div class="absolute inset-0 border border-emerald-500/30 rounded pointer-events-none flex flex-col justify-between p-1.5 text-[7px] text-emerald-400 font-mono">
+                                                <span>SCAN: MRI_HEAD_01</span>
+                                                <span class="text-right">AXIS: Z</span>
+                                            </div>
+                                        </div>
+                                        <div class="sm:col-span-6 space-y-2 font-mono text-[10px] text-emerald-400">
+                                            <div class="flex justify-between border-b border-emerald-950 pb-1">
+                                                <span class="text-stone-500">Depth:</span>
+                                                <span id="mri-depth-label">Slice 32 / 64</span>
+                                            </div>
+                                            <div class="flex justify-between border-b border-emerald-950 pb-1">
+                                                <span class="text-stone-500">Volume:</span>
+                                                <span id="mri-volume-label">12.4 cm³</span>
+                                            </div>
+                                            <div class="pt-1.5">
+                                                <label class="text-[8px] text-stone-500 uppercase tracking-widest block mb-1">Adjust Slicing Depth</label>
+                                                <input type="range" min="1" max="64" value="32" id="mriSlider" oninput="updateMriScan(this.value)" class="w-full accent-emerald-500 bg-emerald-950 rounded-lg cursor-ew-resize">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-[9px] font-mono text-emerald-300">Deep Learning</span>
+                                        <span class="px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-[9px] font-mono text-emerald-300">OpenCV</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Screen Footer -->
+                            <div class="relative z-10 pt-3 border-t border-purple-900/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                                <p class="text-[10px] text-stone-400 max-w-sm" id="lab-project-summary">
+                                    Graph database mapping pharmaceutical properties directly to standard diagnostic catalogs.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="max-w-7xl mx-auto text-center border-t border-white/5 pt-8 relative z-10 pb-20">
+        <p class="text-[9px] font-extrabold text-stone-600 uppercase tracking-[0.4em]">Sai Varun Degala © 2026</p>
+        <p class="text-[8px] text-stone-600 mt-1.5 uppercase tracking-widest font-mono">Engineered at the Intersection of Artificial Intelligence & Biomedical Systems</p>
+    </footer>
+
+    <script>
+        // 1. BACKDROP CONTROL UTILITY
+       function adjustBgOpacity(value) {
+            const wall = document.getElementById('photoWall');
+            if (wall) {
+                wall.style.opacity = value;
+                wall.style.filter = value > 0.3 ? "grayscale(30%) contrast(110%) blur(0px)" : 
+                                   value > 0.1 ? "grayscale(80%) contrast(115%) blur(1.5px)" : 
+                                   "grayscale(100%) contrast(125%) blur(4px)";
+            }
+        }
+
+        // 2. PROJECT DASHBOARD STATE ENGINE
+        let activeProjectIndex = 0;
+        const projectData = [
+            {
+                title: "Project: MedGraph Nexus",
+                status: "GRAPH ACTIVE",
+                summary: "Graph database mapping pharmaceutical properties directly to standard diagnostic catalogs.",
+                accentClass: "purple",
+                statusColor: "#8b5cf6",
+                glowBg: "rgba(139, 92, 246, 0.2)"
+            },
+            {
+                title: "Project: Finete.AI Orchestrator",
+                status: "OLLAMA LINKED",
+                summary: "Ensures structural correctness across structured output parameters, validating metrics inside SQLite.",
+                accentClass: "cyan",
+                statusColor: "#06b6d4",
+                glowBg: "rgba(6, 182, 212, 0.2)"
+            },
+            {
+                title: "Project: 3D Tumor Segmentation AI",
+                status: "VISION ACTIVE",
+                summary: "Spatial model running multi-class CNNs across medical records to isolate tissue shapes.",
+                accentClass: "emerald",
+                statusColor: "#10b981",
+                glowBg: "rgba(16, 185, 129, 0.2)"
+            }
+        ];
+
+        function switchLabProject(index) {
+            activeProjectIndex = index;
+            const data = projectData[index];
+
+            document.getElementById("current-project-title").innerText = data.title;
+            document.getElementById("current-project-status").innerText = data.status;
+            document.getElementById("lab-project-summary").innerText = data.summary;
+            document.getElementById("status-light").style.backgroundColor = data.statusColor;
+            document.getElementById("screen-glow").style.backgroundColor = data.glowBg;
+
+            for (let i = 0; i < 3; i++) {
+                const tab = document.getElementById(`proj-tab-${i}`);
+                const indicator = document.getElementById(`proj-indicator-${i}`);
+                if (i === index) {
+                    tab.className = `text-left p-4 rounded-xl border border-${data.accentClass}-500/40 bg-${data.accentClass}-950/20 hover:bg-${data.accentClass}-950/40 transition-all cursor-pointer relative group backdrop-blur-md`;
+                    indicator.className = `absolute left-0 top-0 bottom-0 w-1 bg-${data.accentClass}-500 rounded-l-xl transition-all shadow-[0_0_10px_${data.statusColor}]`;
+                    document.getElementById(`lab-visualizer-${i}`).classList.remove("hidden");
+                } else {
+                    tab.className = `text-left p-4 rounded-xl border border-white/5 bg-transparent hover:bg-stone-900/40 transition-all cursor-pointer relative group`;
+                    indicator.className = `absolute left-0 top-0 bottom-0 w-1 bg-transparent rounded-l-xl transition-all`;
+                    document.getElementById(`lab-visualizer-${i}`).classList.add("hidden");
+                }
+            }
+
+            if (index === 0) resizeGraphCanvas();
+            else if (index === 1) triggerTerminalOutput();
+            else if (index === 2) { resizeMriCanvas(); updateMriScan(document.getElementById("mriSlider").value); }
+        }
+
+        // 3. CANVAS 1: GRAPH DB NODE NETWORK
+        const graphCanvas = document.getElementById("graphCanvas");
+        const ctxGraph = graphCanvas.getContext("2d");
+        let nodes = [
+            { id: "Patient", label: "Patient", x: 100, y: 80, size: 14, color: "#a78bfa" },
+            { id: "Symptom", label: "Symptom: Tremors", x: 220, y: 50, size: 10, color: "#f43f5e" },
+            { id: "Diag", label: "Diag: Parkinson's", x: 260, y: 130, size: 12, color: "#67e8f9" },
+            { id: "Drug", label: "Drug: Levodopa", x: 140, y: 160, size: 11, color: "#fcd34d" }
+        ];
+        let draggingNode = null;
+
+        function resizeGraphCanvas() {
+            const container = graphCanvas.parentNode;
+            graphCanvas.width = container.clientWidth;
+            graphCanvas.height = container.clientHeight;
+            nodes[0].x = graphCanvas.width * 0.25; nodes[0].y = graphCanvas.height * 0.45;
+            nodes[1].x = graphCanvas.width * 0.75; nodes[1].y = graphCanvas.height * 0.25;
+            nodes[2].x = graphCanvas.width * 0.75; nodes[2].y = graphCanvas.height * 0.75;
+            nodes[3].x = graphCanvas.width * 0.45; nodes[3].y = graphCanvas.height * 0.75;
+        }
+
+        function drawGraph() {
+            ctxGraph.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+            ctxGraph.lineWidth = 1.5; ctxGraph.strokeStyle = "rgba(255, 255, 255, 0.08)";
+            ctxGraph.beginPath();
+            ctxGraph.moveTo(nodes[0].x, nodes[0].y); ctxGraph.quadraticCurveTo(graphCanvas.width/2, graphCanvas.height/2, nodes[1].x, nodes[1].y);
+            ctxGraph.moveTo(nodes[0].x, nodes[0].y); ctxGraph.lineTo(nodes[2].x, nodes[2].y);
+            ctxGraph.moveTo(nodes[2].x, nodes[2].y); ctxGraph.lineTo(nodes[3].x, nodes[3].y);
+            ctxGraph.moveTo(nodes[3].x, nodes[3].y); ctxGraph.lineTo(nodes[0].x, nodes[0].y);
+            ctxGraph.stroke();
+
+            nodes.forEach(node => {
+                ctxGraph.shadowBlur = 12; ctxGraph.shadowColor = node.color; ctxGraph.fillStyle = node.color;
+                ctxGraph.beginPath(); ctxGraph.arc(node.x, node.y, node.size, 0, Math.PI * 2); ctxGraph.fill();
+                ctxGraph.shadowBlur = 0; ctxGraph.fillStyle = "#d6d3d1"; ctxGraph.font = "bold 9px 'JetBrains Mono'";
+                ctxGraph.textAlign = "center"; ctxGraph.fillText(node.label, node.x, node.y - node.size - 6);
+            });
+        }
+        function runGraphLoop() { drawGraph(); requestAnimationFrame(runGraphLoop); }
+
+        function getCanvasMousePos(canvas, evt) {
+            const rect = canvas.getBoundingClientRect();
+            return { x: (evt.touches ? evt.touches[0].clientX : evt.clientX) - rect.left, y: (evt.touches ? evt.touches[0].clientY : evt.clientY) - rect.top };
+        }
+        function handleDragStart(e) {
+            const pos = getCanvasMousePos(graphCanvas, e);
+            nodes.forEach(n => { if (Math.hypot(n.x - pos.x, n.y - pos.y) < n.size + 10) draggingNode = n; });
+        }
+        function handleDragMove(e) { if (draggingNode) { const pos = getCanvasMousePos(graphCanvas, e); draggingNode.x = pos.x; draggingNode.y = pos.y; } }
+        function handleDragEnd() { draggingNode = null; }
+
+        graphCanvas.addEventListener("mousedown", handleDragStart); graphCanvas.addEventListener("mousemove", handleDragMove); window.addEventListener("mouseup", handleDragEnd);
+        graphCanvas.addEventListener("touchstart", handleDragStart); graphCanvas.addEventListener("touchmove", handleDragMove); window.addEventListener("touchend", handleDragEnd);
+
+        // 4. SIMULATOR 2: AGENTIC TERMINAL
+        const terminalLogs = ["Initializing pipeline check...", "Loading local Llama-3 constraints...", "Processing unstructured clinical text payload...", "Structuring JSON model formatting metrics...", "SQLite transaction: schema verified", "Response integrity verified [JSON output OK]."];
+        let termTimer = null;
+        function triggerTerminalOutput() {
+            const term = document.getElementById("terminal-screen"); if (!term) return;
+            term.innerHTML = `<div class="text-stone-500 font-sans italic">// Simulated Local LLM loop...</div>`;
+            clearInterval(termTimer); let index = 0;
+            termTimer = setInterval(() => {
+                if (index < terminalLogs.length) {
+                    const row = document.createElement("div"); row.innerHTML = `<span class="text-cyan-500 font-mono">>>></span> ${terminalLogs[index]}`;
+                    term.appendChild(row); term.scrollTop = term.scrollHeight; index++;
+                } else clearInterval(termTimer);
+            }, 550);
+        }
+
+        // 5. CANVAS 3: MRI BRAIN SCAN
+        const mriCanvas = document.getElementById("mriCanvas"); const ctxMri = mriCanvas.getContext("2d");
+        function resizeMriCanvas() { mriCanvas.width = 120; mriCanvas.height = 120; }
+        function updateMriScan(val) {
+            document.getElementById("mri-depth-label").innerText = `Slice ${val} / 64`;
+            const vol = Math.max(0, 15 - Math.pow((val - 32) / 16, 2) * 2).toFixed(1);
+            document.getElementById("mri-volume-label").innerText = `${vol} cm³`;
+            
+            ctxMri.clearRect(0, 0, 120, 120);
+            ctxMri.strokeStyle = "rgba(16, 185, 129, 0.15)"; ctxMri.lineWidth = 2; ctxMri.beginPath(); ctxMri.ellipse(60, 60, 50, 42, 0, 0, Math.PI * 2); ctxMri.stroke();
+            ctxMri.strokeStyle = "rgba(255, 255, 255, 0.08)"; ctxMri.lineWidth = 1; ctxMri.beginPath();
+            for (let a = 0; a < Math.PI * 2; a += 0.2) {
+                const r = 36 + Math.sin(a * 6 + val / 5) * 4;
+                const x = 60 + Math.cos(a) * r, y = 60 + Math.sin(a) * r;
+                if (a === 0) ctxMri.moveTo(x, y); else ctxMri.lineTo(x, y);
+            }
+            ctxMri.closePath(); ctxMri.stroke();
+
+            if (parseFloat(vol) > 1.0) {
+                ctxMri.shadowBlur = 8; ctxMri.shadowColor = "#10b981"; ctxMri.fillStyle = "rgba(16, 185, 129, 0.4)";
+                ctxMri.beginPath(); ctxMri.arc(50 + Math.sin(val/10)*5, 55 + Math.cos(val/10)*5, parseFloat(vol)*1.4, 0, Math.PI * 2); ctxMri.fill(); ctxMri.shadowBlur = 0;
+            }
+        }
+
+        // 6. GSAP CINEMATIC ANIMATIONS & INIT
+        window.onload = function() {
+            // Init Canvases
+            
+            resizeGraphCanvas(); resizeMriCanvas(); runGraphLoop(); updateMriScan(32);
+            window.addEventListener("resize", () => { resizeGraphCanvas(); resizeMriCanvas(); });
+
+            // Init GSAP
+            gsap.registerPlugin(ScrollTrigger);
+
+            // A. Cinematic Hero Entry (Staggered fade up)
+            const tl = gsap.timeline();
+            tl.fromTo(".gsap-hero", { opacity: 0, y: 50, scale: 0.95 }, { duration: 1.2, opacity: 1, y: 0, scale: 1, ease: "power4.out", autoAlpha: 1 })
+              .fromTo(".gsap-left-panel", { opacity: 0, x: -40 }, { duration: 0.8, opacity: 1, x: 0, stagger: 0.15, ease: "power3.out", autoAlpha: 1 }, "-=0.8")
+              .fromTo(".gsap-nav-dock", { opacity: 0, y: 40 }, { duration: 1, opacity: 1, y: 0, ease: "power4.out", autoAlpha: 1 }, "-=0.6");
+
+            // B. Scroll Reveal for Right Columns (Experience & Lab)
+            gsap.utils.toArray(".gsap-right-panel").forEach(panel => {
+                gsap.fromTo(panel, { opacity: 0, y: 50 }, {
+                    scrollTrigger: { trigger: panel, start: "top 85%", toggleActions: "play none none reverse" },
+                    duration: 1, opacity: 1, y: 0, ease: "power3.out", autoAlpha: 1
+                });
+            });
+
+            // C. Staggered reveal for Learning Path Cards
+            gsap.fromTo(".learning-card", { opacity: 0, y: 30 }, { scrollTrigger: { trigger: "#learning-anchor", start: "top 75%" }, duration: 0.8, opacity: 1, y: 0, stagger: 0.2, ease: "power3.out", autoAlpha: 1 });
+
+            // D. Experience Matrix Bento Interactions (Hover logic applied to GSAP)
+            const expCards = document.querySelectorAll('.exp-card');
+            
+            // Initial scroll reveal for the cards
+            gsap.fromTo(expCards, { opacity: 0, scale: 0.9, y: 30 }, { scrollTrigger: { trigger: "#timeline-anchor", start: "top 80%" }, duration: 0.8, opacity: 1, scale: 1, y: 0, stagger: 0.1, ease: "back.out(1.2)" });
+
+            // Hover interactions using GSAP for Bento Exp Cards
+            expCards.forEach(card => {
+                const wrapper = card.querySelector('.exp-content-wrapper');
+                const glow = card.querySelector('.exp-glow');
+                const indicator = card.querySelector('.exp-indicator');
+                const tags = card.querySelectorAll('.exp-tag');
+                const themeColor = card.getAttribute('data-color');
+
+                gsap.set(wrapper, { height: 0, opacity: 0 });
+
+                const tlh = gsap.timeline({ paused: true, defaults: { ease: "power3.inOut" } });
+
+                tlh.to(card, { borderColor: themeColor, backgroundColor: "rgba(15, 8, 8, 0.95)", scale: 1.03, zIndex: 20, boxShadow: `0 15px 30px -10px ${themeColor}40`, duration: 0.3 }, 0)
+                  .to(glow, { opacity: 1, scale: 1.5, duration: 0.4 }, 0)
+                  .to(indicator, { backgroundColor: themeColor, boxShadow: `0 0 10px ${themeColor}`, scale: 1.5, duration: 0.3 }, 0)
+                  .to(wrapper, { height: "auto", opacity: 1, duration: 0.4 }, 0.1)
+                  .fromTo(tags, { y: 10, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, duration: 0.3, ease: "back.out(2)" }, 0.2);
+
+                card.addEventListener('mouseenter', () => tlh.play());
+                card.addEventListener('mouseleave', () => tlh.reverse());
+                
+                card.addEventListener('click', () => {
+                    if (tlh.progress() > 0 && !tlh.reversed()) tlh.reverse();
+                    else {
+                        expCards.forEach(c => { if(c !== card && c._gsapTl) c._gsapTl.reverse(); });
+                        tlh.play();
+                    }
+                });
+                card._gsapTl = tlh; 
+            });
+            
+           // SPIDER PULL CORD THEME SWITCHER
+        const themeSpider = document.getElementById('theme-spider');
+        let isPulling = false;
+        let startY = 0;
+        let hasToggled = false;
+
+        function startPull(e) {
+            if (e.type === 'touchstart') e.preventDefault();
+            isPulling = true;
+            hasToggled = false;
+            startY = e.touches ? e.touches[0].clientY : e.clientY;
+            themeSpider.style.animation = 'none';
+            themeSpider.style.transition = 'none';
+        }
+
+        function handlePull(e) {
+            if (!isPulling) return;
+            if (e.type === 'touchmove') e.preventDefault();
+            const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+            if (currentY === undefined) return;
+            const deltaY = currentY - startY;
+            if (deltaY > 0 && deltaY < 120) {
+                themeSpider.style.transform = `translateY(${120 + deltaY}px)`;
+                if (deltaY > 65 && !hasToggled) {
+                    hasToggled = true;
+                    document.body.classList.toggle('light-theme');
+                }
+            }
+        }
+
+        function endPull() {
+            if (!isPulling) return;
+            isPulling = false;
+            themeSpider.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            themeSpider.style.transform = 'translateY(120px)';
+            setTimeout(() => {
+                themeSpider.style.animation = 'spiderBob 4s infinite ease-in-out';
+                themeSpider.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            }, 400);
+        }
+
+        themeSpider.addEventListener('mousedown', startPull);
+        window.addEventListener('mousemove', handlePull, { passive: false });
+        window.addEventListener('mouseup', endPull);
+        themeSpider.addEventListener('touchstart', startPull, { passive: false });
+        window.addEventListener('touchmove', handlePull, { passive: false });
+        window.addEventListener('touchend', endPull);   
+        };
+    </script>
 </body>
 </html>
