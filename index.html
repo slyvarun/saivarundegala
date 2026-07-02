@@ -58,7 +58,6 @@
         /* -------------------------------------------
            THEME PROTOCOLS (VILLAIN INTEGRATIONS)
            ------------------------------------------- */
-
         .panel-parker { border-color: rgba(220, 38, 38, 0.2); }
         .panel-parker:hover {
             border-color: rgba(220, 38, 38, 0.7);
@@ -107,61 +106,75 @@
         }
 
         /* -------------------------------------------
-           SPIDER-SENSE PROFILE HOVER & GLOBAL ALERT
+           SPIDER-SENSE PROFILE HOVER & GLOBAL ALERT (UPDATED THUNDER TINGLES)
            ------------------------------------------- */
         
-        .profile-container { perspective: 1000px; position: relative; }
+        .profile-container { perspective: 1000px; position: relative; display: inline-block; }
         .profile-image-wrapper {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        /* NEW: The flashlight mask for the spiderman image */
+        .spidey-reveal-image {
+            -webkit-mask-image: radial-gradient(circle 90px at var(--mouse-x) var(--mouse-y), black 30%, transparent 100%);
+            mask-image: radial-gradient(circle 90px at var(--mouse-x) var(--mouse-y), black 30%, transparent 100%);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .profile-container:hover .spidey-reveal-image {
+            opacity: 1; /* Shows the masked image layer when hovering */
         }
         
         .profile-container:hover .profile-image-wrapper {
             transform: scale(1.05) rotateY(10deg);
-            box-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
-            filter: contrast(1.3) saturate(1.5) drop-shadow(0 0 15px rgba(220,38,38,0.9));
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.8);
+            filter: contrast(1.3) saturate(1.5) drop-shadow(0 0 20px rgba(220,38,38,0.9));
         }
 
-        /* Comic Spider-Verse Goofy Tingles */
+        /* Comic Spider-Verse Thunder Tingles */
         .spidey-tingle {
             position: absolute;
             top: 50%; left: 50%;
-            width: 20px; height: 35px;
-            margin-top: -17px; margin-left: -10px;
+            width: 28px; height: 50px;
+            margin-top: -25px; margin-left: -14px;
             color: #ec4899; 
             filter: drop-shadow(-2px 2px 0px #06b6d4) drop-shadow(1.5px -1.5px 0px #3b82f6);
             opacity: 0;
             pointer-events: none;
-            z-index: 50;
+            z-index: -1; /* Place behind image */
             transition: opacity 0.15s ease-out;
             transform: rotate(var(--angle)) translateY(0) scale(0.2);
+            transform-origin: center center;
         }
 
         .tingle-1 { --angle: -55deg; }
-        .tingle-2 { --angle: -15deg; }
-        .tingle-3 { --angle: 25deg; }
-        .tingle-4 { --angle: 65deg; }
-        .tingle-5 { --angle: -95deg; }
-        .tingle-6 { --angle: 100deg; }
+        .tingle-2 { --angle: -20deg; }
+        .tingle-3 { --angle: 20deg; }
+        .tingle-4 { --angle: 55deg; }
+        .tingle-5 { --angle: -110deg; }
+        .tingle-6 { --angle: 110deg; }
 
-        .profile-container:hover .tingle-1 { opacity: 1; animation: comicWiggle 0.12s infinite alternate 0.0s; --dist: 65px; z-index: 50; }
-        .profile-container:hover .tingle-2 { opacity: 1; animation: comicWiggle 0.15s infinite alternate 0.1s; --dist: 75px; z-index: 50; }
-        .profile-container:hover .tingle-3 { opacity: 1; animation: comicWiggle 0.14s infinite alternate 0.05s; --dist: 68px; z-index: 50; }
-        .profile-container:hover .tingle-4 { opacity: 1; animation: comicWiggle 0.17s infinite alternate 0.12s; --dist: 60px; z-index: 50; }
-        .profile-container:hover .tingle-5 { opacity: 1; animation: comicWiggle 0.13s infinite alternate 0.08s; --dist: 62px; z-index: 50; }
-        .profile-container:hover .tingle-6 { opacity: 1; animation: comicWiggle 0.16s infinite alternate 0.15s; --dist: 65px; z-index: 50; }
+        /* Adjusted distance for the bigger photo */
+        .profile-container:hover .tingle-1 { opacity: 1; animation: thunderFlash 0.12s infinite alternate 0.0s; --dist: 110px; z-index: 50; }
+        .profile-container:hover .tingle-2 { opacity: 1; animation: thunderFlash 0.15s infinite alternate 0.1s; --dist: 125px; z-index: 50; }
+        .profile-container:hover .tingle-3 { opacity: 1; animation: thunderFlash 0.14s infinite alternate 0.05s; --dist: 125px; z-index: 50; }
+        .profile-container:hover .tingle-4 { opacity: 1; animation: thunderFlash 0.17s infinite alternate 0.12s; --dist: 110px; z-index: 50; }
+        .profile-container:hover .tingle-5 { opacity: 1; animation: thunderFlash 0.13s infinite alternate 0.08s; --dist: 105px; z-index: 50; }
+        .profile-container:hover .tingle-6 { opacity: 1; animation: thunderFlash 0.16s infinite alternate 0.15s; --dist: 105px; z-index: 50; }
         
-        @keyframes comicWiggle {
-            0% { transform: rotate(var(--angle)) translateY(calc(var(--dist) * -1)) scale(1) skewX(-5deg); }
-            100% { transform: rotate(calc(var(--angle) + 4deg)) translateY(calc(var(--dist) * -1 - 6px)) scale(1.25) skewX(15deg); color: #f43f5e; }
+        @keyframes thunderFlash {
+            0% { transform: rotate(var(--angle)) translateY(calc(var(--dist) * -1)) scale(1) skewX(0deg); opacity: 0.7; }
+            100% { transform: rotate(calc(var(--angle) + 2deg)) translateY(calc(var(--dist) * -1 - 8px)) scale(1.3) skewX(5deg); color: #f43f5e; opacity: 1; filter: drop-shadow(0 0 10px #f43f5e); }
         }
 
-
         /* -------------------------------------------
-           SECTION ANIMATIONS (CONTACT, ACADEMIC, LITERATURE)
+           SECTION ANIMATIONS
            ------------------------------------------- */
         
-        /* Contact Radar Animation */
         .radar-scan-line {
             position: absolute; top: 0; left: 0; right: 0; height: 2px;
             background: linear-gradient(90deg, transparent, rgba(37,99,235,0.8), transparent);
@@ -177,10 +190,7 @@
             100% { transform: translateY(200px); opacity: 0; }
         }
 
-        /* Academic Heartbeat */
-        .heartbeat-border {
-            animation: bioHeartbeat 2.5s infinite;
-        }
+        .heartbeat-border { animation: bioHeartbeat 2.5s infinite; }
         @keyframes bioHeartbeat {
             0% { border-color: rgba(16, 185, 129, 0.2); box-shadow: none; }
             15% { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
@@ -189,7 +199,6 @@
             100% { border-color: rgba(16, 185, 129, 0.2); box-shadow: none; }
         }
 
-        /* Highlighting Literature (Symbiote Flare) */
         .highlight-literature {
             border: 1.5px solid rgba(217, 70, 239, 0.4);
             box-shadow: 0 0 30px -5px rgba(217, 70, 239, 0.3), inset 0 0 20px rgba(139, 92, 246, 0.1);
@@ -217,23 +226,16 @@
         .tech-spider-container {
             position: fixed; top: -100px; left: 5%;
             width: 40px; height: 250px;
-            pointer-events: auto; z-index: 40;
+            pointer-events: auto; z-index: 90; /* High z-index */
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex; flex-direction: column; align-items: center;
             touch-action: none;
         }
-        /* Normal state hanging */
+        
         .tech-spider-container { transform: translateY(120px); animation: spiderBob 4s infinite ease-in-out; }
         
         @keyframes spiderBob {
             0% { transform: translateY(120px); }
-            50% { transform: translateY(105px); }
-            100% { transform: translateY(120px); }
-        }
-
-        .spider-thread { width: 1px; flex-grow: 1; background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.6)); margin: 0 auto; box-shadow: 0 0 5px rgba(255,255,255,0.5); }
-        .tech-spider { width: 30px; height: 30px; margin: 0 auto; filter: drop-shadow(0 0 5px rgba(220,38,38,0.8)) drop-shadow(0 0 8px rgba(37,99,235,0.4)); }
-
         /* Interlocking Shapes */
         .shape-hero { border-radius: 4rem 1rem 3rem 1.5rem; }
         .shape-contact { border-radius: 1.5rem 3rem 1rem 4rem; }
@@ -243,13 +245,16 @@
         .shape-learning { border-radius: 3rem 2rem 4rem 2.5rem; }
         .shape-dashboard { border-radius: 2rem; }
 
+        .perspective-2000 { perspective: 2000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050404; }
         ::-webkit-scrollbar-thumb { background: #1a0505; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05); }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #dc2626, #8b5cf6); }
         
-        /* Ambient Photo Wall */
         .ambient-photo-wall {
             position: fixed; top: -10%; left: -10%; width: 120%; height: 120%;
             display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 24px;
@@ -302,11 +307,9 @@
             filter: grayscale(10%) contrast(100%) blur(3px) !important;
         }
 
-        /* Invert specific Spidey elements for visibility */
         body.light-theme .tech-spider polygon { fill: #f5f5f4; stroke: #dc2626; }
         body.light-theme .spider-thread { background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); }
         
-        /* Interactive Lab adjustments */
         body.light-theme #lab-visualizer-0 .bg-\[\#05020a\],
         body.light-theme #lab-visualizer-1 .bg-\[\#02060a\],
         body.light-theme #lab-visualizer-2 .bg-\[\#020a05\] {
@@ -317,6 +320,9 @@
     </style>
 </head>
 <body class="font-sans text-stone-300 selection:bg-red-600 selection:text-white">
+
+    <!-- Theme Reveal Cinematic Overlay -->
+    <div id="theme-reveal-overlay" class="fixed z-[80] pointer-events-none rounded-full" style="transform: scale(0); opacity: 0; width: 10px; height: 10px;"></div>
 
     <!-- Oscorp Tech Web in Corner (top-right) -->
     <svg class="web-corner" viewBox="0 0 100 100" fill="none" stroke="rgba(220,38,38,0.7)" stroke-width="0.5">
@@ -335,7 +341,7 @@
     </svg>
 
     <!-- Tech Spider Hanging -->
-    <div class="tech-spider-container cursor-grab active:cursor-grabbing group" id="theme-spider">
+    <div class="tech-spider-container cursor-pointer group" id="theme-spider">
         <div class="spider-thread"></div>
         <svg class="tech-spider" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12,4 16,8 16,16 12,20 8,16 8,8" fill="#1c1917" stroke="#dc2626"/>
@@ -348,7 +354,7 @@
             <polyline points="16,14 20,16 21,20" stroke="#78716c"/>
         </svg>
         <div class="absolute top-[60%] left-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[8px] font-mono text-red-500 bg-red-950/80 px-2 py-1 rounded whitespace-nowrap hidden sm:block border border-red-900/50">
-            PULL TO TOGGLE THEME
+            CLICK TO TOGGLE THEME
         </div>
     </div>
 
@@ -359,7 +365,7 @@
             for(let i=0; i<12; i++) {
                 document.write(`
                     <div class="ambient-photo-container">
-                        <img class="ambient-photo" src="/assest/${images[i%6]}" alt="Background" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80'">
+                        <img class="ambient-photo" src="./assest/${images[i%6]}" alt="Background" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80'">
                     </div>
                 `);
             }
@@ -381,71 +387,120 @@
     <!-- FLOATING DOCK NAVIGATION -->
     <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 gsap-hidden gsap-nav-dock">
         <nav class="bg-[#0c0a0a]/95 backdrop-blur-lg border border-white/10 px-6 py-3 rounded-full flex gap-3 shadow-2xl max-w-md w-full justify-around text-[10px] font-extrabold uppercase tracking-widest font-mono relative" style="box-shadow: 0 0 0 1px rgba(220,38,38,0.15), 0 0 25px -8px rgba(37,99,235,0.4), 0 15px 30px -10px rgba(0,0,0,0.6);">
-            <a href="#left-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-red-500 hover:bg-white/5 transition-all">Identity</a>
+            <a href="#identity-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-red-500 hover:bg-white/5 transition-all">Identity</a>
             <a href="#timeline-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-emerald-400 hover:bg-white/5 transition-all font-bold">Timeline</a>
             <a href="#learning-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-amber-500 hover:bg-white/5 transition-all">Roadmap</a>
             <a href="#projects-anchor" class="px-2.5 py-1.5 rounded-full text-stone-300 hover:text-purple-500 hover:bg-white/5 transition-all font-bold">Laboratory</a>
         </nav>
     </div>
 
+    <!-- NEW: CENTERED HERO IDENTITY CARD (PROTOCOL: PARKER) -->
+    <section id="identity-anchor" class="relative z-10 max-w-6xl mx-auto pt-24 pb-16 px-4 flex justify-center">
+        <header class="glass-panel panel-parker rounded-[3rem] p-8 lg:p-10 relative overflow-hidden gsap-hidden gsap-hero w-full grid grid-cols-1 lg:grid-cols-4 gap-8 items-center">
+            
+            <div class="absolute -right-12 -top-12 w-64 h-64 bg-gradient-to-br from-red-600/20 to-transparent rounded-full blur-[60px] pointer-events-none"></div>
+            <div class="absolute -left-12 -bottom-12 w-64 h-64 bg-gradient-to-tr from-blue-600/10 to-transparent rounded-full blur-[60px] pointer-events-none"></div>
+            
+            <div class="absolute top-6 right-6 bg-red-950/40 border border-red-900/50 rounded text-[9px] font-mono text-red-400 px-2 py-1 tracking-widest shadow-[0_0_15px_rgba(220,38,38,0.2)]">
+                [PROTOCOL: P.A.R.K.E.R]
+            </div>
+
+            <!-- LEFT: Featured Experience -->
+            <div class="order-2 lg:order-none lg:col-span-1 space-y-4 w-full text-left relative z-10 mt-8 lg:mt-0">
+                <h3 class="text-[10px] font-extrabold text-stone-500 uppercase tracking-widest border-b border-white/5 pb-2 mb-4 font-mono flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span> Featured Exp</h3>
+                
+                <a href="#timeline-anchor" class="block bg-blue-950/20 border border-blue-900/30 rounded-2xl p-4 hover:border-blue-500/50 hover:bg-blue-900/20 transition-all cursor-pointer group shadow-[0_0_15px_rgba(37,99,235,0.05)]">
+                    <div class="mb-3 opacity-80 group-hover:opacity-100 transition-opacity">
+                        <img src="./assest/internship2.png" alt="Gemini Logo" class="w-8 h-8 rounded-lg object-cover border border-white/10 shadow-md" onerror="this.src='https://placehold.co/100x100/1e3a8a/60a5fa?text=G'">
+                    </div>
+                    <h4 class="text-xs font-bold text-white group-hover:text-blue-300 transition-colors">Gemini Ambassador</h4>
+                    <p class="text-[9px] text-stone-400 font-mono mt-1">@ Google Gemini</p>
+                </a>
+
+                <a href="#timeline-anchor" class="block bg-amber-950/20 border border-amber-900/30 rounded-2xl p-4 hover:border-amber-500/50 hover:bg-amber-900/20 transition-all cursor-pointer group shadow-[0_0_15px_rgba(251,191,36,0.05)]">
+                    <div class="mb-3 opacity-80 group-hover:opacity-100 transition-opacity">
+                        <img src="./assest/internship1.jpg" alt="Research Logo" class="w-8 h-8 rounded-lg object-cover border border-white/10 shadow-md" onerror="this.src='https://placehold.co/100x100/78350f/fbbf24?text=OU'">
+                    </div>
+                    <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">Research Intern</h4>
+                    <p class="text-[9px] text-stone-400 font-mono mt-1">@ Osmania Univ (BME)</p>
+                </a>
+            </div>
+
+            <!-- CENTER CONTENT: Profile -->
+            <div class="order-first lg:order-none lg:col-span-2 space-y-6 relative z-10 w-full flex flex-col items-center mt-4 text-center">
+                
+                <!-- NEW BIG SPIDER-SENSE ANIMATED PROFILE PHOTO -->
+                <div class="profile-container relative cursor-crosshair mb-4" id="profile-sense-trigger">
+                    <!-- Accurate Thunder Shaped Spidey Tingles -->
+                    <svg class="spidey-tingle tingle-1" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="12,48 4,30 16,24 8,4"/></svg>
+                    <svg class="spidey-tingle tingle-2" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="12,48 20,30 8,24 16,4"/></svg>
+                    <svg class="spidey-tingle tingle-3" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="12,48 4,30 16,24 8,4"/></svg>
+                    <svg class="spidey-tingle tingle-4" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="12,48 20,30 8,24 16,4"/></svg>
+                    <svg class="spidey-tingle tingle-5" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="12,48 4,30 16,24 8,4"/></svg>
+                    <svg class="spidey-tingle tingle-6" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="12,48 20,30 8,24 16,4"/></svg>
+                    
+                    <div class="profile-image-wrapper relative z-10 w-44 h-44 sm:w-48 sm:h-48 border-[3px] border-red-600/80 shadow-[0_0_30px_rgba(220,38,38,0.5)]" style="border-radius: 3rem 1.5rem 3.5rem 2rem; overflow:hidden;" id="profile-reveal-container">
+                        <!-- Base Human Image (Zoomed/cropped to match Spider-Man proportions) -->
+                        <img class="w-full h-full object-cover absolute inset-0 transform scale-[1.2] object-top" src="./assest/Untitled%20design%20(5).png" alt="Sai Varun Degala" onerror="this.src='https://placehold.co/400x400/140c0e/dc2626?text=SVD'">
+                        
+                        <!-- Spider-Man Hover Reveal Layer -->
+                        <img class="w-full h-full object-cover absolute inset-0 spidey-reveal-image opacity-0 transition-opacity duration-300" src="./assest/spiderman.jpg" alt="Spider-Man Alter Ego">
+                        
+                        <!-- Glitch overlay -->
+                        <div class="absolute inset-0 bg-red-500/20 mix-blend-overlay opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10"></div>
+                    </div>
+                    <span class="absolute bottom-3 right-5 w-5 h-5 bg-emerald-500 border-[3px] border-[#0c0a0a] rounded-full animate-pulse z-20 shadow-[0_0_15px_rgba(16,185,129,0.8)]" id="status-dot"></span>
+                </div>
+                
+                <div class="space-y-3 flex flex-col items-center">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-red-950/40 border border-red-900/50 rounded-full text-[10px] font-extrabold text-red-400 uppercase tracking-widest font-mono transition-colors shadow-[0_0_10px_rgba(220,38,38,0.15)]" id="greeting-badge">
+                        <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Hola Amigos
+                    </div>
+                    <div>
+                        <h1 class="text-4xl sm:text-5xl font-sans font-extrabold tracking-tight leading-none text-white pb-1">Sai Varun Degala</h1>
+                        <p class="text-stone-400 font-bold text-xs mt-3 uppercase tracking-[0.2em] font-mono">Dual-Domain AI & BME Specialist</p>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="relative max-w-xl mx-auto pt-4 border-t border-white/5" id="normal-desc">
+                    <p class="text-stone-300 text-sm leading-relaxed font-sans">
+                        Bridging <strong class="text-white font-medium">Biomedical Engineering</strong> and <strong class="text-white font-medium">Applied Artificial Intelligence</strong>. Specializing in Retrieval-Augmented Generation (RAG) architectures, clinical data modeling, and graph database pipelines.
+                    </p>
+                    <p class="text-xs text-stone-400 mt-3 font-mono leading-relaxed">
+                        Dedicated to developing scalable, data-driven systems to solve complex analytical and healthcare challenges.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT: Featured Research -->
+            <div class="order-3 lg:order-none lg:col-span-1 space-y-4 w-full text-left relative z-10 mt-4 lg:mt-0">
+                <h3 class="text-[10px] font-extrabold text-stone-500 uppercase tracking-widest border-b border-white/5 pb-2 mb-4 font-mono flex items-center gap-2"><span class="w-1.5 h-1.5 bg-fuchsia-500 rounded-full animate-pulse"></span> Featured Work</h3>
+                
+                <a href="#left-anchor" class="block bg-fuchsia-950/20 border border-fuchsia-900/30 rounded-2xl p-5 hover:border-fuchsia-500/50 hover:bg-fuchsia-900/20 transition-all cursor-pointer group shadow-[0_0_15px_rgba(217,70,239,0.05)]">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-fuchsia-500 text-sm animate-pulse">★</span>
+                        <span class="text-[8px] font-mono text-fuchsia-300 bg-fuchsia-900/50 px-2 py-0.5 rounded border border-fuchsia-500/30 shadow-[0_0_5px_rgba(217,70,239,0.2)]">AJACCM (2026)</span>
+                    </div>
+                    <h4 class="text-xs font-bold text-white group-hover:text-fuchsia-300 transition-colors leading-relaxed">
+                        Contextual Embedding-Based Railway Communication Threat Detection
+                    </h4>
+                    <div class="flex flex-wrap gap-1 mt-4">
+                        <span class="px-1.5 py-0.5 rounded bg-fuchsia-950/50 border border-fuchsia-500/30 text-[8px] font-mono text-fuchsia-400">Transparent AI</span>
+                        <span class="px-1.5 py-0.5 rounded bg-fuchsia-950/50 border border-fuchsia-500/30 text-[8px] font-mono text-fuchsia-400">Embeddings</span>
+                    </div>
+                </a>
+            </div>
+        </header>
+    </section>
+
     <!-- MAIN INTERLOCKING GRID FRAME (30:70 Columns on Medium Screens) -->
-    <main class="relative z-10 max-w-7xl mx-auto pt-16 pb-28 px-4">
+    <main class="relative z-10 max-w-7xl mx-auto pb-28 px-4">
         <div class="grid grid-cols-1 md:grid-cols-10 gap-5 items-start">
             
             <!-- LEFT COLUMN (30% WIDTH: md:col-span-3) -->
-            <div id="left-anchor" class="md:col-span-3 flex flex-col gap-4">
+            <div id="left-anchor" class="md:col-span-3 flex flex-col gap-4 sticky top-6">
                 
-                <!-- 1. HERO IDENTITY CARD (PROTOCOL: PARKER) -->
-                <header class="glass-panel panel-parker shape-hero p-8 relative overflow-hidden gsap-hidden gsap-hero">
-                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-gradient-to-br from-red-600/30 to-transparent rounded-full blur-2xl pointer-events-none"></div>
-                    
-                    <div class="absolute top-4 right-4 bg-red-950/40 border border-red-900/50 rounded text-[7px] font-mono text-red-400 px-1.5 py-0.5 tracking-widest">
-                        [PROTOCOL: P.A.R.K.E.R]
-                    </div>
-
-                    <div class="space-y-5 relative z-10 mt-2">
-                        <!-- PROFILE PHOTO AND HEADER INTEGRATION -->
-                        <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-center gap-5">
-                            
-                            <!-- SPIDER-SENSE ANIMATED PROFILE PHOTO -->
-                            <div class="profile-container relative shrink-0 cursor-crosshair" id="profile-sense-trigger">
-                                <!-- Spider-Verse Goofy Tingles -->
-                                <svg class="spidey-tingle tingle-1" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M10,40 Q-4,30 10,20 Q24,10 10,0" /></svg>
-                                <svg class="spidey-tingle tingle-2" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M10,40 Q24,30 10,20 Q-4,10 10,0" /></svg>
-                                <svg class="spidey-tingle tingle-3" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M10,40 Q-4,30 10,20 Q24,10 10,0" /></svg>
-                                <svg class="spidey-tingle tingle-4" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10,40 Q24,30 10,20 Q-4,10 10,0" /></svg>
-                                <svg class="spidey-tingle tingle-5" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M10,40 Q-4,30 10,20 Q24,10 10,0" /></svg>
-                                <svg class="spidey-tingle tingle-6" viewBox="0 0 20 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M10,40 Q24,30 10,20 Q-4,10 10,0" /></svg>
-                                
-                                <div class="profile-image-wrapper relative z-10 w-24 h-24 border-2 border-red-600/80 shadow-[0_0_20px_rgba(220,38,38,0.4)]" style="border-radius: 2rem 1rem 2.5rem 1.5rem; overflow:hidden;">
-                                    <img class="w-full h-full object-cover" src="/assest/Untitled design (5).png" alt="Sai Varun Degala" onerror="this.src='https://placehold.co/300x300/140c0e/dc2626?text=SVD'">
-                                    <!-- Glitch overlay -->
-                                    <div class="absolute inset-0 bg-red-500/20 mix-blend-overlay opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
-                                </div>
-                                <span class="absolute bottom-1 right-2 w-4 h-4 bg-emerald-500 border-2 border-[#0c0a0a] rounded-full animate-pulse z-20" id="status-dot"></span>
-                            </div>
-                            
-                            <div class="text-center sm:text-left md:text-center lg:text-left space-y-2">
-                                <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-red-950/40 border border-red-900/50 rounded-full text-[9px] font-extrabold text-red-400 uppercase tracking-widest font-mono transition-colors" id="greeting-badge">
-                                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span> Hola Amigos
-                                </div>
-                                <div>
-                                    <h1 class="text-3xl font-serifItalic font-bold tracking-tight leading-none bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent">Sai Varun Degala</h1>
-                                    <p class="text-red-400 font-bold text-[10px] mt-2 uppercase tracking-widest font-mono">Dual-Domain AI & BME Specialist</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Description -->
-                        <div class="relative min-h-[80px]" id="normal-desc">
-                            <p class="text-stone-400 text-xs leading-relaxed">
-                                Operating at the precise interface of <strong class="text-white">Biomedical Engineering</strong> and <strong class="text-red-400">Agentic ML Architectures</strong>. Specializing in RAG mapping frameworks, custom clinical prompt structures, and graph DB pipeline mapping.
-                            </p>
-                            <p class="text-[9px] text-stone-500 italic mt-2 font-sans">"Avid problem-solver, tech-enthusiast, and architect of intelligent systems built to secure my family's future."</p>
-                        </div>
-                    </div>
-                </header>
-
                 <!-- 2. CONTACT CARD (With Radar Scan Animation) -->
                 <div class="glass-panel border-blue-500/20 hover:border-blue-500/60 shape-contact p-6 space-y-4 gsap-hidden gsap-left-panel transition-colors duration-300 relative overflow-hidden">
                     <div class="radar-scan-line"></div>
@@ -465,10 +520,12 @@
                         </a>
                     </div>
                     <div class="flex gap-2 pt-3 border-t border-white/5 relative z-10">
-                        <a href="https://linkedin.com/in/saivarundegala" target="_blank" class="flex-1 py-2 bg-stone-900/60 hover:bg-stone-800 border border-blue-500/20 text-blue-400 hover:text-white rounded-xl text-[9px] font-extrabold tracking-widest flex items-center justify-center gap-1.5 transition-all font-mono hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                        <a href="https://linkedin.com/in/saivarundegala" target="_blank" class="flex-1 py-2 bg-stone-900/60 hover:bg-stone-800 border border-blue-500/20 text-blue-400 hover:text-white rounded-xl text-[9px] font-extrabold tracking-widest flex items-center justify-center gap-2 transition-all font-mono hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             LINKEDIN
                         </a>
-                        <a href="https://github.com/slyvarun" target="_blank" class="flex-1 py-2 bg-stone-900/60 hover:bg-stone-800 border border-blue-500/20 text-blue-400 hover:text-white rounded-xl text-[9px] font-extrabold tracking-widest flex items-center justify-center gap-1.5 transition-all font-mono hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                        <a href="https://github.com/slyvarun" target="_blank" class="flex-1 py-2 bg-stone-900/60 hover:bg-stone-800 border border-blue-500/20 text-blue-400 hover:text-white rounded-xl text-[9px] font-extrabold tracking-widest flex items-center justify-center gap-2 transition-all font-mono hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                             GITHUB
                         </a>
                     </div>
@@ -496,7 +553,6 @@
 
                 <!-- 4. LITERATURE / PUBLICATION CARD (Symbiote Highlight Flare) -->
                 <div class="glass-panel highlight-literature shape-literature p-6 space-y-4 relative overflow-hidden gsap-hidden gsap-left-panel">
-                    <!-- Intense ambient glow -->
                     <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-fuchsia-600/20 blur-[50px] rounded-full pointer-events-none animate-pulse"></div>
 
                     <div class="flex items-center justify-between relative z-10">
@@ -551,17 +607,19 @@
                         
                         <!-- Node 1: Avinya -->
                         <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#10b981">
-                            <!-- Ambient Glow -->
                             <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-emerald-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
                             
-                            <div class="flex justify-between items-start mb-3 relative z-10">
+                            <div class="flex justify-between items-start mb-4 relative z-10">
                                 <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">MAY 2026 – PRES</span>
                                 <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
                             </div>
                             
-                            <div class="relative z-10">
-                                <h3 class="text-base font-extrabold text-white">Software Intern</h3>
-                                <p class="text-[10px] text-emerald-500 font-mono uppercase tracking-widest mt-1">@ Avinya NeuroTech</p>
+                            <div class="relative z-10 flex items-center gap-3">
+                                <img src="./assest/internship3.jpg" alt="Avinya Logo" class="w-10 h-10 rounded-lg object-cover border border-emerald-900/50 shadow-lg bg-black" onerror="this.src='https://placehold.co/100x100/064e3b/10b981?text=A'">
+                                <div>
+                                    <h3 class="text-base font-extrabold text-white">Software Intern</h3>
+                                    <p class="text-[10px] text-emerald-500 font-mono uppercase tracking-widest mt-0.5">@ Avinya NeuroTech</p>
+                                </div>
                             </div>
                             
                             <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
@@ -577,17 +635,19 @@
 
                         <!-- Node 2: Osmania -->
                         <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#fbbf24">
-                            <!-- Ambient Glow -->
                             <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-amber-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
                             
-                            <div class="flex justify-between items-start mb-3 relative z-10">
+                            <div class="flex justify-between items-start mb-4 relative z-10">
                                 <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">APR 2026 – PRES</span>
                                 <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
                             </div>
                             
-                            <div class="relative z-10">
-                                <h3 class="text-base font-extrabold text-white">Research Intern</h3>
-                                <p class="text-[10px] text-amber-500 font-mono uppercase tracking-widest mt-1">@ Osmania Univ (BME Dept)</p>
+                            <div class="relative z-10 flex items-center gap-3">
+                                <img src="./assest/internship1.jpg" alt="Osmania Logo" class="w-10 h-10 rounded-lg object-cover border border-amber-900/50 shadow-lg bg-black" onerror="this.src='https://placehold.co/100x100/78350f/fbbf24?text=OU'">
+                                <div>
+                                    <h3 class="text-base font-extrabold text-white">Research Intern</h3>
+                                    <p class="text-[10px] text-amber-500 font-mono uppercase tracking-widest mt-0.5">@ Osmania Univ (BME Dept)</p>
+                                </div>
                             </div>
                             
                             <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
@@ -603,17 +663,19 @@
 
                         <!-- Node 3: Google Gemini -->
                         <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#3b82f6">
-                            <!-- Ambient Glow -->
                             <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-blue-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
                             
-                            <div class="flex justify-between items-start mb-3 relative z-10">
+                            <div class="flex justify-between items-start mb-4 relative z-10">
                                 <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">SEP 2025 – FEB 2026</span>
                                 <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
                             </div>
                             
-                            <div class="relative z-10">
-                                <h3 class="text-base font-extrabold text-white">Gemini Ambassador</h3>
-                                <p class="text-[10px] text-blue-400 font-mono uppercase tracking-widest mt-1">@ Google Gemini</p>
+                            <div class="relative z-10 flex items-center gap-3">
+                                <img src="./assest/internship2.png" alt="Google Gemini Logo" class="w-10 h-10 rounded-lg object-cover border border-blue-900/50 shadow-lg bg-black" onerror="this.src='https://placehold.co/100x100/1e3a8a/60a5fa?text=G'">
+                                <div>
+                                    <h3 class="text-base font-extrabold text-white">Gemini Ambassador</h3>
+                                    <p class="text-[10px] text-blue-400 font-mono uppercase tracking-widest mt-0.5">@ Google Gemini</p>
+                                </div>
                             </div>
                             
                             <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
@@ -629,17 +691,19 @@
 
                         <!-- Node 4: Yashoda -->
                         <div class="exp-card relative bg-[#050404]/80 border border-white/5 p-5 rounded-2xl cursor-crosshair overflow-hidden transition-colors" data-color="#dc2626">
-                            <!-- Ambient Glow -->
                             <div class="exp-glow absolute -top-10 -right-10 w-32 h-32 bg-red-600/20 blur-[40px] rounded-full opacity-0 pointer-events-none"></div>
                             
-                            <div class="flex justify-between items-start mb-3 relative z-10">
+                            <div class="flex justify-between items-start mb-4 relative z-10">
                                 <span class="text-[9px] font-mono text-stone-500 uppercase tracking-widest">DEC 2022 – MAY 2023</span>
                                 <div class="w-1.5 h-1.5 rounded-full bg-stone-700 exp-indicator transition-all"></div>
                             </div>
                             
-                            <div class="relative z-10">
-                                <h3 class="text-base font-extrabold text-white">Biomedical Engineer</h3>
-                                <p class="text-[10px] text-red-500 font-mono uppercase tracking-widest mt-1">@ Yashoda Hospitals</p>
+                            <div class="relative z-10 flex items-center gap-3">
+                                <img src="./assest/internship%204.jpg" alt="Yashoda Hospitals Logo" class="w-10 h-10 rounded-lg object-cover border border-red-900/50 shadow-lg bg-black" onerror="this.src='https://placehold.co/100x100/7f1d1d/f87171?text=YH'">
+                                <div>
+                                    <h3 class="text-base font-extrabold text-white">Biomedical Engineer</h3>
+                                    <p class="text-[10px] text-red-500 font-mono uppercase tracking-widest mt-0.5">@ Yashoda Hospitals</p>
+                                </div>
                             </div>
                             
                             <div class="exp-content-wrapper h-0 opacity-0 overflow-hidden relative z-10">
@@ -668,7 +732,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         
-                        <!-- Track A: TNS Foundation @ Accenture -->
+                        <!-- Track A: TNS Foundation -->
                         <div class="bg-black/50 border border-orange-500/10 rounded-2xl p-5 hover:border-orange-500/30 transition-all flex flex-col justify-between group gsap-hidden learning-card">
                             <div class="space-y-4">
                                 <div class="flex items-start justify-between">
@@ -731,7 +795,6 @@
 
                 <!-- 3. INTERACTIVE LABORATORY (Protocol: BECK - Mysterio Theme) -->
                 <section id="projects-anchor" class="glass-panel panel-beck shape-dashboard p-6 md:p-8 space-y-6 gsap-hidden gsap-right-panel relative">
-                    <!-- Mysterio Fog Overlay -->
                     <div class="mysterio-mist"></div>
                     
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-purple-900/30 pb-4 relative z-10">
@@ -747,7 +810,6 @@
                         </div>
                     </div>
 
-                    <!-- Inner Lab Container -->
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
                         
                         <!-- Left Navigation Column of Dashboard -->
@@ -803,10 +865,8 @@
                         <!-- Right Interactive Screen Column of Dashboard -->
                         <div class="lg:col-span-7 flex flex-col justify-between bg-[#0a0510]/80 border border-purple-500/20 rounded-2xl p-5 min-h-[380px] relative overflow-hidden backdrop-blur-xl">
                             
-                            <!-- Static ambient overlay glowing behind elements (Mysterio Glow) -->
                             <div id="screen-glow" class="absolute -right-24 -bottom-24 w-64 h-64 bg-purple-500/20 rounded-full blur-[60px] pointer-events-none transition-all duration-700"></div>
 
-                            <!-- Screen Header -->
                             <div class="relative z-10">
                                 <div class="flex items-center justify-between text-[9px] font-mono uppercase tracking-widest text-stone-400 border-b border-purple-900/30 pb-2.5">
                                     <span id="current-project-title" class="font-bold text-white">MedGraph Nexus</span>
@@ -817,10 +877,9 @@
                                 </div>
                             </div>
 
-                            <!-- Dynamic Simulator Areas -->
                             <div class="my-4 relative z-10 flex-1 flex flex-col justify-center">
                                 
-                                <!-- SIMULATOR 01: MedGraph Knowledge Graph Web Canvas -->
+                                <!-- SIMULATOR 01 -->
                                 <div id="lab-visualizer-0" class="space-y-4">
                                     <div class="bg-[#05020a] border border-purple-500/20 rounded-xl p-3 h-48 relative overflow-hidden flex items-center justify-center shadow-[inset_0_0_20px_rgba(139,92,246,0.1)]">
                                         <canvas id="graphCanvas" class="absolute inset-0 w-full h-full cursor-pointer"></canvas>
@@ -834,7 +893,7 @@
                                     </div>
                                 </div>
 
-                                <!-- SIMULATOR 02: Finete.AI Agent Terminal -->
+                                <!-- SIMULATOR 02 -->
                                 <div id="lab-visualizer-1" class="hidden space-y-3">
                                     <div class="bg-[#02060a] border border-cyan-500/20 rounded-xl p-4 h-48 font-mono text-[10px] text-cyan-400 overflow-y-auto relative flex flex-col justify-between shadow-[inset_0_0_20px_rgba(6,182,212,0.1)]">
                                         <div class="space-y-1.5" id="terminal-screen">
@@ -855,7 +914,7 @@
                                     </div>
                                 </div>
 
-                                <!-- SIMULATOR 03: Brain Scan slice rendering -->
+                                <!-- SIMULATOR 03 -->
                                 <div id="lab-visualizer-2" class="hidden space-y-4">
                                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 bg-[#020a05] border border-emerald-500/20 rounded-xl p-4 h-48 overflow-hidden items-center shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
                                         <div class="sm:col-span-6 h-full flex items-center justify-center relative">
@@ -888,7 +947,6 @@
 
                             </div>
 
-                            <!-- Screen Footer -->
                             <div class="relative z-10 pt-3 border-t border-purple-900/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                                 <p class="text-[10px] text-stone-400 max-w-sm" id="lab-project-summary">
                                     Graph database mapping pharmaceutical properties directly to standard diagnostic catalogs.
@@ -1076,20 +1134,35 @@
         // 6. GSAP CINEMATIC ANIMATIONS & INIT
         window.onload = function() {
             // Init Canvases
-            
             resizeGraphCanvas(); resizeMriCanvas(); runGraphLoop(); updateMriScan(32);
             window.addEventListener("resize", () => { resizeGraphCanvas(); resizeMriCanvas(); });
 
-            // Init GSAP
+            // 7. PROFILE HOVER REVEAL EFFECT (Flashlight / X-Ray)
+            const profileContainer = document.getElementById('profile-reveal-container');
+            if (profileContainer) {
+                profileContainer.addEventListener('mousemove', (e) => {
+                    const rect = profileContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    // Update CSS variables with current mouse coordinates
+                    profileContainer.style.setProperty('--mouse-x', `${x}px`);
+                    profileContainer.style.setProperty('--mouse-y', `${y}px`);
+                });
+                
+                profileContainer.addEventListener('mouseleave', () => {
+                    // Reset to center when mouse leaves
+                    profileContainer.style.setProperty('--mouse-x', `50%`);
+                    profileContainer.style.setProperty('--mouse-y', `50%`);
+                });
+            }
+
             gsap.registerPlugin(ScrollTrigger);
 
-            // A. Cinematic Hero Entry (Staggered fade up)
             const tl = gsap.timeline();
-            tl.fromTo(".gsap-hero", { opacity: 0, y: 50, scale: 0.95 }, { duration: 1.2, opacity: 1, y: 0, scale: 1, ease: "power4.out", autoAlpha: 1 })
+            tl.fromTo(".gsap-hero", { opacity: 0, y: 60, scale: 0.9 }, { duration: 1.4, opacity: 1, y: 0, scale: 1, ease: "power4.out", autoAlpha: 1 })
               .fromTo(".gsap-left-panel", { opacity: 0, x: -40 }, { duration: 0.8, opacity: 1, x: 0, stagger: 0.15, ease: "power3.out", autoAlpha: 1 }, "-=0.8")
               .fromTo(".gsap-nav-dock", { opacity: 0, y: 40 }, { duration: 1, opacity: 1, y: 0, ease: "power4.out", autoAlpha: 1 }, "-=0.6");
 
-            // B. Scroll Reveal for Right Columns (Experience & Lab)
             gsap.utils.toArray(".gsap-right-panel").forEach(panel => {
                 gsap.fromTo(panel, { opacity: 0, y: 50 }, {
                     scrollTrigger: { trigger: panel, start: "top 85%", toggleActions: "play none none reverse" },
@@ -1097,16 +1170,12 @@
                 });
             });
 
-            // C. Staggered reveal for Learning Path Cards
             gsap.fromTo(".learning-card", { opacity: 0, y: 30 }, { scrollTrigger: { trigger: "#learning-anchor", start: "top 75%" }, duration: 0.8, opacity: 1, y: 0, stagger: 0.2, ease: "power3.out", autoAlpha: 1 });
 
-            // D. Experience Matrix Bento Interactions (Hover logic applied to GSAP)
             const expCards = document.querySelectorAll('.exp-card');
             
-            // Initial scroll reveal for the cards
             gsap.fromTo(expCards, { opacity: 0, scale: 0.9, y: 30 }, { scrollTrigger: { trigger: "#timeline-anchor", start: "top 80%" }, duration: 0.8, opacity: 1, scale: 1, y: 0, stagger: 0.1, ease: "back.out(1.2)" });
 
-            // Hover interactions using GSAP for Bento Exp Cards
             expCards.forEach(card => {
                 const wrapper = card.querySelector('.exp-content-wrapper');
                 const glow = card.querySelector('.exp-glow');
@@ -1137,53 +1206,62 @@
                 card._gsapTl = tlh; 
             });
             
-           // SPIDER PULL CORD THEME SWITCHER
+           // THEME SWITCHER (CLICK INSTEAD OF PULL)
         const themeSpider = document.getElementById('theme-spider');
-        let isPulling = false;
-        let startY = 0;
-        let hasToggled = false;
+        const themeOverlay = document.getElementById('theme-reveal-overlay');
 
-        function startPull(e) {
-            if (e.type === 'touchstart') e.preventDefault();
-            isPulling = true;
-            hasToggled = false;
-            startY = e.touches ? e.touches[0].clientY : e.clientY;
-            themeSpider.style.animation = 'none';
-            themeSpider.style.transition = 'none';
-        }
+        function triggerCinematicThemeSwitch() {
+            // Little jump animation on click
+            gsap.to(themeSpider, {
+                y: 100,
+                duration: 0.15,
+                yoyo: true,
+                repeat: 1,
+                ease: "power2.out"
+            });
 
-        function handlePull(e) {
-            if (!isPulling) return;
-            if (e.type === 'touchmove') e.preventDefault();
-            const currentY = e.touches ? e.touches[0].clientY : e.clientY;
-            if (currentY === undefined) return;
-            const deltaY = currentY - startY;
-            if (deltaY > 0 && deltaY < 120) {
-                themeSpider.style.transform = `translateY(${120 + deltaY}px)`;
-                if (deltaY > 65 && !hasToggled) {
-                    hasToggled = true;
+            // Get coordinates of the spider to start the radial effect from there
+            const rect = themeSpider.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            
+            const isCurrentlyLight = document.body.classList.contains('light-theme');
+            const targetColor = isCurrentlyLight ? '#050404' : '#f8fafc'; // Color of the new theme
+            
+            gsap.set(themeOverlay, {
+                left: cx,
+                top: cy,
+                backgroundColor: targetColor,
+                scale: 0,
+                opacity: 1,
+                xPercent: -50,
+                yPercent: -50
+            });
+
+            // Expand a massive circle across the screen
+            gsap.to(themeOverlay, {
+                scale: 350, // Massive scale to cover any screen
+                duration: 0.8,
+                ease: "power3.inOut",
+                onComplete: () => {
+                    // Once screen is covered, swap the real theme
                     document.body.classList.toggle('light-theme');
+                    
+                    // Fade out the overlay to reveal the new themed content
+                    gsap.to(themeOverlay, {
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            gsap.set(themeOverlay, { scale: 0 }); // Reset for next pull
+                        }
+                    });
                 }
-            }
+            });
         }
 
-        function endPull() {
-            if (!isPulling) return;
-            isPulling = false;
-            themeSpider.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            themeSpider.style.transform = 'translateY(120px)';
-            setTimeout(() => {
-                themeSpider.style.animation = 'spiderBob 4s infinite ease-in-out';
-                themeSpider.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            }, 400);
-        }
+        themeSpider.addEventListener('click', triggerCinematicThemeSwitch);
 
-        themeSpider.addEventListener('mousedown', startPull);
-        window.addEventListener('mousemove', handlePull, { passive: false });
-        window.addEventListener('mouseup', endPull);
-        themeSpider.addEventListener('touchstart', startPull, { passive: false });
-        window.addEventListener('touchmove', handlePull, { passive: false });
-        window.addEventListener('touchend', endPull);   
         };
     </script>
 </body>
