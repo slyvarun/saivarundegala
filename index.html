@@ -236,6 +236,10 @@
         
         @keyframes spiderBob {
             0% { transform: translateY(120px); }
+            50% { transform: translateY(105px); }
+            100% { transform: translateY(120px); }
+        }
+
         /* Interlocking Shapes */
         .shape-hero { border-radius: 4rem 1rem 3rem 1.5rem; }
         .shape-contact { border-radius: 1.5rem 3rem 1rem 4rem; }
@@ -255,13 +259,26 @@
         ::-webkit-scrollbar-thumb { background: #1a0505; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05); }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #dc2626, #8b5cf6); }
         
+        /* Ambient Photo Wall */
         .ambient-photo-wall {
             position: fixed; top: -10%; left: -10%; width: 120%; height: 120%;
-            display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 24px;
-            z-index: 0; pointer-events: none; opacity: 0.15;
-            filter: grayscale(90%) contrast(115%) blur(3px);
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            grid-auto-rows: 1fr;
+            gap: 16px;
+            z-index: 0; pointer-events: none; opacity: 0.12; /* Slightly softer */
+            filter: grayscale(90%) contrast(110%) blur(4px); /* Slightly more blur */
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        
+        @media (min-width: 768px) {
+            .ambient-photo-wall {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+                grid-template-rows: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
         .ambient-photo-container { overflow: hidden; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.02); }
         .ambient-photo { width: 100%; height: 100%; object-fit: cover; transition: transform 12s ease-in-out; transform: scale(1.03); }
         .ambient-photo-container:nth-child(odd) .ambient-photo { animation: slowPanLeft 35s infinite alternate; }
@@ -358,18 +375,21 @@
         </div>
     </div>
 
-    <!-- Ambient Grid Wall Background -->
+    <!-- Ambient Grid Wall Background (Fixed layout without script injection) -->
     <div id="photoWall" class="ambient-photo-wall">
-        <script>
-            const images = ['devfest.jpg','ot.jpg','project.jpeg','thub.jpg','wehub.JPG','wow.jpg'];
-            for(let i=0; i<12; i++) {
-                document.write(`
-                    <div class="ambient-photo-container">
-                        <img class="ambient-photo" src="./assest/${images[i%6]}" alt="Background" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80'">
-                    </div>
-                `);
-            }
-        </script>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/devfest.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/ot.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/project.jpeg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/thub.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/wehub.JPG" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/wow.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/devfest.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/ot.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/project.jpeg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/thub.jpg" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/wehub.JPG" alt="Background" onerror="this.style.display='none'"></div>
+        <div class="ambient-photo-container"><img class="ambient-photo" src="./assest/wow.jpg" alt="Background" onerror="this.style.display='none'"></div>
     </div>
 
     <!-- FLOATING BACKGROUND OPACITY SWITCH -->
@@ -974,9 +994,9 @@
             const wall = document.getElementById('photoWall');
             if (wall) {
                 wall.style.opacity = value;
-                wall.style.filter = value > 0.3 ? "grayscale(30%) contrast(110%) blur(0px)" : 
-                                   value > 0.1 ? "grayscale(80%) contrast(115%) blur(1.5px)" : 
-                                   "grayscale(100%) contrast(125%) blur(4px)";
+                wall.style.filter = value > 0.3 ? "grayscale(30%) contrast(110%) blur(1px)" : 
+                                   value > 0.1 ? "grayscale(80%) contrast(115%) blur(3px)" : 
+                                   "grayscale(100%) contrast(125%) blur(5px)";
             }
         }
 
