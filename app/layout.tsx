@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   description: 'Dual-Domain AI/ML & Biomedical Engineering Portfolio by Sai Varun Degala.',
   icons: {
     icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
   openGraph: {
     title: 'varunhere | Sai Varun Degala',
@@ -40,6 +40,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+      </head>
       <body className="bg-black text-white selection:bg-white selection:text-black antialiased relative min-h-screen">
         {/* Subtle Ambient Dot Grid Background */}
         <div
