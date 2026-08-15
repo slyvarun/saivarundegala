@@ -20,7 +20,7 @@ export default function ActivitiesSection() {
       title: 'WE Hub Startup Initiatives',
       role: 'Technical Mentor & Collaborator',
       period: '2024',
-      image: getAssetPath('/assest/wehub.JPG'),
+      image: getAssetPath('/assest/wehub.jpg'),
       desc: 'Collaborating on technology enablement and full-stack software architecture for incubatees at WE Hub.',
       tag: 'INCUBATION',
     },
