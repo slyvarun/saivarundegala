@@ -82,7 +82,7 @@ export default function LunarTimeWidget() {
         </span>
         <div className="flex flex-col text-[9px]">
           <span className="text-white font-bold font-doto tracking-tight">{moonPhase.name}</span>
-          <span className="text-neutral-400 font-mono">PIXEL LUNAR: {moonPhase.illumination}</span>
+          <span className="text-neutral-400 font-mono">MOON VISIBLE: {moonPhase.illumination}</span>
         </div>
       </div>
     </div>
