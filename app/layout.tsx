@@ -3,6 +3,11 @@ import './globals.css';
 import SpideyPet from '@/components/SpideyPet';
 import FloatingRightNav from '@/components/FloatingRightNav';
 import PageTransition from '@/components/PageTransition';
+import { getAssetPath } from '@/utils/assetPath';
+
+const iconPng = getAssetPath('/icon.png');
+const faviconIco = getAssetPath('/favicon.ico');
+const appleIcon = getAssetPath('/apple-icon.png');
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://varunhere.com'),
@@ -41,9 +46,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
-        <link rel="icon" href="/icon.png" type="image/png" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="icon" href={iconPng} type="image/png" />
+        <link rel="icon" href={faviconIco} sizes="any" />
+        <link rel="apple-touch-icon" href={appleIcon} />
       </head>
       <body className="bg-black text-white selection:bg-white selection:text-black antialiased relative min-h-screen">
         {/* Subtle Ambient Dot Grid Background */}
