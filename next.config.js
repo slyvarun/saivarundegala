@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
-let repo = '';
-if (isGithubActions) {
-  const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : '';
-  if (repoName) {
-    repo = `/${repoName}`;
-  }
-}
+// GitHub repository name subpath for GitHub Pages deployment
+const repo = isGithubActions ? '/saivarundegala' : '';
 
 const nextConfig = {
   reactStrictMode: true,
