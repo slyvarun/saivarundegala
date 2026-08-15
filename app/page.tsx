@@ -165,6 +165,38 @@ export default function Home() {
       ),
     },
     {
+      name: 'TypeScript',
+      category: 'Type-Safe Web',
+      icon: (
+        <svg className="w-3.5 h-3.5 text-blue-400 fill-current" viewBox="0 0 24 24">
+          <path d="M1.125 0C.507 0 0 .507 0 1.125v21.75C0 23.493.507 24 1.125 24h21.75c.618 0 1.125-.507 1.125-1.125V1.125C24 .507 23.493 0 22.875 0H1.125zm13.19 14.85h3.91v.96h-3.91v-9.6h-.96v9.6zm-7.625 0h.96v-4.32h1.44v-1.44H6.69v5.76z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'HTML & CSS',
+      category: 'Web Standards',
+      icon: (
+        <svg className="w-3.5 h-3.5 text-orange-500 fill-current" viewBox="0 0 24 24">
+          <path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.625h10.454l.23-2.625H5.804l.695 7.875h9.19l-.352 3.938-3.367.91-3.376-.91-.215-2.414H5.748l.418 4.708 5.804 1.583 5.812-1.583.785-8.857H8.531z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Tailwind CSS',
+      category: 'Styling Framework',
+      icon: (
+        <svg className="w-3.5 h-3.5 text-teal-400 fill-current" viewBox="0 0 24 24">
+          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Linux',
+      category: 'Operating System',
+      icon: <Terminal className="w-3.5 h-3.5 text-amber-400" />,
+    },
+    {
       name: 'GitHub',
       category: 'CI/CD & Code',
       icon: <Github className="w-3.5 h-3.5 text-purple-300" />,
@@ -265,9 +297,20 @@ export default function Home() {
                 <span className="text-neutral-400 underline decoration-neutral-700">Bio-Digital Signals</span>.
               </h2>
 
-              <p className="text-xs text-neutral-300 leading-relaxed font-mono">
-                Engineering next-gen AI systems that bridge deep neural graph representations with real-world biological intelligence. Dual-domain specialist turning complex data streams into production-grade Graph RAG engines, autonomous agents, and real-time WebGL experiences.
-              </p>
+              <div className="space-y-3 text-xs text-neutral-300 leading-relaxed font-mono">
+                <p>
+                  Manifesting a timeline where I’m literally building biological intelligence from scratch. Honestly, coding at the intersection of wetware and AI is just the ultimate vibe right now
+                </p>
+
+                <p>
+                  it’s all about building things that bridge the gap between silicon and real life. No cap, the goal is to keep pushing boundaries until we actually figure out how intelligence works, start to finish.
+                </p>
+
+                <p className="text-white font-bold italic pt-1.5 border-t border-neutral-800/80">
+                  Bridging the circuit, the flesh, and the mind,<br />
+                  To build the intelligence left behind.
+                </p>
+              </div>
 
               {/* TAILORED USER BADGES */}
               <div className="grid grid-cols-3 gap-2 pt-1">

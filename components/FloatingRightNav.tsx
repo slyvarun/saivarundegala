@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User, Cpu, Terminal, Sparkles, BookOpen, Music } from 'lucide-react';
+import { Home, Briefcase, Code2, Zap, FileText, Headphones } from 'lucide-react';
 
 interface NavItem {
   path: string;
@@ -58,12 +58,12 @@ export default function FloatingRightNav() {
   };
 
   const navItems: NavItem[] = [
-    { path: '/', label: 'Overview & Identity (Home)', icon: <User className="w-4 h-4" /> },
-    { path: '/experience', label: 'Experience Matrix', icon: <Cpu className="w-4 h-4" /> },
-    { path: '/projects', label: 'Project Modules', icon: <Terminal className="w-4 h-4" /> },
-    { path: '/activities', label: 'Activities & Community', icon: <Sparkles className="w-4 h-4" /> },
-    { path: '/blogs', label: 'Medium Publications', icon: <BookOpen className="w-4 h-4" /> },
-    { path: '/interests', label: 'Personal & Music', icon: <Music className="w-4 h-4" /> },
+    { path: '/', label: 'Overview & Identity (Home)', icon: <Home className="w-4 h-4" /> },
+    { path: '/experience', label: 'Experience Matrix', icon: <Briefcase className="w-4 h-4" /> },
+    { path: '/projects', label: 'Project Modules', icon: <Code2 className="w-4 h-4" /> },
+    { path: '/activities', label: 'Activities & Community', icon: <Zap className="w-4 h-4" /> },
+    { path: '/blogs', label: 'Medium Publications', icon: <FileText className="w-4 h-4" /> },
+    { path: '/interests', label: 'Personal & Music', icon: <Headphones className="w-4 h-4" /> },
   ];
 
   return (
