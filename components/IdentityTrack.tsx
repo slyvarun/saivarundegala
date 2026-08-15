@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { GraduationCap, Briefcase, MapPin, Code2, Users, Cpu, Activity } from 'lucide-react';
+import { getAssetPath } from '@/utils/assetPath';
 
 export default function IdentityTrack() {
   const academics = [
@@ -25,7 +26,7 @@ export default function IdentityTrack() {
       role: 'Research Intern',
       company: 'Biomedical Engineering Dept, Osmania University',
       period: 'APRIL 2026 – PRESENT',
-      logo: '/assest/ousmania.jpg',
+      logo: getAssetPath('/ousmania.jpg'),
       tag: 'RESEARCH',
       color: 'border-cyan-500/40 text-cyan-300 bg-cyan-950/60',
       desc: 'Spearheaded research initiatives focused on medical waste sorting systems and Osteoarthritis (OA) analysis utilizing foot pressure mapping to improve clinical screening. Applied biomedical engineering principles and advanced data processing techniques to build automated solutions for healthcare infrastructure.',
@@ -34,7 +35,7 @@ export default function IdentityTrack() {
       role: 'Clinical Bio-Medical Trainee',
       company: 'Yashoda Hospitals',
       period: 'MAY 2023 – JUNE 2023',
-      logo: '/assest/yashoda.png',
+      logo: getAssetPath('/yashoda.png'),
       tag: 'CLINICAL',
       color: 'border-rose-500/40 text-rose-300 bg-rose-950/60',
       desc: 'Hands-on operational telemetry and maintenance across ICU patient monitors & diagnostic imaging.',
@@ -47,7 +48,7 @@ export default function IdentityTrack() {
       role: 'Software Intern',
       company: 'Avinya Neurotech',
       period: 'JUNE 2024 – JULY 2024',
-      logo: '/assest/avinya.jpg',
+      logo: getAssetPath('/avinya.jpg'),
       tag: 'NEUROTECH',
       color: 'border-purple-500/40 text-purple-300 bg-purple-950/60',
       desc: 'Contributed to cutting-edge neurotechnology projects focusing on source localization and high-resolution brain mapping to analyze neural signal patterns. Processed complex electrophysiological data to enhance spatial accuracy for brain-computer interface (BCI) applications.',
@@ -60,7 +61,7 @@ export default function IdentityTrack() {
       role: 'Freelance Machine Learning Engineer',
       company: 'Crossing Hurdles & Independent Clients',
       period: 'FREELANCE CONSULTING',
-      logo: '/assest/crossinghurdles_logo.jpg',
+      logo: getAssetPath('/crossinghurdles_logo.jpg'),
       tag: 'FREELANCE ML',
       color: 'border-[#1DB954]/40 text-[#1DB954] bg-[#1DB954]/10',
       desc: 'Recently embarked on freelance consulting as an ML Engineer, building customized machine learning solutions and intelligent automation pipelines for various clients. Delivering end-to-end model development, data preprocessing frameworks, and scalable AI integrations tailored to project requirements.',
@@ -73,7 +74,7 @@ export default function IdentityTrack() {
       role: 'Gemini Ambassador & Tech Lead',
       company: 'Google Gemini Community',
       period: 'SEP 2025 – FEB 2026',
-      logo: '/assest/gemini.png',
+      logo: getAssetPath('/gemini.png'),
       tag: 'MENTORSHIP',
       color: 'border-amber-500/40 text-amber-300 bg-amber-950/60',
       desc: 'Mentored 1,500+ developers building Multimodal RAG applications leveraging Vertex AI.',
@@ -82,7 +83,7 @@ export default function IdentityTrack() {
 
   return (
     <section className="w-full max-w-5xl mx-auto py-6 px-4 md:px-0 relative z-20 font-space-mono space-y-6">
-
+      
       {/* SECTION HEADER */}
       <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
         <div className="flex items-center gap-2">

@@ -4,6 +4,7 @@ import React from 'react';
 import TelemetryHeader from '@/components/TelemetryHeader';
 import CountdownTo50 from '@/components/CountdownTo50';
 import LunarTimeWidget from '@/components/LunarTimeWidget';
+import { getAssetPath } from '@/utils/assetPath';
 import {
   Brain,
   Code2,
@@ -402,7 +403,7 @@ export default function Home() {
               >
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-amber-400 bg-black shadow-[0_0_30px_rgba(251,191,36,0.7)] relative group">
                   <img
-                    src="/gods_hand_pixel_only.png"
+                    src={getAssetPath('/gods_hand_pixel_only.png')}
                     alt="Pixel Art God's Hand"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     style={{ imageRendering: 'pixelated' }}
