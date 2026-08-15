@@ -23,7 +23,7 @@ export default function TelemetryHeader() {
         >
           {/* Base Human Image with Pixelate/Blur Dissolve Out */}
           <img
-            src={getAssetPath('/assest/Untitled design (5).png')}
+            src={getAssetPath('/profile_human.png')}
             alt="Sai Varun Degala Profile"
             className={`w-full h-full object-cover object-center absolute inset-0 transition-all duration-400 ease-in-out ${isHovered
                 ? 'opacity-0 scale-125 filter blur-sm contrast-200 brightness-150'
