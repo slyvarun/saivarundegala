@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import SpideyPet from '@/components/SpideyPet';
 import FloatingRightNav from '@/components/FloatingRightNav';
+import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://varunhere.com'),
@@ -55,7 +56,9 @@ export default function RootLayout({
         {/* Global Floating Right Navigation Bar */}
         <FloatingRightNav />
 
-        <div className="relative z-10">{children}</div>
+        <div className="relative z-10">
+          <PageTransition>{children}</PageTransition>
+        </div>
       </body>
     </html>
   );

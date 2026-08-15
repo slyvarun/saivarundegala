@@ -26,6 +26,23 @@ body {
   font-family: 'Space Mono', monospace;
 }
 
+/* High-Performance GPU-Accelerated Page Shift Transition Animation */
+@keyframes pageShiftIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.page-shift-enter {
+  animation: pageShiftIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
 /* Strict Monochrome Black, Grey & White Borders */
 .nothing-border {
   border: 1px solid rgba(255, 255, 255, 0.12);
