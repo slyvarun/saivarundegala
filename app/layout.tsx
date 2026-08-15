@@ -5,18 +5,18 @@ import FloatingRightNav from '@/components/FloatingRightNav';
 import PageTransition from '@/components/PageTransition';
 import { getAssetPath } from '@/utils/assetPath';
 
-const iconPng = getAssetPath('/icon.png');
-const faviconIco = getAssetPath('/favicon.ico');
-const appleIcon = getAssetPath('/apple-icon.png');
+const iconPng = `${getAssetPath('/icon.png')}?v=luffy`;
+const faviconIco = `${getAssetPath('/favicon.ico')}?v=luffy`;
+const appleIcon = `${getAssetPath('/apple-icon.png')}?v=luffy`;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://varunhere.com'),
   title: 'varunhere | Sai Varun Degala',
   description: 'Dual-Domain AI/ML & Biomedical Engineering Portfolio by Sai Varun Degala.',
   icons: {
-    icon: '/icon.png',
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
+    icon: '/icon.png?v=luffy',
+    shortcut: '/favicon.ico?v=luffy',
+    apple: '/apple-icon.png?v=luffy',
   },
   openGraph: {
     title: 'varunhere | Sai Varun Degala',
