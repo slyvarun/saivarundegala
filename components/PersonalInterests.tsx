@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Heart, Shuffle, Repeat, Volume2, Edit3, Box, Globe } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Heart, Shuffle, Repeat, Volume2, Edit3, Box } from 'lucide-react';
+import { getAssetPath } from '@/utils/assetPath';
 
 export default function PersonalInterests() {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -23,7 +24,7 @@ export default function PersonalInterests() {
       artist: 'Shawn Mendes',
       album: 'Illuminate',
       track: "There's Nothing Holdin' Me Back",
-      img: '/shawn.jpg',
+      img: getAssetPath('/shawn.jpg'),
       badge: 'FEATURED',
     },
     {
@@ -31,7 +32,7 @@ export default function PersonalInterests() {
       artist: 'Michael Jackson',
       album: 'Thriller & Bad',
       track: 'Billie Jean // Beat It',
-      img: '/mj.jpg',
+      img: getAssetPath('/mj.jpg'),
       badge: 'POP KING',
     },
     {
@@ -39,7 +40,7 @@ export default function PersonalInterests() {
       artist: 'Billie Eilish',
       album: 'Happier Than Ever',
       track: 'Ocean Eyes // Bad Guy',
-      img: '/BillieEilish.webp',
+      img: getAssetPath('/BillieEilish.webp'),
       badge: 'ALT-POP',
     },
     {
@@ -47,7 +48,7 @@ export default function PersonalInterests() {
       artist: 'Ed Sheeran',
       album: '÷ Divide & = Equals',
       track: 'Shape of You // Perfect',
-      img: '/ed.jpg',
+      img: getAssetPath('/ed.jpg'),
       badge: 'ACOUSTIC',
     },
   ];

@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Trophy, Users, Award, ExternalLink } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import { getAssetPath } from '@/utils/assetPath';
 
 export default function ActivitiesSection() {
   const activities = [
@@ -10,7 +11,7 @@ export default function ActivitiesSection() {
       title: 'T-Hub Innovation Hackathons',
       role: 'Participant & AI Systems Builder',
       period: '2024 – PRESENT',
-      image: '/assest/thub.jpg',
+      image: getAssetPath('/assest/thub.jpg'),
       desc: 'Built healthcare AI prototypes and graph data models at India’s premier innovation ecosystem, T-Hub Hyderabad.',
       tag: 'INNOVATION',
     },
@@ -19,7 +20,7 @@ export default function ActivitiesSection() {
       title: 'WE Hub Startup Initiatives',
       role: 'Technical Mentor & Collaborator',
       period: '2024',
-      image: '/assest/wehub.JPG',
+      image: getAssetPath('/assest/wehub.JPG'),
       desc: 'Collaborating on technology enablement and full-stack software architecture for incubatees at WE Hub.',
       tag: 'INCUBATION',
     },
@@ -28,7 +29,7 @@ export default function ActivitiesSection() {
       title: 'Google DevFest & Community',
       role: 'Google Gemini Ambassador',
       period: 'SEP 2025 – FEB 2026',
-      image: '/assest/devfest.jpg',
+      image: getAssetPath('/assest/devfest.jpg'),
       desc: 'Mentored 1,500+ developers building Multimodal RAG applications leveraging Google Vertex AI & Gemini APIs.',
       tag: 'COMMUNITY',
     },
@@ -37,7 +38,7 @@ export default function ActivitiesSection() {
       title: 'WOW Awards & Technical Recognition',
       role: 'Excellence Awardee',
       period: '2025',
-      image: '/assest/wow.jpg',
+      image: getAssetPath('/assest/wow.jpg'),
       desc: 'Recognized for outstanding achievements in dual-domain AI engineering and biomedical signal analytics.',
       tag: 'HONOR',
     },

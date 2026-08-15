@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import StationaryLuffyPet from '@/components/StationaryLuffyPet';
+import { getAssetPath } from '@/utils/assetPath';
 
 export default function TelemetryHeader() {
   const [isHovered, setIsHovered] = useState(false);
@@ -22,7 +23,7 @@ export default function TelemetryHeader() {
         >
           {/* Base Human Image with Pixelate/Blur Dissolve Out */}
           <img
-            src="/assest/Untitled design (5).png"
+            src={getAssetPath('/assest/Untitled design (5).png')}
             alt="Sai Varun Degala Profile"
             className={`w-full h-full object-cover object-center absolute inset-0 transition-all duration-400 ease-in-out ${isHovered
                 ? 'opacity-0 scale-125 filter blur-sm contrast-200 brightness-150'
@@ -33,7 +34,7 @@ export default function TelemetryHeader() {
 
           {/* Spider-Man Graduation Alter Ego Pixelate Morph In */}
           <img
-            src="/spiderman_profile.jpg"
+            src={getAssetPath('/spiderman_profile.jpg')}
             alt="Spider-Man Graduation Alter Ego"
             className={`w-full h-full object-cover object-center absolute inset-0 transition-all duration-400 ease-in-out ${isHovered
                 ? 'opacity-100 scale-100 filter blur-0 contrast-110 brightness-100'

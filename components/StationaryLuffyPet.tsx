@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { getAssetPath } from '@/utils/assetPath';
 
 /**
  * StationaryLuffyPet Component
  * Plays all 7 pose frames strictly in order: pose_0.png -> pose_1.png -> pose_2.png -> pose_3.png -> pose_4.png -> pose_5.png -> pose_6.png.
  * Holds pose_6.png for a distinct pause/delay before continuing the loop back to pose_0.png.
+ * Compatible with GitHub Pages subpath deployment via getAssetPath helper.
  */
 export default function StationaryLuffyPet() {
   const [frameIdx, setFrameIdx] = useState(0);
@@ -14,13 +16,13 @@ export default function StationaryLuffyPet() {
 
   // Exact 7-pose animation sequence strictly in order
   const luffyFrames = [
-    '/luffy_poses_10/pose_0.png',
-    '/luffy_poses_10/pose_1.png',
-    '/luffy_poses_10/pose_2.png',
-    '/luffy_poses_10/pose_3.png',
-    '/luffy_poses_10/pose_4.png',
-    '/luffy_poses_10/pose_5.png',
-    '/luffy_poses_10/pose_6.png',
+    getAssetPath('/luffy_poses_10/pose_0.png'),
+    getAssetPath('/luffy_poses_10/pose_1.png'),
+    getAssetPath('/luffy_poses_10/pose_2.png'),
+    getAssetPath('/luffy_poses_10/pose_3.png'),
+    getAssetPath('/luffy_poses_10/pose_4.png'),
+    getAssetPath('/luffy_poses_10/pose_5.png'),
+    getAssetPath('/luffy_poses_10/pose_6.png'),
   ];
 
   const posRef = useRef(0);
@@ -95,9 +97,6 @@ export default function StationaryLuffyPet() {
             imageRendering: 'pixelated',
             WebkitBackfaceVisibility: 'hidden',
             backfaceVisibility: 'hidden',
-          }}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/luffy_10.jpg';
           }}
         />
       </div>

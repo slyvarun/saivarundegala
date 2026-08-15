@@ -1,28 +1,30 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { getAssetPath } from '@/utils/assetPath';
 
 /**
  * SpideyPet Component
  * Authentic Oneko-style Spider-Man Desktop Pet.
  * Stays standing peacefully near your cursor without overlapping it.
  * Wakes up & chases ONLY when the cursor moves > 80px away, stepping 16px per frame and stopping at 32px radius (exact Oneko mechanics).
+ * Compatible with GitHub Pages subpath deployment via getAssetPath helper.
  */
 export default function SpideyPet() {
   const [pos, setPos] = useState({ x: 150, y: 150 });
-  const [currentFrame, setCurrentFrame] = useState<string>('/spidey_oneko_poses/pose_0.png');
+  const [currentFrame, setCurrentFrame] = useState<string>(getAssetPath('/spidey_oneko_poses/pose_0.png'));
   const [isFlipped, setIsFlipped] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
   // Full running sequence sliced from 593d0cb330d76ab.jpg
   const runSequence = [
-    '/spidey_oneko_poses/pose_1.png',
-    '/spidey_oneko_poses/pose_2.png',
-    '/spidey_oneko_poses/pose_3.png',
-    '/spidey_oneko_poses/pose_4.png',
+    getAssetPath('/spidey_oneko_poses/pose_1.png'),
+    getAssetPath('/spidey_oneko_poses/pose_2.png'),
+    getAssetPath('/spidey_oneko_poses/pose_3.png'),
+    getAssetPath('/spidey_oneko_poses/pose_4.png'),
   ];
 
-  const standingFrame = '/spidey_oneko_poses/pose_0.png';
+  const standingFrame = getAssetPath('/spidey_oneko_poses/pose_0.png');
 
   const STOP_RADIUS = 32;       // Stops running when within 32px of target
   const CHASE_THRESHOLD = 80;   // Wakes up & chases ONLY when cursor moves > 80px away (exact Oneko threshold)
@@ -125,9 +127,6 @@ export default function SpideyPet() {
           imageRendering: 'pixelated',
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
-        }}
-        onError={() => {
-          setCurrentFrame('/spidey_oneko_poses/pose_0.png');
         }}
       />
     </div>
