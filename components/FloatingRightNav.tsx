@@ -80,9 +80,10 @@ export default function FloatingRightNav() {
                 {item.label}
               </div>
 
-              {/* Next.js Link Button with Heavy Click Sound */}
+              {/* Next.js Link Button with Instant Prefetch & Heavy Click Sound */}
               <Link
                 href={item.path}
+                prefetch={true}
                 onClick={playHeavyClickSound}
                 aria-label={item.label}
                 className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 relative ${

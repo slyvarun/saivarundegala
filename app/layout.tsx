@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   title: 'varunhere | Sai Varun Degala',
   description: 'Dual-Domain AI/ML & Biomedical Engineering Portfolio by Sai Varun Degala.',
   icons: {
-    icon: '/luffy_poses_10/pose_0.png',
-    shortcut: '/luffy_poses_10/pose_0.png',
-    apple: '/luffy_poses_10/pose_0.png',
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
   openGraph: {
     title: 'varunhere | Sai Varun Degala',
