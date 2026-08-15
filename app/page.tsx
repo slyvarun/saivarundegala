@@ -235,13 +235,13 @@ export default function Home() {
       <TelemetryHeader />
 
       <section className="w-full max-w-4xl mx-auto py-4 px-4 md:px-6 relative z-20 font-space-mono space-y-6">
-        
+
         {/* REALTIME TIME, DATE & PIXEL LUNAR POSITION WIDGET */}
         <LunarTimeWidget />
 
         {/* TOP INTRO HERO CARD WITH NESTED TILTED STAMP */}
         <div className="bg-[#121212] border border-neutral-800 rounded-2xl p-5 md:p-6 space-y-5 shadow-2xl relative overflow-hidden">
-          
+
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-800 pb-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-white rounded-full animate-ping" />
@@ -256,7 +256,7 @@ export default function Home() {
 
           {/* MAIN INTRO CONTENT & STAMP SIDE-BY-SIDE GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-            
+
             {/* INTRO TEXT & DESCRIPTION */}
             <div className="lg:col-span-7 space-y-3">
               <h2 className="text-xl md:text-2xl font-bold font-doto text-white leading-tight">
@@ -360,7 +360,7 @@ export default function Home() {
           </div>
 
           <div className="bg-[#121212] border border-neutral-800 rounded-2xl p-4 md:p-6 relative overflow-hidden shadow-2xl">
-            
+
             {/* SVG Connecting Edges */}
             <div className="relative w-full h-[260px] block">
               <svg className="w-full h-full block" viewBox="0 0 600 260">

@@ -82,7 +82,7 @@ export default function IdentityTrack() {
 
   return (
     <section className="w-full max-w-5xl mx-auto py-6 px-4 md:px-0 relative z-20 font-space-mono space-y-6">
-      
+
       {/* SECTION HEADER */}
       <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
         <div className="flex items-center gap-2">
